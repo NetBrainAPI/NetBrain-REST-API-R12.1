@@ -25,8 +25,12 @@ Using this API call to update credential for an AWS account in API Server Manage
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |id* | string  |  The API server id |
+|If Access Method: Key-based|
 |AWS_SERVER_PUBLIC_KEY*|string|Access Key ID. This is required parameter if no input on AWS_SERVER_SECRET_KEY.|
 |AWS_SERVER_SECRET_KEY*|string|Secret Access Key. This is required parameter if no input on AWS_SERVER_PUBLIC_KEY.|
+|If Access Method: Role-based|
+|AWS_MASTER_SERVER_PUBLIC_KEY*|string|Master Access Key. This is required parameter|
+|AWS_MASTER_SERVER_SECRET_KEY*|string|Master Secret Access Key. This is required parameter|
 
 ## Parameters(****required***)
 
