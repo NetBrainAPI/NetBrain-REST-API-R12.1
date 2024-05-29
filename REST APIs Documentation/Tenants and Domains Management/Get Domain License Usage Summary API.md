@@ -134,7 +134,6 @@ Call this API to get domain license usage information.
 ```
 
 # Full Example:
-Draft Version
 
 ```python
 # import python modules 
@@ -152,28 +151,38 @@ full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Domains/LicenseUsageSummary"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["token"] = token
 
+domainId = ""
+tenantId = ""
+
+data = {
+    "domainId": domainId,
+    "tenantId": tenantId
+    }
+
 try:
-    response = requests.get(full_url, headers=headers, verify=False)
+    response = requests.get(full_url, params = data, headers = headers, verify = False)
+    print(response)
     if response.status_code == 200:
         result = response.json()
         print (result)
     else:
-        print ("Get Domain License Usage failed! - " + str(response.text))
+        print ("Get Domain License failed - " + str(response.text))
     
 except Exception as e:
-    print (str(e)) 
 ```
 
     {'statusCode': 790200, 'statusDescription': 'Success.'}
     
 
 # cURL Code from Postman
-Draft Version
 
 ```python
 curl -X GET \
-  http://192.168.31.191//ServicesAPI/API/V1/CMDB/Domains/LicenseUsageSummary \
-  -H 'Content-Type: application/json' \
-  -H 'cache-control: no-cache' \ 
-  -H 'token: b0181119-7b1b-4faf-be97-b8566a39a640' \
+'http://192.168.20.45/ServicesAPI/API/V1/CMDB/Domains/LicenseUsageSummary' \
+-H 'Content-Type: application/json' \
+-H 'token: 54e2addc-dc77-40da-aa0f-f32e33d328f5'
+-d '{
+    "domainId" : "",
+    "tenantId" : ""
+}'
 ```
