@@ -58,32 +58,13 @@ Call this API to get ADT data
 ## Response
 The data model returned by each DataType:
 
-|**Cell Data Type**|**Description**|
-|------|------|
-|<img width=100/>|<img width=500/>|
-|string|````python{//    "value": "hello world"//}````|
-|int|Intent Name|
-|bool|NI execution time point|
-|float|NI status code|
-|DateTime|NI CSV results|
-|device|Command results under device|
-|Interface|Device name|
-|DeviceList|Name of the command|
-|InterfaceList|Information of the command|
-|map|Map results executed by NI|
-|site|------|
-|path|------|
-|NI|------|
-|Dataset|------|
-
-
 <table>
   <tr>
     <th>Cell Data Type</th>
     <th>Description</th>
   </tr>
   <tr>
-    <td>string</td>
+    <td>String</td>
     <td><pre><code>```python
 {
     "value": "hello world"
@@ -91,13 +72,118 @@ The data model returned by each DataType:
 ```</code></pre></td>
   </tr>
   <tr>
-    <td>int</td>
+    <td>Int</td>
     <td><pre><code>```python
 {
-    "value": 1
+    "value": "1"
 }
 ```</code></pre></td>
   </tr>
+  <tr>
+    <td>Bool</td>
+    <td><pre><code>```python
+{
+    "value": "true"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>Float</td>
+    <td><pre><code>```python
+{
+    "value": "123.456"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>DateTime</td>
+    <td><pre><code>```python
+{
+    "value": "2022-11-15T07:23:39.196Z"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>Device</td>
+    <td><pre><code>```python
+{
+    "value": "BJ-R1"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>Interface</td>
+    <td><pre><code>```python
+{
+    "value": "BJ*POP - FastEthernet0/0"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>DeviceList</td>
+    <td><pre><code>```python
+{
+    "value": ["BJ-3750-1", "BJ-3750-2"]
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>InterfaceList</td>
+    <td><pre><code>```python
+{
+    "value": ["BJ*POP - FastEthernet0/0", "BJ*POP - FastEthernet0/1"]
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>Map</td>
+    <td><pre><code>```python
+{
+    "id": "mapId 1",
+    "name": "Map Name 1",
+    "url": "map.html?t=1650bf6e-67ed-3c07-3357-b070528c4b19&d=2b662e5d-fe4e-436a-8fa9-c847c1752511&id=1812bd18-633b-4f7d-8e06-8eb5f259660a&maptype=3"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>Site</td>
+    <td><pre><code>```python
+{
+    "id": "site id 1",
+    "name": "Site Name 1",
+    "path": "My Network\\testSummary",
+    "mapUrl": "map.html?t=1650bf6e-67ed-3c07-3357-b070528c4b19&d=2b662e5d-fe4e-436a-8fa9-c847c1752511&id=1812bd18-633b-4f7d-8e06-8eb5f259660a&maptype=3"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>Path</td>
+    <td><pre><code>```python
+{
+    "id": "path template id 1",
+    "name": "path Name 1",
+    "application": "AAM Name"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>NI</td>
+    <td><pre><code>```python
+{
+    "id": "ni id 1",
+    "name": "ni Name 1"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>Dataset</td>
+    <td><pre><code>```python
+{
+  "value": "{\"devices\":[{\"devId\":\"f9accd47-a4cf-495e-b031-54e5e33d35f3\",\"devName\":\"GW2Lab\",\"ls\":[{\"t\":\"2024-03-15T06:16:10Z\",\"c\":\"DEData_2024_3\",\"f\":\"e8ff3a67-ae2e-4764-ae87-6b68b5d87d74\",\"o\":[{\"n\":\"show ip cef exact-route virtual 10.10.7.253 172.24.30.6\",\"t\":\"cmd\",\"o\":0,\"l\":146}]},{\"t\":\"2024-03-15T06:16:10Z\",\"c\":\"DEData_2024_3\",\"f\":\"7c2e7998-9a84-44a9-995a-53504f72af14\",\"o\":[{\"n\":\"show ip cef exact-route virtual 10.10.7.253 172.24.31.2\",\"t\":\"cmd\",\"o\":0,\"l\":146}]},{\"t\":\"2024-03-21T07:56:06Z\",\"c\":\"DEData_2024_3\",\"f\":\"2ee9202f-5603-4d7a-90ad-bdd38e1eff2d\",\"o\":[{\"n\":\"show ip cef 10.10.7.253\",\"t\":\"cmd\",\"o\":259,\"l\":85},{\"n\":\"show ip route 10.10.7.253\",\"t\":\"cmd\",\"o\":0,\"l\":259}]},{\"t\":\"2024-03-21T07:56:06Z\",\"c\":\"DEData_2024_3\",\"f\":\"88b14e19-1b5d-4d65-a06d-cecccef183e9\",\"o\":[{\"n\":\"show ip cef exact-route virtual 10.10.3.253 10.10.7.253\",\"t\":\"cmd\",\"o\":0,\"l\":103}]}]}]}"
+}
+```</code></pre></td>
+  </tr>
+
 
 </table>
 
