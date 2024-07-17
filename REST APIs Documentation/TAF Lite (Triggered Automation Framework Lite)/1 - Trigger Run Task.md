@@ -1,12 +1,12 @@
 
-# Get Search Results API Design
+# Trigger Run Task API Design
 
 ## ***POST*** V3/TAF/Lite/run
 Call this API to trigget run task
 
 ## Detail Information
 
-> **Title** : Get Search Results API<br>
+> **Title** : Trigger Run Task<br>
 
 > **Version** : 17/07/2024
 
@@ -23,7 +23,7 @@ Call this API to trigget run task
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-||* - required\n^ - optional|
+|||* - required<br />^ - optional|
 |endpoint*|string|Corresponds to the endpoint in the TAFLite definition. |
 |passKey*|string|The access permission needs to match the Endpoint selected above for Trigger Run to be successful. |
 |filterDevices^|array|Used to quickly filter rows by device. <br />device Name List - optional parameter. <br />If this parameter has a value, these device names will be used to match ADT rows with the Device Column of ADT. <br />If the device name of any device column is in the device name list, the row will be deemed to meet the condition |
@@ -94,7 +94,7 @@ TaskID executed by this Trigger
 ```
 
 # Full Example:
-
+DRAFT
 
 ```python
 # import python modules 
