@@ -58,7 +58,6 @@ Call this API to get the running status of Trigger Task and running ResultID of 
 | token | string  | Authentication token, get from login API. |
 
 ## Response
-TaskID executed by this Trigger
 
 |**Name**|**Type**|**Description**|
 |------|------|------|

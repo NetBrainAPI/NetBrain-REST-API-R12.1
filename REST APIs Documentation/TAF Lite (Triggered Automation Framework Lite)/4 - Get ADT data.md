@@ -1,16 +1,16 @@
 
-# Get NI running results of Trigger Task API Design
+# Get ADT Data API Design
 
-## ***POST*** V3/TAF/Lite/result/datas
-Call this API to get the NI running results of Trigger Task
+## ***POST*** V3/TAF/Lite/adt/data
+Call this API to get ADT data
 
 ## Detail Information
 
-> **Title** : Get NI running results of Trigger Task<br>
+> **Title** : Get ADT Data<br>
 
 > **Version** : 17/07/2024
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/TAF/Lite/result/datas
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/TAF/Lite/adt/data
 
 > **Authentication** : 
 
@@ -25,17 +25,14 @@ Call this API to get the NI running results of Trigger Task
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||* - required<br />^ - optional|
 |endpoint*|string|The endpoint in the TAFLite definition. |
-|niResultId*|string|NI's result ID; corresponds to NIExecutionResult's _id |
-|output*|array|<table><tr><th>Value</th><th>Enum</th><th>Description</th></tr> <tr><td>0</td><td>all</td><td>All data, except raw data</td></tr> <tr><td>1</td><td>status_code</td><td>Status code and message</td></tr> <tr><td>2</td><td>raw_data</td><td>Raw data</td></tr> <tr><td>3</td><td>csv</td><td>CSV</td></tr> <tr><td>4</td><td>map</td><td>Intent map and external map</td></tr> </table>|
+|passKey*|string|Access permission. |
+|filterDevices^|array|Used to quickly filter rows by device. </br>device Name List - this parameter is optional </br>If this parameter has a value, these device names will be used to match ADT rows with the Device Column of ADT. If the device name of any device colun is in the device name list, the row will be deemed to meet the conditions.|
+|columns^|array|Column display name list, used to express the returned value. </br>If there is no value, or the array does not have any items, all columns are returned. |
+|option^|object|Advanced setting|
+|option.rowFilter	|object|JSON object <br /><br />ColumnDisplayName: value <br /><br />Use AND to perform operations between JSON attributes |
+|pageSize|int|Returns the number of data items. </br>Default: 100|
+|pageNumber|int|Returns the page of data. </br>Default: 1|
 
-> ***Example***
-```python
-{ 
-   endpoint: 'endpoint1',
-   niResultId: 'ni result id1',
-   output: [0, 1, 2, 3, 4] //0:all, 1: rawdata, 2: status code, 3: csv, 4: map
-}
-```
 
 ## Parameters(****required***)
 >No parameters required.
@@ -59,21 +56,26 @@ Call this API to get the NI running results of Trigger Task
 | token | string  | Authentication token, get from login API. |
 
 ## Response
-The returned NI execution result content includes Home NI and Follow NI results, hence the result is of type List.
+The data model returned by each DataType:
 
-|**Name**|**Type**|**Description**|
-|------|------|------|
-|<img width=100/>|<img width=100/>|<img width=500/>|
-|[].niId|string|Intent ID|
-|[].niName|string|Intent Name|
-|[].timePoint|string|NI execution time point|
-|[].statusCodes|list|NI status code|
-|[].csvs|list of objects|NI CSV results|
-|[].rawDatas|string|Command results under device|
-|[].rawDatas[].deviceName|string|Device name|
-|[].rawDatas[].command|string|Name of the command|
-|[].rawDatas[].rawData|string|Information of the command|
-|[].maps|list of objects|Map results executed by NI|
+|**Cell Data Type**|**Description**|
+|------|------|
+|<img width=100/>|<img width=500/>|
+|string|````python</br>{    "value": "hello world"}````|
+|int|Intent Name|
+|bool|NI execution time point|
+|float|NI status code|
+|DateTime|NI CSV results|
+|device|Command results under device|
+|Interface|Device name|
+|DeviceList|Name of the command|
+|InterfaceList|Information of the command|
+|map|Map results executed by NI|
+|site|------|
+|path|------|
+|NI|------|
+|Dataset|------|
+
 
 
 > ***Example***
