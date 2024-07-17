@@ -128,8 +128,7 @@ token = getTokens(user,pwd)
 headers["Token"] = token
  
 def lite_run(API_Body):
- 
-    # Trigger  API url
+    # Trigger API url
     API_URL = r"/ServicesAPI/API/V3/TAF/Lite/run"
     # Trigger API payload
     api_full_url = host_url + API_URL
