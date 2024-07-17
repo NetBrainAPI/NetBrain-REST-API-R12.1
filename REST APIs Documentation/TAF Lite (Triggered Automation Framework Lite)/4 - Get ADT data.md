@@ -77,6 +77,30 @@ The data model returned by each DataType:
 |Dataset|------|
 
 
+<table>
+  <tr>
+    <th>Cell Data Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>string</td>
+    <td><pre><code>```python
+{
+    "value": "hello world"
+}
+```</code></pre></td>
+  </tr>
+  <tr>
+    <td>int</td>
+    <td><pre><code>```python
+{
+    "value": 1
+}
+```</code></pre></td>
+  </tr>
+
+</table>
+
 
 > ***Example***
 
