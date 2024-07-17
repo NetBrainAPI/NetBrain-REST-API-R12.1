@@ -26,13 +26,13 @@ Call this API to trigget run task
 ||* - required\n^ - optional|
 |endpoint*|string|Corresponds to the endpoint in the TAFLite definition. |
 |passKey*|string|The access permission needs to match the Endpoint selected above for Trigger Run to be successful. |
-|filterDevices^|array|Used to quickly filter rows by device. \device Name List - optional parameter. \If this parameter has a value, these device names will be used to match ADT rows with the Device Column of ADT. \If the device name of any device column is in the device name list, the row will be deemed to meet the condition |
+|filterDevices^|array|Used to quickly filter rows by device. <br />device Name List - optional parameter. <br />If this parameter has a value, these device names will be used to match ADT rows with the Device Column of ADT. <br />If the device name of any device column is in the device name list, the row will be deemed to meet the condition |
 |intentColumns|array|Corresponds to the endpoint in the TAFLite definition. |
 |option^|object|Advanced setting |
-|option.rawData|bool|True - indicates that there is always raw data \False - indicates that it is not mandatory to save raw data. Whether to save raw data depends on the definition of NI \\Default: False \\e.g. if status code is defined, there must be raw data |
-|option.dataSource|int|0: Live \1: Baseline \\default: 0 (Live Execution Intent) |
-|option.rowFilter|object|JSON object \\ColumnDisplayName: value \\Use AND to perform operations between JSON attributes |
-|option.maxExecuteNIColumn|int|The maximum number of columns of NI Column allowed to run \Default: 1 |
+|option.rawData|bool|True - indicates that there is always raw data \False - indicates that it is not mandatory to save raw data. Whether to save raw data depends on the definition of NI <br /><br />Default: False <br /><br />e.g. if status code is defined, there must be raw data |
+|option.dataSource|int|0: Live <br />1: Baseline <br /><br />default: 0 (Live Execution Intent) |
+|option.rowFilter|object|JSON object <br /><br />ColumnDisplayName: value <br /><br />Use AND to perform operations between JSON attributes |
+|option.maxExecuteNIColumn|int|The maximum number of columns of NI Column allowed to run <br />Default: 1 |
 
 > ***Example***
 ```python
