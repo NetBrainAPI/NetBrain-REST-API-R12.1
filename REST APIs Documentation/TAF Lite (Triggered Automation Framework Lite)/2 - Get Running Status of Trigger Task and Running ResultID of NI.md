@@ -151,9 +151,6 @@ if __name__ =="__main__":
 
 ```
 
-    {'statusCode': 790200, 'statusDescription': 'Success.'}
-    
-
 # cURL Code from Postman
 
 ```python
@@ -163,8 +160,8 @@ http://10.10.0.29/ServicesAPI/API/V1/Session \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -d '{
-    "username" : "chendezhi",
-    "password" : "Qwer@1234"  
+    "username" : "abc",
+    "password" : "1234"  
 }'
 
 # call Get Running Status of Trigger Task and Running ResultID of NI

@@ -109,45 +109,86 @@ The returned NI execution result content includes Home NI and Follow NI results,
 ```
 
 # Full Example:
-DRAFT
 
 ```python
 # import python modules 
 import requests
-import time
-import urllib3
-import pprint
 import json
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-# Set the request inputs
-token = "9c717c9a-4302-45b5-a068-2a3e9c4ea1a3"
-nb_url = "http://192.168.30.166"
-full_url = nb_url + "/ServicesAPI/API/V1/TAF/QuickResult"
+import time
+import requests.packages.urllib3 as urllib3
+ 
+urllib3.disable_warnings()
+ 
+user = "abc"
+pwd = "1234"
+host_url = "http://10.10.0.29"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-headers["token"] = token
 
-try:
-    response = requests.get(full_url, headers=headers, verify=False)
-    if response.status_code == 200:
-        result = response.json()
-        print (result)
+# Get token for netbrain
+def getTokens(user,password):
+    login_api_url = r"/ServicesAPI/API/V1/Session"
+    Login_url = host_url + login_api_url
+    data = {
+        "username": user,
+        "password": password
+    }
+    token = requests.post(Login_url, data=json.dumps(
+        data), headers=headers, verify=False)
+    if token.status_code == 200:
+        print(token.json())
+        return token.json()["token"]
     else:
-        print ("Get modules failed! - " + str(response.text))
-    
-except Exception as e:
-    print (str(e)) 
-```
+        return "error"
 
-    {'statusCode': 790200, 'statusDescription': 'Success.'}
-    
+# get token
+token = getTokens(user,pwd)
+headers["Token"] = token
+ 
+ 
+def get_lite_run_result_data(API_Body):
+ 
+    # Trigger  API url
+    API_URL = r"/ServicesAPI/API/V3/TAF/Lite/result/datas"
+    # Trigger API payload
+    print(headers)
+    api_full_url = host_url + API_URL
+    api_result = requests.post(api_full_url, data=json.dumps(
+        API_Body), headers=headers, verify=False)
+    if api_result.status_code == 200:
+        return api_result.json()
+    else:
+        return api_result.json()
+ 
+if __name__ =="__main__":
+  API_BODY = {
+        "endpoint": "T100007",
+        "niResultId": "7d12d7f6-5b45-4ee7-aa37-11b0db991dfd",
+        "output": [0]
+    }
+ 
+    print(get_lite_run_result_data(API_BODY))
+```
 
 # cURL Code from Postman
 
 ```python
-curl -X GET \
-  http://192.168.31.191/ServicesAPI/API/V1/CMDB/NetworkSettings/TelnetInfo/RefreshDeviceCount \
+# call login API
+curl -X POST \
+http://10.10.0.29/ServicesAPI/API/V1/Session \
   -H 'Content-Type: application/json' \
-  -H 'cache-control: no-cache' \ 
-  -H 'token: b0181119-7b1b-4faf-be97-b8566a39a640' \
+  -H 'Accept: application/json' \
+  -d '{
+    "username" : "abc",
+    "password" : "1234"  
+}'
+
+# call Get Running Status of Trigger Task and Running ResultID of NI
+curl -X POST \
+  http://10.10.0.29/ServicesAPI/API/V3/TAF/Lite/result/datas \
+  -H "Content-Type: application/json"
+  -H 'token: 32ef82d4-44a5-4b48-a089-97daf5e1d92e' \
+  -d '{
+        "endpoint": "T100007",
+        "taskId": "aa422a38-f795-486d-a5ac-9c48e76a6a87",
+    }'
 ```
