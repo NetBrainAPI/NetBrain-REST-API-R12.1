@@ -160,13 +160,17 @@ def get_lite_run_result_data(API_Body):
         return api_result.json()
  
 if __name__ =="__main__":
-  API_BODY = {
+    API_BODY = {
         "endpoint": "T100007",
         "niResultId": "7d12d7f6-5b45-4ee7-aa37-11b0db991dfd",
         "output": [0]
     }
- 
-    print(get_lite_run_result_data(API_BODY))
+    try:
+        print(get_lite_run_result_data(API_BODY))
+
+    except Exception as e:
+        print (str(e)) 
+
 ```
 
 # cURL Code from Postman

@@ -146,8 +146,13 @@ if __name__ =="__main__":
         "endpoint": "T100007",
         "taskId": "aa422a38-f795-486d-a5ac-9c48e76a6a87",
     }
- 
-    print(get_lite_run_result(API_BODY))
+
+    try:
+        print(get_lite_run_result(API_BODY))
+
+    except Exception as e:
+        print (str(e)) 
+
 
 ```
 
