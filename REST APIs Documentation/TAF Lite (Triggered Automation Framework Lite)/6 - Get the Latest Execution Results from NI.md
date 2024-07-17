@@ -208,7 +208,7 @@ http://10.10.0.29/ServicesAPI/API/V1/Session \
     "password" : "1234"  
 }'
 
-# call Get Running Status of Trigger Task and Running ResultID of NI
+# call get latest execution results from NI
 curl -X POST \
   http://10.10.0.29/ServicesAPI/API/V3/CMDB/NI/result \
   -H "Content-Type: application/json"

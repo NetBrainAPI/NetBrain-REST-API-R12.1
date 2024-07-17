@@ -144,7 +144,7 @@ http://10.10.0.29/ServicesAPI/API/V1/Session \
     "password" : "1234"  
 }'
 
-# call Get Running Status of Trigger Task and Running ResultID of NI
+# call Download
 curl -X GET \
   http://10.10.0.29/ServicesAPI/API/V3/download?dl_ticket=ZTA2MjAxYWItMTU5MC00MGU5LWExOTItNDZmNjk5Y2E5ZTI0fDYzODU1NzkzMzE2ODgyNzA5Mg== \
   -H "Content-Type: application/json"
