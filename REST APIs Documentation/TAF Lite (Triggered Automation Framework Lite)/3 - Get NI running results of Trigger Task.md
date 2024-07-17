@@ -1,16 +1,16 @@
 
-# Get Running Status of Trigger Task and Running ResultID of NI API Design
+# Get NI running results of Trigger Task API Design
 
-## ***POST*** V3/TAF/Lite/result
-Call this API to get the running status of Trigger Task and running ResultID of NI
+## ***POST*** V3/TAF/Lite/result/datas
+Call this API to get the NI running results of Trigger Task
 
 ## Detail Information
 
-> **Title** : Get Running Status of Trigger Task and Running ResultID of NI<br>
+> **Title** : Get NI running results of Trigger Task<br>
 
 > **Version** : 17/07/2024
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/TAF/Lite/result
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/TAF/Lite/result/datas
 
 > **Authentication** : 
 
@@ -25,14 +25,16 @@ Call this API to get the running status of Trigger Task and running ResultID of 
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||* - required<br />^ - optional|
 |endpoint*|string|The endpoint in the TAFLite definition. |
-|taskId*|string|The ID corresponding to TAFLiteTask is obtained from the previous API return value. |
-
+|niResultId*|string|NI's result ID; corresponds to NIExecutionResult's _id |
+|output*|array|<table><tr><th>Value</th><th>Enum</th><th>Description</th></tr> <tr><td>0</td><td>all</td><td>All data, except raw data</td></tr>
+<tr><td>1</td><td>status_code</td><td>Status code and message</td></tr> </table>|
 
 > ***Example***
 ```python
 { 
    endpoint: 'endpoint1',
-   taskId: 'task id1'
+   niResultId: 'ni result id1',
+   output: [0, 1, 2, 3, 4] //0:all, 1: rawdata, 2: status code, 3: csv, 4: map
 }
 ```
 
