@@ -61,7 +61,7 @@ The data model returned by each DataType:
 |**Cell Data Type**|**Description**|
 |------|------|
 |<img width=100/>|<img width=500/>|
-|string|````python</br>{    "value": "hello world"}````|
+|string|````python{//    "value": "hello world"//}````|
 |int|Intent Name|
 |bool|NI execution time point|
 |float|NI status code|
