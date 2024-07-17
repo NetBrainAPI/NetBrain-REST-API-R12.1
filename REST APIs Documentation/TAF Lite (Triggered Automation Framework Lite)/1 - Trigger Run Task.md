@@ -174,9 +174,9 @@ http://10.10.0.29/ServicesAPI/API/V1/Session \
     "password" : "Qwer@1234"  
 }'
 
-# call One IP Table API
+# call Trigger Run Task
 curl -X POST \
-  'http://10.10.0.29//ServicesAPI/API/V3/TAF/Lite/run' \
+  'http://10.10.0.29/ServicesAPI/API/V3/TAF/Lite/run' \
   -H 'cache-control: no-cache' \
   -H "Content-Type: application/json"
   -H 'token: b6bd93cd-5e5a-43fd-83ac-2c92b304e5c8'
