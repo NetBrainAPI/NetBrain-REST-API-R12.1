@@ -1,16 +1,16 @@
 
-# Trigger Run Task API Design
+# Get the Latest Execution Results from NI API Design
 
-## ***POST*** V3/TAF/Lite/run
-Call this API to trigger run task
+## ***POST*** V3/CMDB/NI/result
+Call this API to get the running status of Trigger Task and running ResultID of NI
 
 ## Detail Information
 
-> **Title** : Trigger Run Task<br>
+> **Title** : Get the Latest Execution Results from NI<br>
 
 > **Version** : 17/07/2024
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/TAF/Lite/run
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/NI/result
 
 > **Authentication** : 
 
@@ -24,32 +24,16 @@ Call this API to trigger run task
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||* - required<br />^ - optional|
-|endpoint*|string|The endpoint in the TAFLite definition. |
-|passKey*|string|The access permission needs to match the Endpoint selected above for Trigger Run to be successful. |
-|filterDevices^|array|Used to quickly filter rows by device. <br />device Name List - optional parameter. <br />If this parameter has a value, these device names will be used to match ADT rows with the Device Column of ADT. <br />If the device name of any device column is in the device name list, the row will be deemed to meet the condition |
-|intentColumns|array|Corresponds to the endpoint in the TAFLite definition. |
-|option^|object|Advanced setting |
-|option.rawData|bool|True - indicates that there is always raw data \False - indicates that it is not mandatory to save raw data. Whether to save raw data depends on the definition of NI <br /><br />Default: False <br /><br />e.g. if status code is defined, there must be raw data |
-|option.dataSource|int|0: Live <br />1: Baseline <br /><br />Default: 0 (Live Execution Intent) |
-|option.rowFilter|object|JSON object <br /><br />ColumnDisplayName: value <br /><br />Use AND to perform operations between JSON attributes |
-|option.maxExecuteNIColumn|int|The maximum number of columns of NI Column allowed to run <br />Default: 1 |
+|niIdOrPath*|string|NI ID or NI Path |
+|startTime^|DateTime|Start time of NI execution |
+|endTime^|DateTime|End time of NI execution |
+|output*|array|<table><tr><th>Value</th><th>Enum</th><th>Description</th></tr> <tr><td>0</td><td>all</td><td>All data, except raw data</td></tr> <tr><td>1</td><td>status_code</td><td>Status code and message</td></tr> <tr><td>2</td><td>raw_data</td><td>Raw data</td></tr> <tr><td>3</td><td>csv</td><td>CSV</td></tr> <tr><td>4</td><td>map</td><td>Intent map and external map</td></tr> </table>|
 
 > ***Example***
 ```python
-{
-    endpoint: 'T000001',
-    passKey: '123456',
-    filterDevices: ['BJ-R1', 'BJ-R2'],
-    intentColumns: ["NI Column1"],
-    option: {
-        rawData: false,
-        dataSource: 0,
-        rowFilter: {
-            Column1: 'v1',
-            Column2: 'v2',
-        },
-        maxExecuteNIColumn: 1
-    }
+{      
+   niIdOrPath: 'Public\\ni1',
+   output: [0, 1, 2, 3, 4] //0:all, 1: rawdata, 2: status code, 3: csv, 4: map
 }
 ```
 
@@ -75,22 +59,53 @@ Call this API to trigger run task
 | token | string  | Authentication token, get from login API. |
 
 ## Response
-TaskID executed by this Trigger
+The returned NI execution result content includes Home NI and Follow NI results, hence the result is of type List.
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|statusCode| integer | The returned status code of executing the API.  |
-|statusDescription| string | The explanation of the status code.  |
+|[].niId|string|Intent ID|
+|[].niName|string|Intent Name|
+|[].timePoint|string|NI execution time point|
+|[].statusCodes|list|NI status code|
+|[].csvs|list of objects|NI CSV results|
+|[].rawDatas|string|Command results under device|
+|[].rawDatas[].deviceName|string|Device name|
+|[].rawDatas[].command|string|Name of the command|
+|[].rawDatas[].rawData|string|Information of the command|
+|[].maps|list of objects|Map results executed by NI|
+
 
 > ***Example***
 
-
 ```python
-{
-    'statusCode': 790200, 
-    'statusDescription': 'Success.'
-}
+[{
+    "niId": "intent1 id",
+    "niName": "intent1 name",
+    "statusCodes": [
+      "intent status code1",
+      "intent status code2"
+    ],
+    "csvs": [ {
+        "fileName": "csv file name1", 
+        "csv": "a1,b1,c1"
+      }],
+    "rawDatas": [
+      {
+        "device": "BJ-R1", 
+        "command": "show config",
+        "rawData": "raw data1"
+      }
+    ],
+    "maps": [
+        {
+            "id": "map id 1",
+            "name": "map Name 1",
+            "url": "map url 1",
+            "type": "Intent Map" //Intent Map; External Map
+        }
+    ]
+}]
 ```
 
 # Full Example:

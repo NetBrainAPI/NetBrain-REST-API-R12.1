@@ -1,16 +1,16 @@
 
-# Trigger Run Task API Design
+# Download API Design
 
-## ***POST*** V3/TAF/Lite/run
-Call this API to trigger run task
+## ***GET*** V3/download?dl_ticket=xx
+Call this API to download
 
 ## Detail Information
 
-> **Title** : Trigger Run Task<br>
+> **Title** : Download<br>
 
 > **Version** : 17/07/2024
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/TAF/Lite/run
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/download?dl_ticket=xx
 
 > **Authentication** : 
 
@@ -20,38 +20,8 @@ Call this API to trigger run task
 |Bearer Authentication| Headers | Authentication token | 
 
 ## Request body(****required***)
-|**Name**|**Type**|**Description**|
-|------|------|------|
-|<img width=100/>|<img width=100/>|<img width=500/>|
-|||* - required<br />^ - optional|
-|endpoint*|string|The endpoint in the TAFLite definition. |
-|passKey*|string|The access permission needs to match the Endpoint selected above for Trigger Run to be successful. |
-|filterDevices^|array|Used to quickly filter rows by device. <br />device Name List - optional parameter. <br />If this parameter has a value, these device names will be used to match ADT rows with the Device Column of ADT. <br />If the device name of any device column is in the device name list, the row will be deemed to meet the condition |
-|intentColumns|array|Corresponds to the endpoint in the TAFLite definition. |
-|option^|object|Advanced setting |
-|option.rawData|bool|True - indicates that there is always raw data \False - indicates that it is not mandatory to save raw data. Whether to save raw data depends on the definition of NI <br /><br />Default: False <br /><br />e.g. if status code is defined, there must be raw data |
-|option.dataSource|int|0: Live <br />1: Baseline <br /><br />Default: 0 (Live Execution Intent) |
-|option.rowFilter|object|JSON object <br /><br />ColumnDisplayName: value <br /><br />Use AND to perform operations between JSON attributes |
-|option.maxExecuteNIColumn|int|The maximum number of columns of NI Column allowed to run <br />Default: 1 |
+downloadTicketId in request is downloadTicketId returned by API
 
-> ***Example***
-```python
-{
-    endpoint: 'T000001',
-    passKey: '123456',
-    filterDevices: ['BJ-R1', 'BJ-R2'],
-    intentColumns: ["NI Column1"],
-    option: {
-        rawData: false,
-        dataSource: 0,
-        rowFilter: {
-            Column1: 'v1',
-            Column2: 'v2',
-        },
-        maxExecuteNIColumn: 1
-    }
-}
-```
 
 ## Parameters(****required***)
 >No parameters required.
