@@ -63,7 +63,7 @@ Call this API to get the running status of Trigger Task and running ResultID of 
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |taskId|string|taskID executed by this Trigger|
-|status|string|The execution status of this task <br />0: Pending <br />1: RUnning <br />2: Finished <br />Only when status is Finished, the following intents will have results|
+|status|string|The execution status of this task <br />0: Pending <br />1: Running <br />2: Finished <br />Only when status is Finished, the following intents will have results|
 |intents|list of objects|Trigger Intent List|
 |intents[].id|string|Intent ID|
 |intents[].name|string|Intent Name|

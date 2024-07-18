@@ -219,7 +219,6 @@ The data model returned by each DataType:
 ```
 
 # Full Example:
-DRAFT
 
 ```python
 # import python modules 
@@ -254,8 +253,6 @@ def getTokens(user,password):
 # get token
 token = getTokens(user,pwd)
 headers["Token"] = token
-# headers["TenantGuid"]= "1650bf6e-67ed-3c07-3357-b070528c4b19"
-# headers["DomainGuid"]= "2b662e5d-fe4e-436a-8fa9-c847c1752511"
  
  
 def get_adt_data(API_Body):
