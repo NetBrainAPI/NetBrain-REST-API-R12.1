@@ -61,7 +61,6 @@ Call this API to get the list of device names with the matching search keyword f
 
 > ***Example***
 
-
 ```python
 {
    "deviceResults":[
@@ -79,6 +78,7 @@ Call this API to get the list of device names with the matching search keyword f
 ```
 
 # Full Example:
+DRAFT
 
 
 ```python
