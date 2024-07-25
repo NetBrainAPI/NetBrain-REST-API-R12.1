@@ -1,5 +1,5 @@
 
-# Change Management Scheduled Task REST API Design
+# Change Management Scheduled Task API Design
 
 POST /V1/CMDB/CM/Tasks/ScheduledTask
 ------------------------------------

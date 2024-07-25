@@ -1,5 +1,5 @@
 
-# Devices REST API Design
+# Devices API Design
 
 ## GET /V1/CMDB/Devices
 

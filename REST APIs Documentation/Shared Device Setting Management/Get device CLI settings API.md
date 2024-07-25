@@ -1,4 +1,4 @@
-Shared Device Setting REST API Design
+Shared Device Setting API Design
 =====================================
 
 GET /ServicesAPI/API/V1/CMDB/SharedDeviceSettings/CLISetting

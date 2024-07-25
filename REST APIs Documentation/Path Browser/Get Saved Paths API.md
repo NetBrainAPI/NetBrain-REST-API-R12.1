@@ -1,6 +1,6 @@
 
 
-# Path Browser Management Design
+# Path Browser Management API Design
 
 ## ***GET*** /V1/CMDB/PathBrowser/Paths
 Using this API call to get saved paths from Path Browser.
