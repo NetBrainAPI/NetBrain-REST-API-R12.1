@@ -26,7 +26,7 @@ Call this API to get ADT data
 |||* - required<br />^ - optional|
 |endpoint*|string|The endpoint in the TAFLite definition. |
 |passKey*|string|Access permission. |
-|filterDevices^|array|Used to quickly filter rows by device. </br>device Name List - this parameter is optional </br>If this parameter has a value, these device names will be used to match ADT rows with the Device Column of ADT. If the device name of any device colun is in the device name list, the row will be deemed to meet the conditions.|
+|filterDevices^|array|Used to quickly filter rows by device. </br>device Name List - this parameter is optional </br>If this parameter has a value, these device names will be used to match ADT rows with the Device Column of ADT. If the device name of any device column is in the device name list, the row will be deemed to meet the conditions.|
 |columns^|array|Column display name list, used to express the returned value. </br>If there is no value, or the array does not have any items, all columns are returned. |
 |option^|object|Advanced setting|
 |option.rowFilter	|object|JSON object <br /><br />ColumnDisplayName: value <br /><br />Use AND to perform operations between JSON attributes |
