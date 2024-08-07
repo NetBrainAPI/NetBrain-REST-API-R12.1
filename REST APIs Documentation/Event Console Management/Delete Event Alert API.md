@@ -1,5 +1,5 @@
 
-# Event Console Design API
+# Event Console API Design
 
 ## Detail Information
 
