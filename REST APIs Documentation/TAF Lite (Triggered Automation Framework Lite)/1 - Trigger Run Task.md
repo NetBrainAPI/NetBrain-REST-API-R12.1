@@ -80,6 +80,7 @@ TaskID executed by this Trigger
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
+|taskID| string | TaskID executed by this Trigger.  |
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code.  |
 
@@ -87,6 +88,7 @@ TaskID executed by this Trigger
 
 ```python
 {
+    'taskId': 'ef975898-3afe-4434-bf1a-606d30071aa0',
     'statusCode': 790200, 
     'statusDescription': 'Success.'
 }

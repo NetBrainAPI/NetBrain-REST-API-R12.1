@@ -30,9 +30,9 @@ Call this API to get the running status of Trigger Task and running ResultID of 
 
 > ***Example***
 ```python
-{ 
-   endpoint: 'endpoint1',
-   taskId: 'task id1'
+{
+    "endpoint": "T1234",
+    "taskId": "asdfb21-f795-486d-a5ac-9c48e76a6a87",
 }
 ```
 
@@ -69,10 +69,12 @@ Call this API to get the running status of Trigger Task and running ResultID of 
 |intents[].name|string|Intent Name|
 |intents[].resultId|string|Intent Execution Result ID|
 |intents[].hasAlert|boolean|Alert Status Code in Intent Execution Result|
+|statusCode| integer | The returned status code of executing the API.  |
+|statusDescription| string | The explanation of the status code.  |
 
 > ***Example***
 
-
+Example 1
 ```python
 {
     taskId: 'xxxxx1',
@@ -88,6 +90,29 @@ Call this API to get the running status of Trigger Task and running ResultID of 
         resultId: 'yyyy2-2222',
         hasAlert: false
     }]
+}
+
+Example 2
+{
+  "taskId": "aa422a38-f795-486d-a5ac-9c48e76a6a87",
+  "status": 2,
+  "statusMessage": "Finished",
+  "intents": [
+    {
+      "id": "b8db8ae9-ef2d-5d6b-0ddd-5110bec4347a",
+      "name": "TestDataView0001"
+    },
+    {
+      "id": "4caea2ce-526c-4763-ba24-601be811b641",
+      "name": "Demo01"
+    },
+    {
+      "id": "0ca0f60a-6936-49fb-8fb2-ab47f4cb6956",
+      "name": "test output map"
+    }
+  ],
+  "statusCode": 790200,
+  "statusDescription": "Success."
 }
 ```
 

@@ -74,7 +74,8 @@ The returned NI execution result content includes Home NI and Follow NI results,
 |[].rawDatas[].command|string|Name of the command|
 |[].rawDatas[].rawData|string|Information of the command|
 |[].maps|list of objects|Map results executed by NI|
-
+|statusCode| integer | The returned status code of executing the API.  |
+|statusDescription| string | The explanation of the status code.  |
 
 > ***Example***
 
@@ -104,7 +105,9 @@ The returned NI execution result content includes Home NI and Follow NI results,
             "url": "map url 1",
             "type": "Intent Map" //Intent Map; External Map
         }
-    ]
+    ],
+  "statusCode": 790200,
+  "statusDescription": "Success."
 }]
 ```
 

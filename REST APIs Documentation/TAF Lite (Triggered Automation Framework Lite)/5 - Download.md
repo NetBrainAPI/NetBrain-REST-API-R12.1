@@ -2,7 +2,8 @@
 # Download API Design
 
 ## ***GET*** V3/download?dl_ticket=xx
-Call this API to download
+Call this API to retrieve the hyperlink to download big data result of NI.
+API API/V3/TAF/Lite/result/datas returns the ticketId, which is then used in this API API/V3/download?dl_ticket=xx
 
 ## Detail Information
 
@@ -21,7 +22,7 @@ Call this API to download
 
 ## Request body(****required***)
 downloadTicketId in request is downloadTicketId returned by API
-
+API API/V3/TAF/Lite/result/datas returns the ticketId
 
 ## Parameters(****required***)
 >No parameters required.
@@ -45,10 +46,10 @@ downloadTicketId in request is downloadTicketId returned by API
 | token | string  | Authentication token, get from login API. |
 
 ## Response
-TaskID executed by this Trigger
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
+|taskId|string|taskID executed by this Trigger|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code.  |
@@ -60,6 +61,33 @@ TaskID executed by this Trigger
 {
     'statusCode': 790200, 
     'statusDescription': 'Success.'
+}
+{
+  "niId": "4be2334a-5608-4b2c-809b-a72da260ece7",
+  "niName": "DrawMap30002",
+  "niResultId": "efba5e9e-a3d0-4d83-8aa4-42f0e3c29e7a",
+  "timePoint": "2024-06-20T02:17:40.853Z",
+  "statusCodes": [
+    "GigabitEthernet0/0.4 is interface"
+  ],
+  "csvs": [],
+  "rawDatas": [
+    {
+      "deviceName": "GW2Lab",
+      "command": "show interface",
+      "rawData": "GW2Lab>show interface\r\nGigabitEthernet0/1 is up, line protocol is up \r\n  Hardware is iGbE, address is f44e.051e.b600 (bia f44e.051e.b600)\r\n  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, \r\n     reliability 255/255, txload 1/255, rxload 1/255\r\n  Encapsulation 802.1Q Virtual LAN, Vlan ID  1., loopback not set\r\n  Keepalive set (10 sec)\r\n  Full Duplex, 1Gbps, media type is RJ45\r\n  output flow-control is unsupported, input flow-control is unsupported\r\n  ARP type: ARPA, ARP Timeout 04:00:00\r\n  Last input 00:00:00, output 00:00:00, output hang never\r\n  Last clearing of \"show interface\" counters never\r\n  Input queue: 0/75/134/2307 (size/max/drops/flushes); Total output drops: 0\r\n  Queueing strategy: fifo\r\n  Output queue: 0/40 (size/max)\r\n  5 minute input rate 2722000 bits/sec, 2859 packets/sec\r\n  5 minute output rate 2427000 bits/sec, 2398 packets/sec\r\n     3360884949 packets input, 2528161170 bytes, 0 no buffer\r\n     Received 2077327882 broadcasts (0 IP multicasts)\r\n     0 runts, 0 giants, 0 throttles \r\n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored\r\n     0 watchdog, 2562393 multicast, 0 pause input\r\n     262866017 packets output, 944523538 bytes, 0 underruns\r\n     0 output errors, 0 collisions, 0 interface resets\r\n     407895 unknown protocol drops\r\n     0 babbles, 0 late collision, 0 deferred\r\n     1 lost carrier, 0 no carrier, 0 pause output\r\n     0 output buffer failures, 0 output buffers swapped out\r\nGigabitEthernet0/0.4 is up, line protocol is up \r\n  ..."
+    }
+  ],
+  "maps": [
+    {
+      "id": "c71f1fb8-3a53-4aca-a8cc-0cbd0b0db053",
+      "name": "DrawMap30002",
+      "url": "map.html?t=1650bf6e-67ed-3c07-3357-b070528c4b19&d=2b662e5d-fe4e-436a-8fa9-c847c1752511&id=c71f1fb8-3a53-4aca-a8cc-0cbd0b0db053&maptype=13",
+      "type": "Intent Map"
+    }
+  ],
+  "statusCode": 790200,
+  "statusDescription": "Success."
 }
 ```
 
