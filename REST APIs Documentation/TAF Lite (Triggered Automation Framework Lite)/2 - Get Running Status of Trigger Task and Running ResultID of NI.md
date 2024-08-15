@@ -72,10 +72,9 @@ Call this API to get the running status of Trigger Task and running ResultID of 
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code.  |
 
-> ***Example***
-
-Example 1
+> ***Example 1***
 ```python
+
 {
     taskId: 'xxxxx1',
     status: 2, //0: pending, 1: running, 2: finished
@@ -91,8 +90,11 @@ Example 1
         hasAlert: false
     }]
 }
+```
 
-Example 2
+
+> ***Example 2***
+```python
 {
   "taskId": "aa422a38-f795-486d-a5ac-9c48e76a6a87",
   "status": 2,
