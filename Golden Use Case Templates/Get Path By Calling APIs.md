@@ -328,6 +328,8 @@ if __name__ == "__main__":
 
 ```
 
+### Sample Output
+
     Calling login API---------------------------------------------------------------------------------------
     {'token': 'f149791a-567e-4f6a-8b5c-5dcd4d0e8945', 'statusCode': 790200, 'statusDescription': 'Success.'}
     f149791a-567e-4f6a-8b5c-5dcd4d0e8945
