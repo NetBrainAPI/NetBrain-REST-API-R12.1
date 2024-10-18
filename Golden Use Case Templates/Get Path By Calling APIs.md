@@ -187,7 +187,7 @@ def calculate_path(headers, token, source_device, destination_device, source_por
 
     source_gateway = resolve_device_gateway(token, source_device, headers)
     gateway = {}
-    if type(source_gateway) is list:
+    if type(source_gateway) is dict:
         gateway = source_gateway["gatewayList"]
         print ("Detail information of the first gateway in source device: ")
         pprint.pprint(gateway)
@@ -199,7 +199,7 @@ def calculate_path(headers, token, source_device, destination_device, source_por
     body = {
         "sourceIP" : source_device,                # IP address of the source device.
         "sourcePort" : source_port,
-        "sourceGateway" : gateway[0] if type(source_gateway) is list else {},  
+        "sourceGateway" : gateway[0] if type(source_gateway) is dict else {},  
         "destIP" : destination_device,                    # IP address of the destination device.
         "destPort" : destination_port,
         "protocol" : protocol,                # Specify the application protocol, check online help, such as 4 for IPv4.
