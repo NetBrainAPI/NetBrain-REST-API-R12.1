@@ -148,12 +148,9 @@ def getTokens(user,password):
         print(token.json())
         return token.json()["token"]
     else:
-        return "error"
+        print("Failed to get token with log:", token.error)
+        return None
 
-# get token
-token = getTokens(user,pwd)
-headers["Token"] = token
- 
  
 def get_lite_run_result(API_Body):
     # Trigger API url
@@ -175,8 +172,11 @@ if __name__ =="__main__":
     }
 
     try:
-        print(get_lite_run_result(API_BODY))
-
+        # get token
+        token = getTokens(user,pwd)
+        if token:
+            headers["Token"] = token
+            print(get_lite_run_result(API_BODY))
     except Exception as e:
         print (str(e)) 
 
