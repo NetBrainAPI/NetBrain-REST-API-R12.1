@@ -121,12 +121,10 @@ def getTokens(user,password):
         print(token.json())
         return token.json()["token"]
     else:
-        return "error"
+        print("Failed to get token with log:", token.error)
+        return None
 
-# get token
-token = getTokens(user,pwd)
-headers["Token"] = token
- 
+
 def do_download(ticketId):
  
     # Trigger  API url
@@ -154,7 +152,11 @@ if __name__ =="__main__":
     ticketId = "ZTA2MjAxYWItMTU5MC00MGU5LWExOTItNDZmNjk5Y2E5ZTI0fDYzODU1NzkzMzE2ODgyNzA5Mg=="
 
     try:
-        print(print(do_download(ticketId)))
+        # get token
+        token = getTokens(user,pwd)
+        if token:
+            headers["Token"] = token
+            print(print(do_download(ticketId)))
     except Exception as e:
         print (str(e)) 
 ```
