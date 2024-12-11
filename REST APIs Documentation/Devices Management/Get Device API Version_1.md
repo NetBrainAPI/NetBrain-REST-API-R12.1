@@ -28,6 +28,7 @@ This API is used to get devices and their attributes data in batch. The response
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |hostname|string OR list of string|A list of device hostnames|
+|ignoreCase|boolean|Recognizes as case-insensitive hostname|
 |ip|string OR list of string|A list of device management IPs|
 |||If provided both of hostname and ip, hostname has higher priority. If any of the devices are not found from the provided query parameter, return the found devices as a list in response and add another json key "deviceNotFound", the value is a mixed list of hostnames and IPs that are not found.|
 |*fullattr|integer|Default is 0.<br>0: return basic device attributes (device id, management IP, hostname, device type, first discover time, last discover time).<br>1: return all device attributes, including customized attributes|

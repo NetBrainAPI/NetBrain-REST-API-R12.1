@@ -21,8 +21,7 @@ API API/V3/TAF/Lite/result/datas returns the ticketId, which is then used in thi
 |Bearer Authentication| Headers | Authentication token | 
 
 ## Request body(****required***)
-downloadTicketId in request is downloadTicketId returned by API
-API API/V3/TAF/Lite/result/datas returns the ticketId
+downloadTicketId in request body refers to downloadTicketId returned by API/V3/TAF/Lite/result/datas
 
 ## Parameters(****required***)
 >No parameters required.

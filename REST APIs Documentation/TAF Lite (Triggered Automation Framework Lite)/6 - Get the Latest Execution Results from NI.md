@@ -66,17 +66,51 @@ The returned NI execution result content includes Home NI and Follow NI results,
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |[].niId|string|Intent ID|
 |[].niName|string|Intent Name|
+|[].niResultId|string|Intent Result ID|
 |[].timePoint|string|NI execution time point|
 |[].statusCodes|list|NI status code|
 |[].csvs|list of objects|NI CSV results|
-|[].rawDatas|string|Command results under device|
+|[].rawDatas|list of objects|Command results under device|
 |[].rawDatas[].deviceName|string|Device name|
 |[].rawDatas[].command|string|Name of the command|
 |[].rawDatas[].rawData|string|Information of the command|
 |[].maps|list of objects|Map results executed by NI|
 
 
-> ***Example***
+> ***Example 1***
+```python
+[
+  {
+    "niId": "4be2334a-5608-4b2c-809b-a72da260ece7",
+    "niName": "DrawMap30002",
+    "niResultId": "efba5e9e-a3d0-4d83-8aa4-42f0e3c29e7a",
+    "timePoint": "2024-06-20T02:17:40.853Z",
+    "statusCodes": [
+      "GigabitEthernet0/0.4 is interface"
+    ],
+    "csvs": [],
+    "rawDatas": [
+      {
+        "deviceName": "GW22Lab",
+        "command": "show interface",
+        "rawData": "GW22Lab>show interface\r\nGigabitEthernet0/0 is up, line protocol is up \r\n  Hardware is iGbE, address is f44e.051e.b600 (bia f44e.051e.b600)\r\n  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, \r\n     reliability 255/255, txload 1/255, rxload 1/255\r\n  Encapsulation 802.1Q Virtual LAN, Vlan ID  1., loopback not set\r\n  Keepalive set (10 sec)\r\n  Full Duplex, 1Gbps, media type is RJ45\r\n  output flow-control is unsupported, input flow-control is unsupported\r\n  ARP type: ARPA, ARP Timeout 04:00:00\r\n  Last input 00:00:00, output 00:00:00, output hang never\r\n  Last clearing of \"show interface\" counters never\r\n  Input queue: 0/75/134/2307 (size/max/drops/flushes); Total output drops: 0\r\n  Queueing strategy: fifo\r\n  Output queue: 0/40 (size/max)\r\n  5 minute input rate 2722000 bits/sec, 2859 packets/sec\r\n  5 minute output rate 2427000 bits/sec, 2398 packets/sec\r\n     3360884949 packets input, 2528161170 bytes, 0 no buffer\r\n     Received 2077327882 broadcasts (0 IP multicasts)\r\n     0 runts, 0 giants, 0 throttles \r\n     \r\n........... output buffer failures, 0 output buffers swapped out\r\n"
+      }
+    ],
+    "maps": [
+      {
+        "id": "c71f1fb8-3a53-4aca-a8cc-0cbd0b0db053",
+        "name": "DrawMap30002",
+        "url": "map.html?t=16-67ed-3c07-3&d=2b662e5d-fe4e-436a-8fa9-c847c1752511&id=c71f1fb8-3a53-4aca-a8cc-0cbd0b0db053&maptype=13",
+        "type": "Intent Map"
+      }
+    ],
+    "statusCode": 790200,
+    "statusDescription": "Success."
+  }
+]
+```
+
+> ***Example 2***
 
 ```python
 [{

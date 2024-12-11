@@ -66,10 +66,11 @@ The returned NI execution result content includes Home NI and Follow NI results,
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |[].niId|string|Intent ID|
 |[].niName|string|Intent Name|
+|[].niResultId|string|Intent Result ID|
 |[].timePoint|string|NI execution time point|
 |[].statusCodes|list|NI status code|
 |[].csvs|list of objects|NI CSV results|
-|[].rawDatas|string|Command results under device|
+|[].rawDatas|list of objects|Command results under device|
 |[].rawDatas[].deviceName|string|Device name|
 |[].rawDatas[].command|string|Name of the command|
 |[].rawDatas[].rawData|string|Information of the command|
