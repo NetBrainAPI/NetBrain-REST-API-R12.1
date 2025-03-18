@@ -30,8 +30,8 @@ Call this API to get ADT data
 |columns^|array|Column display name list, used to express the returned value. </br>If there is no value, or the array does not have any items, all columns are returned. |
 |option^|object|Advanced setting|
 |option.rowFilter	|object|JSON object <br /><br />ColumnDisplayName: value <br /><br />Use AND to perform operations between JSON attributes |
-|pageSize|int|Returns the number of data items. </br>Default: 100|
-|pageNumber|int|Returns the page of data. </br>Default: 1|
+|option.pageSize|int|Returns the number of data items. </br>Default: 100|
+|option.pageNumber|int|Returns the page of data. </br>Default: 1|
 
 
 ## Parameters(****required***)
