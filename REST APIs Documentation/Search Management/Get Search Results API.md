@@ -30,7 +30,7 @@ Call this API to get the list of device names with the matching search keyword f
 |limit|integer|The up limit amount of device records to return per API call. The "limit" value valid range is 10 - 100, if the assigned value exceeds the range, the server will respond error message "Parameter 'limit' must be greater than or equal to 10 and less than or equal to 100." The value cannot be negative. If the value is negative, API throws exception {"statusCode":791001,"statusDescription":"Parameter 'limit' cannot be negative"}. |
 |index|integer|The index number is used to indicate the last record scanned in DB from the last API call. The value of this parameter is the last API call returned index number plus 1. For example, the last call returned index is 1000, then provide parameter value as 1001 to avoid duplicate record compare with the last API call. This is a required parameter if amount of records need to be skipped. The value cannot be negative. If the value is negative, API throws exception {"statusCode":791001,"statusDescription":"Parameter 'index' cannot be negative"}. |
 |||limit and index parameters are based on the search result from DB. If both limit and index are not provided, return the device list with 50 devices start from the first device result in DB. If only provide limit value, return from the first device result in DB. If only provide index value, return the device list with 50 devices start from the index number. If provided both limit and index, return as required. Error exceptions follow each parameter's description. |
-|keyword|string|Search keyword inputted by user. Max length: 10 chars, rest ignored. |
+|keyword|string|Search keyword inputted by user. Max length: 10 chars, rest will be ignored. This keyword cannot be empty. |
 
 <!-- |type|integer|Search type, device search value is 1. Other values can be considered for expansion in the future. | -->
 
@@ -117,7 +117,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Set the request inputs
 token = "9c717c9a-4302-45b5-a068-2a3e9c4ea1a3"
-nb_url = "http://192.168.30.166"
+nb_url = "http://192.168.1.1"
 full_url = nb_url + "/ServicesAPI/API/V3/CMDB/Search"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["token"] = token
@@ -144,7 +144,7 @@ except Exception as e:
 
 ```python
 curl -X GET \
-  'https://nextgen-training.netbrain.com/ServicesAPI/API/V3/CMDB/Search?limit=10&index=0&keyword=bj' \
+  'http://192.168.1.1/ServicesAPI/API/V3/CMDB/Search?limit=10&index=0&keyword=bj' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'token: 34edefc9-5c33-48a3-955d-0d9744d9fe9d'
