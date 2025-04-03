@@ -3,50 +3,50 @@
 This use case focuses on Site Management APIs. 
 
 Overview: <br>
->> 1. Create multiple sites with different types
->> 2. Add devices into one site
->> 3. Delete all sites we have created
+> 1. Create multiple sites with different types
+> 2. Add devices into one site
+> 3. Delete all sites we have created
 
 This use case utilizes 13 APIs.
 
 **[Step 1: Use Case Preparation](#step-1-use-case-preparation)**
->> 1a. import all useful modules and create global variables<br>
->> 1b. call login API<br>
->> 1c. call specify_a_working_domain API<br>
+> 1a. import all useful modules and create global variables<br>
+> 1b. call login API<br>
+> 1c. call specify_a_working_domain API<br>
 
 **[Step 2: Create One Transaction For Site Modification](#step-2-create-one-transaction-for-site-modification)**
->> 2a. call create_site_transaction API<br>
->> 2b. call site_transaction_heartbeat API <br>
+> 2a. call create_site_transaction API<br>
+> 2b. call site_transaction_heartbeat API <br>
 
 **[Step 3: Create Site For Site Modification](#step-3-create-site-for-site-modification)**
->> 3a. call create_site API<br>
->> 3b. call create_a_leaf_site API <br>
+> 3a. call create_site API<br>
+> 3b. call create_a_leaf_site API <br>
 
 **[Step 4: Modify Devices In Site](#step-4-modify-devices-in-site)**
->> 4a. call add_site_device API<br>
->> 4b. call get_site_devices API <br>
->> 4c. call replace_site_devices API <br>
+> 4a. call add_site_device API<br>
+> 4b. call get_site_devices API <br>
+> 4c. call replace_site_devices API <br>
 
 **[Step 5: Implement All Modifications To System](#step-5-implement-all-modifications-to-system)**
->> 5a. call commit_site_transactionn API
+> 5a. call commit_site_transactionn API
 
 **[Step 6: Remove Site Transaction (Optional)](#step-6-remove-site-transaction-optional)**
->> 6a. call remove_site_transaction API
+> 6a. call remove_site_transaction API
 
 **[Step 7: Logout of NetBrain System](#step-7-logout-of-netbrain-system)**
->> 7a. call logout API
+> 7a. call logout API
 
 ## Step 1: Use Case Preparation
 
 ***1a. import all useful modules and create global variables***
-> Note: Remember to change the `nb_url` to user's own working url.
+> Remember to change the `nb_url` to user's own working url.
 
 ***1b. call login API***
->Call the login API with `username` and `password` as inputs. As response, we get the authentication `token` as the fixed input in following API callings. 
-If faced with an error with this API, please check the API documentation on [Login API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md)
+>Call the login API with `username` and `password` as inputs. As response, we will get the authentication `token` as the fixed input in following API callings. 
+For more details, please refer to [Login API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md)
 
 ***1c. call specify_a_working_domain API***
->With the above steps, we have completed the full login process; we have joined the NetBrain system by calling APIs with records of tenantId and domainId.
+>With the above steps, we have completed the full login process; we have joined the NetBrain system by calling APIs with records of tenantId and domainId. <br>
 If the user doesn't know the ID of corresponding tenant and domain, please fully complete step 1-4 in use case #1.
 
 > We will now proceed to use the NetBrain functions.
@@ -76,7 +76,6 @@ domainId = "850ff5e9-c639-404d-85a3-d920dbee509c"
 
 ```python
 # call login API
-
 body = {
     "username" : username,
     "password" : password
@@ -147,12 +146,12 @@ API Response:
 >All site modification operations must be executed in a transaction. In another word, the user should create a transaction before starting any other site changes. 
 e.g. create site, move devices.
 
->After site modification, the user should <i>explicitly commit</i> the operations.
+>After site modification, the user must <i>explicitly commit</i> the operations.
 
 >Note that a site transaction will <i>lock</i> the entire NetBrain system for site change operations. To prevent a system-wide deadlock due to client exception or negligence, if no follow-up operations or heartbeat is sent within a 30-seconds timeframe, another could invalidate this transaction and create a new transaction which cannot used by the current session.
 
 >Alternatively, you can also call [Remove Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Remove%20Site%20Transaction%20API.md) to free up the site operation. Removing the transaction also lets the user discard any site change operations since the beginning of a transaction, or called rollback. <br>
-Please refer to Step 6 for more details on deleting the site transaction.
+Please refer to Step 6 for more details on how to delete the site transaction.
 
 >Please refer to [Create A Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20A%20Site%20Transaction%20API.md) for more details.
 
@@ -164,12 +163,11 @@ Please refer to Step 6 for more details on deleting the site transaction.
 
 ```python
 # call create_site_transaction API
+create_a_transaction_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Transactions"
 
-create_a_transaction_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Transactions"
-
-def create_a_transaction(create_a_transaction_URL, headers, token):
+def create_a_transaction(create_a_transaction_url, headers, token):
     try:
-        response = requests.post(create_a_transaction_URL, headers = headers, verify = False)
+        response = requests.post(create_a_transaction_url, headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
             print (result)
@@ -179,7 +177,7 @@ def create_a_transaction(create_a_transaction_URL, headers, token):
     except Exception as e:
         print (str(e)) 
 
-result = create_a_transaction(create_a_transaction_URL, headers, token)
+result = create_a_transaction(create_a_transaction_url, headers, token)
 result
 ```
 API Response: 
@@ -191,13 +189,13 @@ API Response:
 ```python
 # call site_transaction_heartbeat API
 
-site_transaction_heartbeat_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Transactions/Heartbeat"
+site_transaction_heartbeat_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Transactions/Heartbeat"
 
 def site_transaction_heartbeat(headers, token):
     headers["Token"] = token
 
     try:
-        response = requests.post(site_transaction_heartbeat_URL, headers = headers, verify = False)
+        response = requests.post(site_transaction_heartbeat_url, headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
             print (result)
@@ -218,7 +216,7 @@ API Response:
 ## Step 3: Create Site For Site Modification
 ***3a. call create_site API***
 >After creating the transaction for site modification, we are going to create a site via [Create Site API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20Site%20API.md).
->>Note that<br>
+>Note that<br>
 >>a) a new site will be created as a parent site if a site doesn't have its parent site in current system.<br>
 >>b) this API will replace the ImportSiteTree in 7.0b.<br>
 >>c) this API call needs to be invoked in a site transaction.
@@ -228,7 +226,7 @@ API Response:
 
 
 ```python
-create_site_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Sites"
+create_site_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites"
 
 sitePath1 = "My Network/America"
 isContainer1 = True
@@ -249,10 +247,10 @@ body = {
             ]
         }
 
-def create_site(create_site_URL, headers, token, body):
+def create_site(create_site_url, headers, token, body):
     headers["Token"] = token
     try:
-        response = requests.post(create_site_URL, data = json.dumps(body), headers = headers, verify = False)
+        response = requests.post(create_site_url, data = json.dumps(body), headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
             print (result)
@@ -262,7 +260,7 @@ def create_site(create_site_URL, headers, token, body):
     except Exception as e:
         print (str(e))
         
-result = create_site(create_site_URL, headers, token, body)
+result = create_site(create_site_url, headers, token, body)
 result
 ```
 API Response: 
@@ -272,7 +270,7 @@ API Response:
 
 
 ```python
-create_a_leaf_site_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Leaf"
+create_a_leaf_site_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Leaf"
 
 sitePath = "My Network/America/Burlington/Netbrain"
 
@@ -280,9 +278,9 @@ body = {
             "sitePath" : sitePath       
         }
 
-def create_a_leaf_site(create_a_leaf_site_URL, headers, token, body):
+def create_a_leaf_site(create_a_leaf_site_url, headers, token, body):
     try:
-        response = requests.post(create_a_leaf_site_URL, data = json.dumps(body), headers = headers, verify = False)
+        response = requests.post(create_a_leaf_site_url, data = json.dumps(body), headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
             print (result)
@@ -292,7 +290,7 @@ def create_a_leaf_site(create_a_leaf_site_URL, headers, token, body):
     except Exception as e:
         print (str(e))
         
-result = create_a_leaf_site(create_a_leaf_site_URL, headers, token, body)
+result = create_a_leaf_site(create_a_leaf_site_url, headers, token, body)
 result
 ```
 API Response: 
@@ -307,11 +305,13 @@ This will add devices into the site specified by site path or Id.
 All devices will be marked as manually added type.
 
 >We will add two device lists to two individually created sites respectively. In this sub-step involves two parts;
-1) Add 4 devices into the site with site path: "My Network/America/Burlington/Netbrain"
-2) Add 4 devices (which are different with first part) to another site with site path: "My Network/America".
+>>1) Add 4 devices into the site with site path: "My Network/America/Burlington/Netbrain"
+>>2) Add 4 devices (which are different with first part) to another site with site path: "My Network/America".
 
 ***4b. call get_site_devices API***
->In order to confirm that we have correctly added the devices to each sites, we will call [Get Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Get%20Site%20Devices%20API.md) to output the details of each site. The result will include all devices belonging to each sites specified by site name. Note that the siteID must be a leaf site ID (not root or container site), otherwise, error will return.
+>In order to confirm that we have correctly added the devices to each sites, we will call [Get Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Get%20Site%20Devices%20API.md) to output the details of each site. <br>
+The result will include all devices belonging to each sites specified by site name. <br>
+Note that the siteID must be a leaf site ID (not root or container site). Otherwise, error will return.
 
 ***4c. call replace_site_devices API***
 > In this step, we will focus on changing the device groups in a site, via [Replace Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Replace%20Site%20Devices%20API.md).
@@ -321,7 +321,7 @@ This API will remove all existing devices from the specified site and add new de
 ```python
 # call add_site_device API
 
-add_site_device_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Devices"
+add_site_device_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Devices"
 
 sitePath = "My Network/America/Burlington/Netbrain"
 devices = ["AS20001", "AS20002", "AS20003", "AS30000"]
@@ -331,10 +331,10 @@ body = {
            "Devices": devices
         } 
 
-def add_site_device(add_site_device_URL, headers, token, body):
+def add_site_device(add_site_device_url, headers, token, body):
     headers["Token"] = token
     try:
-        response = requests.post(add_site_device_URL, data = json.dumps(body), headers = headers, verify = False)
+        response = requests.post(add_site_device_url, data = json.dumps(body), headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
             print (result)
@@ -344,7 +344,7 @@ def add_site_device(add_site_device_URL, headers, token, body):
     except Exception as e:
         print (str(e))
         
-result = add_site_device(add_site_device_URL, headers, token, body)
+result = add_site_device(add_site_device_url, headers, token, body)
 result
 ```
 API Response: 
@@ -362,7 +362,7 @@ body1 = {
            "Devices": devices1
         } 
 
-result1 = add_site_device(add_site_device_URL, headers, token, body1)
+result1 = add_site_device(add_site_device_url, headers, token, body1)
 result1
 ```
 API Response: 
@@ -374,7 +374,7 @@ API Response:
 ```python
 #call get_site_devices API
 
-get_site_devices_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Devices"
+get_site_devices_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Devices"
 
 sitePath = "My Network/ASIA"
 
@@ -383,10 +383,10 @@ data = {
             # "sitId" : sitId
      }    
 
-def get_site_devices(get_site_devices_URL, headers, token, data):
+def get_site_devices(get_site_devices_url, headers, token, data):
     headers["Token"] = token
     try:
-        response = requests.get(get_site_devices_URL, params = data, headers = headers, verify = False)
+        response = requests.get(get_site_devices_url, params = data, headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()["devices"]
             print (result)
@@ -396,7 +396,7 @@ def get_site_devices(get_site_devices_URL, headers, token, data):
     except Exception as e:
         print (str(e))
         
-result = get_site_devices(get_site_devices_URL, headers, token, data)
+result = get_site_devices(get_site_devices_url, headers, token, data)
 result
 ```
 API Response: 
@@ -413,7 +413,7 @@ data1 = {
             # "sitId" : sitId
      }
 
-result1 = get_site_devices(get_site_devices_URL, headers, token, data1)
+result1 = get_site_devices(get_site_devices_url, headers, token, data1)
 #print(str(len(result1)))
 result1
 
@@ -427,7 +427,7 @@ API Response:
 ```python
 #call replace_site_devices API
 
-replace_site_devices_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Devices"
+replace_site_devices_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Devices"
 
 sitePath = "My Network/MPLS Core"
 
@@ -439,10 +439,10 @@ body = {
            "Devices": devices
     }   
 
-def replace_site_devices(replace_site_devices_URL, headers, token, body):
+def replace_site_devices(replace_site_devices_url, headers, token, body):
     headers["Token"] = token
     try:
-        response = requests.put(replace_site_devices_URL, data = json.dumps(body), headers = headers, verify = False)
+        response = requests.put(replace_site_devices_url, data = json.dumps(body), headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
             print (result)
@@ -452,7 +452,7 @@ def replace_site_devices(replace_site_devices_URL, headers, token, body):
     except Exception as e:
         print (str(e))
         
-result = replace_site_devices(replace_site_devices_URL, headers, token, body)
+result = replace_site_devices(replace_site_devices_url, headers, token, body)
 result
 ```
 API Response: 
@@ -461,9 +461,10 @@ API Response:
 
 
 ## Step 5: Implement All Modifications To System
->As a final step of this use case, we will commit the changes made in the previous steps by calling [Commit Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Commit%20Site%20Transaction%20API.md).
+>To finalize our changes, we will commit the changes made in the previous steps by calling [Commit Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Commit%20Site%20Transaction%20API.md).
 
->Without this API, all modifications made in previous steps are all pending and will be discarded. In order to update the whole structure, we must commit the site transaction.
+>Without this API, all modifications made in previous steps are all considered pending and will be discarded. <br>
+In order to update the whole structure, we must commit the site transaction. <br>
 In other words, every time a user creates a site transaction to modify sites, one must end with the calling of [Commit Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Commit%20Site%20Transaction%20API.md) to update the entire workflow.
 
 
@@ -506,7 +507,7 @@ headers["Token"] = token
 
 def remove_site_transaction(remove_site_transaction_full_url, headers, token):
     try:
-        response = requests.delete(full_url, headers = headers, verify = False)
+        response = requests.delete(remove_site_transaction_full_url, headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
             print (result)
