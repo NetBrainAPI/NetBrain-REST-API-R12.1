@@ -504,10 +504,6 @@ remove_site_transaction_full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Tran
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"] = token
 
-remove_site_transaction_full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Transactions"
-headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-headers["Token"] = token
-
 def remove_site_transaction(remove_site_transaction_full_url, headers, token):
     try:
         response = requests.delete(full_url, headers = headers, verify = False)
