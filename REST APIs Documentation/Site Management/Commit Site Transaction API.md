@@ -2,7 +2,10 @@
 # Site API Design
 
 ## ***PUT*** /V1/CMDB/Sites/Transactions
-This API  is used to commit all site change operations since creating a site transaction. Commit operation will automatically trigger site rebuild process.
+This API is used to commit all site change operations since creating a site transaction. Commit operation will automatically trigger site rebuild process.
+
+**Note that some site management APIs require calling of other site management APIs prior to, or after.
+Refer to [Golden Use Case Templates - Site Management by Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/Golden%20Use%20Case%20Templates/Sites%20Management%20by%20Calling%20APIs.md) for more information.
 
 ## Detail Information
 

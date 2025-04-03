@@ -2,7 +2,10 @@
  
 ## ***PUT*** /V1/CMDB/Sites/SiteInfo
 Call this API to update site properties in NetBrain Domain Management.
- 
+
+**Note that some site management APIs require calling of other site management APIs prior to, or after.
+Refer to [Golden Use Case Templates - Site Management by Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/Golden%20Use%20Case%20Templates/Sites%20Management%20by%20Calling%20APIs.md) for more information.
+
 ## Detail Information
  
 > **Title** : Update Site Properties API<br>

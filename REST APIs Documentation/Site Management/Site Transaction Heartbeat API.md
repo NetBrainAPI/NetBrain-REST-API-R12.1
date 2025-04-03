@@ -2,11 +2,14 @@
 # Site API Design
 
 ## ***POST*** /V1/CMDB/Sites/Transactions/Heartbeat	
-This API send a hearbeat signal to the server to keep a transaction alive. 
+This API sends a hearbeat signal to the server to keep a transaction alive. 
 
-Failed to do so will cause transaction being disgarded by the system if no other site change operations sent to the server via the current session with the next 30 seconds.
+Failed to do so will cause transaction being discarded by the system if no other site change operations are sent to the server via the current session within the next 30 seconds.
 In case of a long-running site build, the session may get terminated depending on the device's configuration on TCP session timeout period.
 The use of TCP KEEP ALIVE packets will resolve the issue.
+
+**Note that some site management APIs require calling of other site management APIs prior to, or after.
+Refer to [Golden Use Case Templates - Site Management by Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/Golden%20Use%20Case%20Templates/Sites%20Management%20by%20Calling%20APIs.md) for more information.
 
 ## Detail Information
 

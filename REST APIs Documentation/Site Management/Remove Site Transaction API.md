@@ -8,6 +8,9 @@ This API can also be used for rollback purpose.
 
 Removing a site transaction is not necessary since a transaction would automatcially times out after 30 seconds. However, by doing this, you can give the site control back to the system explicitly within 30 seconds.
 
+**Note that some site management APIs require calling of other site management APIs prior to, or after.
+Refer to [Golden Use Case Templates - Site Management by Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/Golden%20Use%20Case%20Templates/Sites%20Management%20by%20Calling%20APIs.md) for more information.
+
 ## Detail Information
 
 > **Title** : Remove Site Transaction API<br>
