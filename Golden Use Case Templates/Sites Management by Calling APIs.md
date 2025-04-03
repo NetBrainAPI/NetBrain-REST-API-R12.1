@@ -1,42 +1,42 @@
 
-# Sites and  devices in sites modification
-This use case focuses on Site APIs. 
+# Sites and Devices In Sites Modification
+This use case focuses on Site Management APIs. 
 
-Overview:
-    1. Create multiple sites with different types
-    2. Add devices into one site
-    3. Delete all sites we have created
+Overview: <br>
+>> 1. Create multiple sites with different types
+>> 2. Add devices into one site
+>> 3. Delete all sites we have created
 
-This use case utilizes a total of 11 APIs.
+This use case utilizes 13 APIs.
 
-**[Step 1: Use Case Preparation](#Step1)**
+**[Step 1: Use Case Preparation](#step-1-use-case-preparation)**
 >> 1a. import all useful modules and create global variables<br>
 >> 1b. call login API<br>
 >> 1c. call specify_a_working_domain API<br>
 
-**[Step 2: Create One Transaction For Site Modification](#Step2)**
+**[Step 2: Create One Transaction For Site Modification](#step-2-create-one-transaction-for-site-modification)**
 >> 2a. call create_site_transaction API<br>
 >> 2b. call site_transaction_heartbeat API <br>
 
-**[Step 3: Create Site For Site Modification](#Step3)**
+**[Step 3: Create Site For Site Modification](#step-3-create-site-for-site-modification)**
 >> 3a. call create_site API<br>
 >> 3b. call create_a_leaf_site API <br>
 
-**[Step 4: Modify Devices In Site](#Step4)**
+**[Step 4: Modify Devices In Site](#step-4-modify-devices-in-site)**
 >> 4a. call add_site_device API<br>
 >> 4b. call get_site_devices API <br>
 >> 4c. call replace_site_devices API <br>
 
-**[Step 5: Implement All Modifications To System](#Step5)**
+**[Step 5: Implement All Modifications To System](#step-5-implement-all-modifications-to-system)**
 >> 5a. call commit_site_transactionn API
 
-**[Step 6: Remove Site Transaction API (Optional)](#Step6)**
+**[Step 6: Remove Site Transaction (Optional)](#step-6-remove-site-transaction)**
 >> 6a. call remove_site_transaction API
 
-**[Step 7: Logout of NetBrain System by Calling Logout API](#Step7)**
+**[Step 7: Logout of NetBrain System](#step-7-logout-of-netbrain-system)**
 >> 7a. call logout API
 
-## Step 1: Use Case Preparation <a name="Step1"></a>
+## Step 1: Use Case Preparation
 
 ***1a. import all useful modules and create global variables***
 > Note: Remember to change the `nb_url` to user's own working url.
@@ -141,7 +141,7 @@ API Response:
     Working Domain Specified Successfully, with domainId: 850ff5e9-c639-404d-85a3-d920dbee509c
     
 
-## Step 2: Create One Transaction For Site Modification <a name="Step2"></a>
+## Step 2: Create One Transaction For Site Modification
 
 ***2a. call create_site_transaction API***
 >All site modification operations must be executed in a transaction. In another word, the user should create a transaction before starting any other site changes. 
@@ -215,7 +215,7 @@ API Response:
     {'statusCode': 790200, 'statusDescription': 'Success.'}
     
 
-## Step 3: Create site for devices modification <a name="Step3"></a>
+## Step 3: Create Site For Site Modification
 ***3a. call create_site API***
 >After creating the transaction for site modification, we are going to create a site via [Create Site API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Create%20Site%20API.md).
 >>Note that<br>
@@ -300,7 +300,7 @@ API Response:
     {'statusCode': 790200, 'statusDescription': 'Success.'}
     
 
-## Step 4: Modify Devices In Site <a name="Step4"></a>
+## Step 4: Modify Devices In Site
 ***4a. call add_site_device API***
 >After we have created all sites, we will start to import devices into our sites via [Add Site Devices API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Add%20Site%20Devices%20API.md). 
 This will add devices into the site specified by site path or Id. 
@@ -460,7 +460,7 @@ API Response:
     {'statusCode': 790200, 'statusDescription': 'Success.'}
 
 
-## Step 5: Implement All Modifications To System <a name="Step5"></a>
+## Step 5: Implement All Modifications To System
 >As a final step of this use case, we will commit the changes made in the previous steps by calling [Commit Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Commit%20Site%20Transaction%20API.md).
 
 >Without this API, all modifications made in previous steps are all pending and will be discarded. In order to update the whole structure, we must commit the site transaction.
@@ -495,7 +495,7 @@ API Response:
     {'statusCode': 790200, 'statusDescription': 'Success.'}
 
 
-## Step 6: Remove Site Transaction API (Optional) <a name="Step6"></a>
+## Step 6: Remove Site Transaction
 >As mentioned in Step 2, to avoid a site lockup, we will call [Remove Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Remove%20Site%20Transaction%20API.md) to free up the site operation. <br> 
 Removing the transaction also lets the user discard any site change operations since the beginning of a transaction, or called rollback.
 
@@ -531,7 +531,7 @@ API Response:
 
 
 
-## Step 7: Log Out of Netbrain System By Calling Logout API <a name="Step7"></a>
+## Step 7: Logout of NetBrain System
 >We will finish this use case by calling [Logout API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Logout%20API.md) to log out of NetBrain.
 
 ```python
