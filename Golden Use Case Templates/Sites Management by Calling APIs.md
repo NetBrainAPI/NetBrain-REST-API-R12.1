@@ -4,8 +4,10 @@ This use case focuses on Site Management APIs.
 
 Overview: <br>
 > 1. Create multiple sites with different types
-> 2. Add devices into one site
-> 3. Delete all sites we have created
+> 2. Add and replace devices in the site
+> 3. Commit the site changes
+> 4. Delete site transaction (optional)
+> 5. Logout of NetBrain
 
 This use case utilizes 13 APIs.
 
