@@ -1,6 +1,6 @@
 
 # Sites and Devices In Sites Modification
-This use case focuses on Site Management APIs. 
+This use case focuses on the use of Site Management APIs. 
 
 Overview: <br>
 > 1. Create multiple sites with different types
@@ -416,7 +416,6 @@ data1 = {
      }
 
 result1 = get_site_devices(get_site_devices_url, headers, token, data1)
-#print(str(len(result1)))
 result1
 
 ```
@@ -475,12 +474,12 @@ rebuildSite = False
 
 body = {"rebuildSite" : rebuildSite}
 
-commit_site_transactionn_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Transactions"
+commit_site_transaction_url = nb_url + "/ServicesAPI/API/V1/CMDB/Sites/Transactions"
 
-def commit_site_transactionn(commit_site_transactionn_url, headers, token, rebuildSite):
+def commit_site_transactionn(commit_site_transaction_url, headers, token, rebuildSite):
     headers["Token"] = token
     try:
-        response = requests.put(commit_site_transactionn_url, data = json.dumps(body), headers = headers, verify = False)
+        response = requests.put(commit_site_transaction_url, data = json.dumps(body), headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
             print (result)
@@ -490,7 +489,7 @@ def commit_site_transactionn(commit_site_transactionn_url, headers, token, rebui
     except Exception as e:
         print (str(e))
         
-result = commit_site_transaction(commit_site_transactionn_url, headers, token, rebuildSite)
+result = commit_site_transaction(commit_site_transaction_url, headers, token, rebuildSite)
 result
 ```
 API Response: 
@@ -524,7 +523,7 @@ result
 ```
 API Response:
 ```
-    {'statusCode': 790200, 'statusDescription': 'Success.'}
+{'statusCode': 790200, 'statusDescription': 'Success.'}
 ```
 
 
@@ -553,12 +552,12 @@ def logout(logout_url, token, headers):
     except Exception as e:
         return (str(e))
 
-logout = logout(logout_url, token, headers)
-logout
+result = logout(logout_url, token, headers)
+result
 ```
 
 API Response: 
 
-
-    {'statusCode': 790200, 'statusDescription': 'Success.'}
-
+```
+{'statusCode': 790200, 'statusDescription': 'Success.'}
+```
