@@ -30,7 +30,7 @@ This use case utilizes 13 APIs.
 **[Step 5: Implement All Modifications To System](#step-5-implement-all-modifications-to-system)**
 >> 5a. call commit_site_transactionn API
 
-**[Step 6: Remove Site Transaction (Optional)](#step-6-remove-site-transaction)**
+**[Step 6: Remove Site Transaction (Optional)](#step-6-remove-site-transaction-optional)**
 >> 6a. call remove_site_transaction API
 
 **[Step 7: Logout of NetBrain System](#step-7-logout-of-netbrain-system)**
@@ -495,7 +495,7 @@ API Response:
     {'statusCode': 790200, 'statusDescription': 'Success.'}
 
 
-## Step 6: Remove Site Transaction
+## Step 6: Remove Site Transaction (Optional)
 >As mentioned in Step 2, to avoid a site lockup, we will call [Remove Site Transaction API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Site%20Management/Remove%20Site%20Transaction%20API.md) to free up the site operation. <br> 
 Removing the transaction also lets the user discard any site change operations since the beginning of a transaction, or called rollback.
 
