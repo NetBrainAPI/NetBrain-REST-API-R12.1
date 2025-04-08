@@ -31,13 +31,13 @@ This API is used to get devices and their attributes data in batch. The response
 |ignoreCase|boolean|Recognizes as case-insensitive hostname|
 |ip|string OR list of string|A list of device management IPs|
 |||If provided both of hostname and ip, hostname has higher priority. If any of the devices are not found from the provided query parameter, return the found devices as a list in response and add another json key "deviceNotFound", the value is a mixed list of hostnames and IPs that are not found.|
-|*fullattr|integer|Default is 0.<br>0: return basic device attributes (device id, management IP, hostname, device type, first discover time, last discover time).<br>1: return all device attributes, including customized attributes|
-|*version|string| 0 - returns basic device attributes (device id, mgmt ip, hostname, device type, first discover time, last discover time) <br> 1 - returns device properties|
-|skip|integer|The amount of records to be skipped. The value must not be negative.  If the value is negative, API throws exception {"statusCode":791001,"statusDescription":"Parameter 'skip' cannot be negative"}. No upper bound for this parameter.|
-|limit|integer|The up limit amount of device records to return per API call. The value must not be negative.  If the value is negative, API throws exception {"statusCode":791001,"statusDescription":"Parameter 'limit' cannot be negative"}. No upper bound for this parameter. If the parameter is not specified in API call, it means there is not limitation setting on the call.|
-|||If only provide skip value, return the device list with 50 devices information start from the skip number. If only provide limit value, return from the first device in DB. If provided both skip and limit, return as required. Error exceptions follow each parameter's description.<br>Skip and limit parameters are based on the search result from DB. The "limit" value valid range is 10 - 100, if the assigned value exceeds the range, the server will respond error message: "Parameter 'limit' must be greater than or equal to 10 and less than or equal to 100."  |
+|*fullattr|integer|Default is 0. <br>0: return basic device attributes (device id, management IP, hostname, device type, first discover time, last discover time).<br>1: return all device attributes, including customized attributes|
+|*version|string| 0 - returns basic device attributes (device id, mgmt ip, hostname, device type, first discover time, last discover time) <br> 1 - returns all device properties|
+|skip|integer|The amount of records to be skipped. The value cannot be negative.  If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'skip' cannot be negative"}`. No upper bound for this parameter.|
+|limit|integer|The up limit amount of device records to return per API call. The value cannot be negative.  If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'limit' cannot be negative"}`. No upper bound for this parameter. If the parameter is not specified in API call, it means there is not limitation setting on the call.|
+|||If only skip value is provided, return the device list with 50 devices information start from the skip number. If only provide limit value, return from the first device in DB. If provided both skip and limit, return as required. Error exceptions follow each parameter's description.<br>Skip and limit parameters are based on the search result from DB. The "limit" value valid range is 10 - 100, if the assigned value exceeds the range, the server will respond error message: `Parameter 'limit' must be greater than or equal to 10 and less than or equal to 100.`  |
 |filter|json|If specified, return the matched device list with device attributes. Supported filtering attributes: name, assetTag, contact, descr, layer, loc, mgmtIP, model, site(complete site path， for example: "My Network\\\Burlington"), sn, subTypeName, vendor, ver, hasBGPConfig, hasOSPFConfig, hasEIGRPConfig, hasISISConfig, hasMulticastConfig, hasOTVConfig, isHA, hasBPEConfig, isTransparent, isCluster, hasVXLANConfig, hasVPLSConfig, alias(the alias name of device Telnet/SSH settings)|
-|||Only support AND operator, when multiple filter attributes are specified in JSON.<br>If provide invalid data format, return error "invalid filter input".|
+|||Only support AND operator, when multiple filter attributes are specified in JSON.<br>If provide invalid data format, return error `invalid filter input`.|
 
 ## Headers
 
@@ -154,7 +154,7 @@ This API is used to get devices and their attributes data in batch. The response
 
 # Full Example:
 
-
+# Example 1
 ```python
 # import python modules 
 import requests
@@ -554,7 +554,7 @@ except Exception as e:
 }
 ```
 
-# Example about get all devices by calling this API:
+# Example 2: Get All Devices
 
 ```python
 full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
@@ -580,8 +580,55 @@ try:
 except Exception as e:
     print (str(e)) 
 ```
+# Example 3: Using `limit`
+```
+def getdevicev1():
+    full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+    headers["Token"]=token
+    skip = 0
+    count = 100
+    try:
+        while count == 100:
+            data = {
+                "version": 1,
+                "skip":skip,
+                "fullattr":1,
+                'limit' : count
+            }
+            print (data)
+            response = requests.get(full_url, params = data, headers = headers, verify = False)
+            if response.status_code == 200:
+                result = response.json()
+                count = len(result["devices"])
+                skip = skip + count
+                #print ("get count: {}".format(count))
+                ss = "" 
+                print("length:" , len(result["devices"]))
+                for device in result["devices"]:
+                    #print(device)
+                    #break
+                    ss += '{},'.format(device['name'])
+                print(ss)
+            else:
+                print("Get Devices failed! - " + str(response.text))
+            #break
+    except Exception as e:
+        print (str(e))
+        
+result = getdevicev1()
+result
+```
 
-# Example with Filter :
+```
+{'version': 1, 'skip': 0, 'fullattr': 1, 'limit': 100}
+length: 8
+
+ALCSWAVG310P01, BJ-3750-1, EX2200-2, JMCKOPVG310P01, MRFN-CAMCC-F5-AIS-PROD2, ST55CN234C, mgd-pcm-wdc-fw01/vsys2, mrfn-cascc-f5-ag02-prd, 
+```
+
+
+# Example 4: Using `filter`
 
 ```python
 full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
