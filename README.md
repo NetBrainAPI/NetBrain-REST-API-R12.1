@@ -8,7 +8,7 @@ To view details about use cases which can be implemented with NetBrain REST APIs
 To see the list of all REST APIs, view `REST APIs Documentation`.<br>
 
 ## New APIs in this version
-
+N/A
 
 ## Section 1) Golden Use Case Templates
 1) [Get Path By Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/Golden%20Use%20Case%20Templates/Get%20Path%20By%20Calling%20APIs.md)<br>
