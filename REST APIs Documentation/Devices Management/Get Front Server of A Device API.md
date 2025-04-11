@@ -4,7 +4,7 @@
 ## ***GET*** /V1/CMDB/Devices/decive/FrontServer{?hostname}
 Call this API to set a value for the specified attriute of a device.
 
-* ## Detail Information
+## Detail Information
 
 > **Title** : Get Front Server of a device API<br>
 
@@ -19,18 +19,18 @@ Call this API to set a value for the specified attriute of a device.
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |Bearer Authentication| Headers | Authentication token | 
 
-* ## Request body(****required***)
+## Request body(****required***)
 
 >No request body.
 
-* ## Query Parameters(****required***)
+## Query Parameters(****required***)
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |hostname* | string  | The hostname of the target device. |
 
-* ## Headers
+## Headers
 
 > **Data Format Headers**
 
@@ -40,14 +40,14 @@ Call this API to set a value for the specified attriute of a device.
 | Content-Type | string  | support "application/json" |
 | Accept | string  | support "application/json" |
 
-> **Authorization Headers**
+> Authorization Headers**
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 | token | string  | Authentication token, get from login API. |
 
-* ## Response
+## Response
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
@@ -73,7 +73,7 @@ Call this API to set a value for the specified attriute of a device.
 }
 ```
 
-* # Full Example:
+# Full Example:
 
 
 ```python
@@ -112,7 +112,7 @@ except Exception as e:
     {'alias': 'NetBrainServer', 'ipOrHostname': '192.168.28.79', 'statusCode': 790200, 'statusDescription': 'Success.'}
     
 
-* # cURL Code from Postman
+# cURL Code from Postman
 
 
 ```python
