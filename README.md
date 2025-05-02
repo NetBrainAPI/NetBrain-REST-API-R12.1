@@ -9,7 +9,7 @@ To view details about use cases which can be implemented with NetBrain REST APIs
 To view the full list of all REST APIs, please refer to `REST APIs Documentation`.<br>
 
 ## New APIs in this version
-N/A
+1) [Login API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md) (Updated methods) <br>
 
 ## Section 1) Golden Use Case Templates
 1) [Get Path By Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/Golden%20Use%20Case%20Templates/Get%20Path%20By%20Calling%20APIs.md)<br>
