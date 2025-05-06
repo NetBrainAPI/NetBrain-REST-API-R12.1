@@ -3,11 +3,11 @@
 
 ## GET /V1/CMDB/Devices
 
-This API is used to get devices and their attributes data in batch. The response of this API will return a list in JSON format.<br>**Note:<br>1. The API follows the privilege control of NB system. If there is restriction set by Access Control Policy for the target querying resources, the response will not return queried data.<br>2. This API doesn't support any GDR that is not set as displayed, except first discovery time and last discovery time.**
+This API is used to get devices and their attributes data in batch. The response of this API returns a list in JSON format.<br>**Note:<br>1. The API follows the privilege control of NB system. If there is restriction set by Access Control Policy for the target querying resources, the response will not return queried data.<br>2. This API doesn't support any GDR that is not set as displayed, except first discovery time and last discovery time.**
 
 ## Detail Information
 
->**Title:** Devices API
+>**Title:** Get Devices API
 
 >**Version:** 02/28/2023
 
