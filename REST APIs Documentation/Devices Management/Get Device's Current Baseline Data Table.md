@@ -32,7 +32,7 @@ Call this API to export the device's current baseline data table.
 | hostname | string  | Hostname of the device. |
 | ip | string  | Management IP address of the device. |
 |  |  | *At least one of `hostname` or `ip` should have value. <br> They cannot both be empty. |
-| tableName* | string  | Name of the Device Data Table. <br>Names for System Tables are constant; <br>1. routeTable <br>2. arpTable <br>3. macTable  <br>4. cdpTable <br>5. stpTable <br>6. bgpNbrTable <br> <br>For NCT Table, please use the real tabe name. e.g. QoS Mapping Table|
+| tableName* | string  | Name of the Device Data Table. <br>Names for System Tables are constant; <br>1. routeTable <br>2. arpTable <br>3. macTable  <br>4. cdpTable <br>5. stpTable <br>6. bgpNbrTable <br> <br>For NCT Table, please use the real table name. e.g. QoS Mapping Table|
 | vrf^ | string  | Name of VRF, if applicable; otherwise, empty. |
 | subTableName^ | string  | Name of NCT Table's sub-table name, if applicable; otherwise, empty. |
 | pageIndex* | integer  | Page Index for gets & sets. Starts from 0. |
