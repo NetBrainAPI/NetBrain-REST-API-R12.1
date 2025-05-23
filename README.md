@@ -9,7 +9,7 @@ To view details about use cases which can be implemented with NetBrain REST APIs
 To view the full list of all REST APIs, please refer to `REST APIs Documentation`.<br>
 
 ## New APIs in this version
-1) [Login API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md) (Updated methods) <br>
+1) [Login API](hhttps://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md) (Updated methods) <br>
 2) [Get Device's Current Baseline Data Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Devices%20Management/Get%20Device's%20Current%20Baseline%20Data%20Table.md)
 
 ## Section 1) Golden Use Case Templates
