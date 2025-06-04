@@ -2,7 +2,7 @@
 # Network Setting API Design
 
 ## ***PUT*** /V3/CMDB/NetworkSettings/CLILoginCredential
-Call this API to edit CLI Login Credential.
+Call this API to edit CLI Login Credential. <br>
 Please note that this API is operated on a Domain Admin Privilege. It means that an engineer or guest user does not have the privilege to successfully call this API.
 
 ## Detail Information
@@ -24,7 +24,7 @@ Please note that this API is operated on a Domain Admin Privilege. It means that
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|userName*|string|The username of CLI Login account to be modified. |
+|username*|string|The username of CLI Login account to be modified. |
 |password*|string|The password of CLI Login account to be modified. |
 |updateLockedSettings|boolean|True - Force modification to locked accounts.<br>False (<b>default</b>) - No modification to locked accounts |
 
