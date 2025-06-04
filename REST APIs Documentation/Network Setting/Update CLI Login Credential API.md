@@ -1,7 +1,7 @@
 
 # Network Setting API Design
 
-## ***PUT*** PUT /V3/CMDB/NetworkSettings/CLILoginCredential
+## ***PUT*** /V3/CMDB/NetworkSettings/CLILoginCredential
 Call this API to edit CLI Login Credential.
 Please note that this API is operated on a Domain Admin Privilege. It means that an engineer or guest user does not have the privilege to successfully call this API.
 
