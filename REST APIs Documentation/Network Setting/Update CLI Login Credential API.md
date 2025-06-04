@@ -145,7 +145,7 @@ nb_url = "http://192.168.30.191/"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'} 
 TenantName = "Patch_Tenant"
 DomainName = "AutoBasicDomain"
-username = "hello"
+username = "hello" # non-admin account
 password = "Hello123$"
 
 
@@ -177,7 +177,6 @@ except Exception as e:
 ```
 
 # cURL Code from Postman
-This cURL command is based on Example 1
 
 ```python
 curl -X PUT \
