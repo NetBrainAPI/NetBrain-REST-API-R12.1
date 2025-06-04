@@ -24,6 +24,7 @@ Please note that this API is operated on a Domain Admin Privilege. It means that
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
+|* - mandatory field||
 |username*|string|The username of CLI Login account to be modified. |
 |password*|string|The password of CLI Login account to be modified. |
 |updateLockedSettings|boolean|True - Force modification to locked accounts.<br>False (<b>default</b>) - No modification to locked accounts |
@@ -43,7 +44,7 @@ Please note that this API is operated on a Domain Admin Privilege. It means that
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-| token | string  | Authentication token, get from login API. |
+| token | string  | Authentication token, retrieved from Login API. |
 
 ## Response
 
@@ -61,6 +62,7 @@ Please note that this API is operated on a Domain Admin Privilege. It means that
 |791006|username `xxx` does not exist| Failure |
 |795003|Insufficient permissions: the current user has insufficient permissions to perform the requested operation. Sorry, you have no privilege to operate. Please contact your system administrator. required permissions: manageNetworkSettings| Failure |
 |793404|NotFound|Not found |
+
 
 # Examples
 # Example 1: Successful API call
@@ -82,7 +84,7 @@ headers["Token"] = token
 
 data = {
     "username": "admin123",
-    "password": "adminpwd,
+    "password": "adminpwd",
     "updateLockedSettings": True
 }
 
