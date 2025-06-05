@@ -2,10 +2,10 @@
 # Network Setting API Design
 
 ## ***PUT*** /V3/CMDB/NetworkSettings/CLILoginCredential
-Call this API to edit CLI Login Credential. <br>
+Call this API to update CLI Login Credential. <br>
 Please note that this API is operated on a Domain Admin Privilege. It means that an engineer or guest user does not have the privilege to successfully call this API.
 <br><br>
-<b>Important</b>: Although not common, there may be same username with many different passwords. However, upon calling this API, the username will be updated to have the same password.<br>
+<b>Important</b>: Although not common, there may be cases of one username with many different passwords. However, upon calling this API, the username will be updated to have the same password.<br>
 Please be mindful and use after review.
 
 ## Detail Information
@@ -30,7 +30,7 @@ Please be mindful and use after review.
 |* - mandatory field||
 |username*|string|The username of CLI Login account to be modified. |
 |password*|string|The password of CLI Login account to be modified. |
-|updateLockedSettings|boolean|CLI/SNMP lock setting found in Shared Device Setting.<br>True - Force modification to locked accounts.<br>False (<b>default</b>) - No modification to locked accounts<br><br> If you lock your device in Shared Device Setting, but do not pass `updateLockedSettings = True`, the device setting will not be modified.|
+|updateLockedSettings|boolean|CLI/SNMP lock setting found in Shared Device Setting.<br>`True` - Force modification to locked accounts.<br>`False` (<b>default</b>) - No modification to locked accounts<br><br> If you lock your device in Shared Device Setting, but do not pass `updateLockedSettings = True`, the device setting will not be modified.|
 <br>
 
 
