@@ -2,7 +2,7 @@
 # Trigger Run Task API Design
 
 ## ***POST*** V3/TAF/Lite/run
-Call this API to trigger run task
+This API is used to trigger Intent Execution (run task).
 
 ## Detail Information
 
