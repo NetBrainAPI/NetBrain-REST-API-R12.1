@@ -4,6 +4,9 @@
 ## ***PUT*** /V3/CMDB/NetworkSettings/CLILoginCredential
 Call this API to edit CLI Login Credential. <br>
 Please note that this API is operated on a Domain Admin Privilege. It means that an engineer or guest user does not have the privilege to successfully call this API.
+<br><br>
+<b>Important</b>: Although not common, there may be same username with many different passwords. However, upon calling this API, the username will be updated to have the same password.<br>
+Please be mindful and use after review.
 
 ## Detail Information
 
@@ -27,7 +30,7 @@ Please note that this API is operated on a Domain Admin Privilege. It means that
 |* - mandatory field||
 |username*|string|The username of CLI Login account to be modified. |
 |password*|string|The password of CLI Login account to be modified. |
-|updateLockedSettings|boolean|True - Force modification to locked accounts.<br>False (<b>default</b>) - No modification to locked accounts |
+|updateLockedSettings|boolean|CLI/SNMP lock setting found in Shared Device Setting.<br>True - Force modification to locked accounts.<br>False (<b>default</b>) - No modification to locked accounts<br><br> If you lock your device in Shared Device Setting, but do not pass `updateLockedSettings = True`, the device setting will not be modified.|
 
 ## Headers
 
@@ -134,23 +137,6 @@ except Exception as e:
 
 # Example 3: Insufficient Privilege
 ```python
-# import python modules
-import requests
-import json
-import time
-import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-import pprint
-
-# Global Variables
-nb_url = "http://192.168.30.191/"
-headers = {'Content-Type': 'application/json', 'Accept': 'application/json'} 
-TenantName = "Patch_Tenant"
-DomainName = "AutoBasicDomain"
-username = "hello" # non-admin account
-password = "Hello123$"
-
-
 token = "68f4803c-04ee-499d-af92-3e86c7825ef7"
 full_url = nb_url + "/ServicesAPI/API/V3/CMDB/NetworkSettings/CLILoginCredential"
 
@@ -179,6 +165,7 @@ except Exception as e:
 ```
 
 # cURL Code from Postman
+This cURL command is based on Example 1.
 
 ```python
 curl -X PUT \
@@ -188,7 +175,7 @@ curl -X PUT \
   -H 'token: ec415367-60f2-41de-90a3-58cd72bfcfc6'
   -d '{
     "username" : "admin123",
-    "password" : "admin321",
-    "updateLockedSettings" : false,
+    "password" : "adminpwd",
+    "updateLockedSettings" : true,
 }'
 ```
