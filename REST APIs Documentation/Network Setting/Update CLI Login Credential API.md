@@ -31,6 +31,8 @@ Please be mindful and use after review.
 |username*|string|The username of CLI Login account to be modified. |
 |password*|string|The password of CLI Login account to be modified. |
 |updateLockedSettings|boolean|CLI/SNMP lock setting found in Shared Device Setting.<br>True - Force modification to locked accounts.<br>False (<b>default</b>) - No modification to locked accounts<br><br> If you lock your device in Shared Device Setting, but do not pass `updateLockedSettings = True`, the device setting will not be modified.|
+<br>
+![CLI_SNMP lock](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/raw/main/REST%20APIs%20Documentation/Network%20Setting/NetworkSettingImages/CLISNMP_setting.png)
 
 ## Headers
 
