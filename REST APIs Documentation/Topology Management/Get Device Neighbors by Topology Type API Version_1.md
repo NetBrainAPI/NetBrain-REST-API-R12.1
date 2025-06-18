@@ -30,13 +30,12 @@ This API is used to get the neighbor device hostname and connection interface na
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |hostname | list of string  | The device name <br>e.g. ["US-BOS-R1"], or ["US-BOS-R2", "US-BOS-R3", "US-BOS-R4"]|
 |topoType | list of int  | Returns the neighbors in specified topology types:<br> `1` (default): `L3_Topo_Type`, <br>`2`: `L2_Topo_Type`, <br>`3`: `Ipv6_L3_Topo_Type`, <br>`4`: `VPN_Topo_Type` <br>e.g. `[1]` or `[2,3,4]`. <br><br> If value other than 1-4 is specified, returns respone: `Please select the exist topology type`. <br>If wrong value type is specified (e.g. ["1", "2"]), returns respone: `Topology type must be insert as Integer`|
-|||If both `hostname` and `topoType` are input as filters, but there is no corresponding topology interface on some devices, then returns `Device xxx don't have yyy interface.` <br> If only one input is given, then only that given filter will be considered. <br> e.g. only `["US-BOS-R1"]` - returns all topology type of `US-BOS-R1`.|
+|||If both `hostname` and `topoType` are passed, but there is no corresponding topology interface on some devices, then API returns `Device xxx doesn't have yyy interface.` <br> <br> If only one input is given, then only the given filter will be considered. <br> e.g. only `["US-BOS-R1"]` - returns all topology type of `US-BOS-R1`.|
 |version | string | This is a minor version number. Value of this parameter is `1`.|
-|skip|integer|The amount of records to be skipped. <br>The value cannot be negative. If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'skip' cannot be negative"}`. No upper bound for this parameter.|
+|skip|integer|The amount of records to be skipped. <br>The value cannot be negative. If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'skip' cannot be negative"}`. <br> No upper bound for this parameter.|
 |limit|integer|The up limit amount of device records to return per API call. <br>The value cannot be negative. If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'limit' cannot be negative"}`. <br> The range of this parameter: `10`-`100`. <br><br> default value: `50`|
-|||If only `skip` is provided, returns the rest of the full device list. <br>If only `limit` is provided, returns from the first device in DB. If both `skip` and `limit` are provided, returns as required. Error exceptions follow each parameter's descriptions.|
-|||**Note:** The `skip` and `limit` parameters are based on the device search result, not topology result record.|
-|filterBus | boolean | When set to `True`, returns the list of neighbors in the opposite link. <br>e.g. if the uplink neighbor ID is queried, returns a list of neighbors in downlink, and vice versa|
+|||If only `skip` is provided, returns the rest of the full device list. <br>If only `limit` is provided, returns from the first device in DB. <br>If both `skip` and `limit` are provided, returns as required. Error exceptions follow each parameter's descriptions.<br><br>**Note:** The `skip` and `limit` parameters are based on the device search result, not topology result record.|
+|filterBus | boolean | Without this filter (or when set to `False`), the API returns a list of all neighbors. <br> With this filter set to `True`, the API does not return the group in same link (uplink or downlink) within the same media. |
 
 ## Headers
 
