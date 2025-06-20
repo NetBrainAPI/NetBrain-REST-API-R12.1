@@ -32,8 +32,9 @@ If none of hostname and ip provided, response will return all devices of current
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 | hostname | string  | The host name of device. |
-|ignoreCase|boolean|Recognizes as case-insensitive hostname|
 | ip | string  | The management ip of device. |
+|||If both `hostname` and `ip` are provided that does not belong to one device, then the response device corresponds to the hostname.|
+|ignoreCase|boolean|Recognizes as case-insensitive hostname|
 
 
 ## Headers
@@ -102,7 +103,7 @@ except Exception as e:
   "devices": [
     {
       "id": "96697e56-192a-4c2a-8a01-3fd7391e176e",
-      "mgmtIP": "172.25.52.3",
+      "mgmtIP": "172.1.1.1",
       "name": "ASARouter",
       "subTypeName": "Cisco IOS Switch",
       "fDiscoveryTime": "2023-08-25T17:34:31Z",
@@ -124,16 +125,12 @@ curl -X GET \
   -H 'cache-control: no-cache'
 ```
 
-# Error Examples and Note
+# Error Examples
 
+## Error Example 1: The Device With Specified Hostname Does Not Exist
 
 ```python
-###################################################################################################################    
-
-"""Error 1: the device with hostname does not exist"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 Input:
-    
     hostname = "blahblahblah" # Device with hostname "blahblahblah" doesn't exist
     
 Response:
@@ -143,13 +140,11 @@ Response:
         'statusCode': 790200, 
         'statusDescription': 'Success.'
     }"
+```
 
-###################################################################################################################    
-
-"""Error 2: wrong format ip"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+## Error Example 2: Wrong IP Format
+```
 Input:
-    
     ip = "101122" #the correct ip should be "10.1.12.2"
     
 Response:
@@ -159,8 +154,7 @@ Response:
         'statusCode': 790200, 
         'statusDescription': 'Success.'
     }"
-
-###################################################################################################################    
+```
 
 """Note 1 : If user provides both hostname and ip that does not belongs to one device, 
             then the response device corresponds to the hostname"""
