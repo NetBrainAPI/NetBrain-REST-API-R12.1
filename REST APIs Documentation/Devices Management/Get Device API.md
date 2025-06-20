@@ -155,7 +155,3 @@ Response:
         'statusDescription': 'Success.'
     }"
 ```
-
-"""Note 1 : If user provides both hostname and ip that does not belongs to one device, 
-            then the response device corresponds to the hostname"""
-```
