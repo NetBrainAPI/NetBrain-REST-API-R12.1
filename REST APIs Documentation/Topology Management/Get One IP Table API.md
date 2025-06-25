@@ -41,7 +41,7 @@ But note that the default maximum value of `count` is 100,000. So if the input v
 |switch_name|string|The switch name connected to the end system. If the user provides an input value of `switch_name` attribute, then this API will return all items with the same switch name in One-IP Table.|
 |switch_port|string|The [fullname](https://www.netbraintech.com/docs/ie71/help/index.html?interface-name-translation.htm) of switchport to connected to the end system or the device interface configured with this IP address. This is not an independent attribute; to use this attribute, `switch_name` is required.|
 |dns|string|The resolved DNS name of the end system, or the combination of the device name and interface name. If the DNS name is not resolved, it is null.|
-| beginIndex* | int  | Beginning index of data; API will return OneIP Table items starting from `beginIndex`. |
+| beginIndex | int | Beginning index of data; API will return OneIP Table items starting from `beginIndex`. <br>Default: `0` |
 | count | int | Count number of returned data; API will return OneIP Table items with the total number of items as the value of `count`. <br> Maximum: 100,000. <br>API will only return 100,000 itmes even if the input value of `count` is greater than 100,000. If the total number of items which start from `beginIndex` to the end of table is less than `count` value, API will return the rest of items.<br> ***Note:*** If customer inserts the `beginindex` as 1 and `count` as 100,002 (total number will greater than 10000), then API will return an error without any result returned. |
 
 ## Headers
@@ -176,8 +176,8 @@ curl -X GET \
   -H 'token: fb1e1360-f3c9-4197-929b-886a146d6bdf'
 ```
 
-<!-- # Error Example：
-## Error Example 1: Empty Inputs
+# Error Examples：
+<!-- ## Error Example 1: Empty Inputs
 ```python
 Input:
     
@@ -193,9 +193,9 @@ Response:
     "Get One-Ip Table failed! - 
     {"statusCode":791000,"statusDescription":"Null parameter: the parameter 'Count(int)' cannot be null."}"
 
+ -->
 
-``` -->
-## Error 1: Wrong Input Value Types
+## Error Example 1: Wrong Input Value Types
 ```python
 Input 1:
     
@@ -220,7 +220,7 @@ Response 2:
     Get One-Ip Table failed! - {"statusCode":791001,"statusDescription":"Invalid parameter: the parameter 'IP' is invalid."}
     
 ```
-## Error 2: `count` > 100,000
+## Error Example 2: `count` > 100,000
 ```python
 Input:
     
@@ -234,7 +234,7 @@ Response:
 
     
 ```
-## Error 3: `beginIndex` > size of One-Ip Table
+## Error Example 3: `beginIndex` > size of One-Ip Table
 ```python
 Input:
     
