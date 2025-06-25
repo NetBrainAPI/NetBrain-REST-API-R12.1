@@ -176,7 +176,7 @@ curl -X GET \
   -H 'token: fb1e1360-f3c9-4197-929b-886a146d6bdf'
 ```
 
-# Error Example：
+<!-- # Error Example：
 ## Error Example 1: Empty Inputs
 ```python
 Input:
@@ -193,8 +193,9 @@ Response:
     "Get One-Ip Table failed! - 
     {"statusCode":791000,"statusDescription":"Null parameter: the parameter 'Count(int)' cannot be null."}"
 
-```
-## Error 2: Wrong Input Value Types
+
+``` -->
+## Error 1: Wrong Input Value Types
 ```python
 Input 1:
     
@@ -203,13 +204,9 @@ Input 1:
         beginIndex = "50" # Should be integer
           
 Response 1:
-    
-        "{
-            'OneIPList': [...], 
-            'statusCode': 790200,
-            'statusDescription': 'Success.'
-        }"  
-    
+
+    {'OneIPList': [], 'statusCode': 790200, 'statusDescription': 'Success.'}
+
 ```
 ```python
 Input 2:
@@ -220,14 +217,10 @@ Input 2:
           
 Response 2:
     
-        "Get One-Ip Table failed! - 
-        {
-            "statusCode":791001,
-            "statusDescription":"Invalid parameter: the parameter 'IP' is invalid."
-        }"  
+    Get One-Ip Table failed! - {"statusCode":791001,"statusDescription":"Invalid parameter: the parameter 'IP' is invalid."}
     
 ```
-## Error 4: Count > 100,000
+## Error 2: `count` > 100,000
 ```python
 Input:
     
@@ -237,24 +230,21 @@ Input:
           
 Response:
     
-    "Get One-Ip Table failed! - {"statusCode":791002,"statusDescription":"Count can between 0 and 100000"}"
+    Get One-Ip Table failed! - {"statusCode":791002,"statusDescription":"Count can between 0 and 100000"}
 
     
 ```
-## Error 5: `beginIndex` > size of One-Ip Table
+## Error 3: `beginIndex` > size of One-Ip Table
 ```python
 Input:
     
         ip = "" 
         count = 1 
-        beginIndex = 500 # There are only 117 items in this table.
+        beginIndex = 99999999999 # There are only 117 items in this table.
           
 Response:
     
-        "{
-            'OneIPList': [], 
-            'statusCode': 790200,
-            'statusDescription': 'Success.'
-        }"  
+    Get One-Ip Table failed! - {"statusCode":791009,"statusDescription":"The parameter 'BeginIndex' is invalid value."}
+
     
 ```
