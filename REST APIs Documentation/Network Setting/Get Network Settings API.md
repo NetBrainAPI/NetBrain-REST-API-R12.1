@@ -59,7 +59,7 @@ Call this API to get network settings Telnet/SSH information.
 |deviceCount | integer  | The total number of devices that using the current credential. |
 |alias | string  | The alias name of telnet/SSH login credentials.  |
 |userName | string  | The user name of the non-privilege login. |
-|cliMode  | integer  | The authentication method. <br>Options:<br>`0`, Telnet/SSH Password<br>`2`: SSH public key |
+|cliMode  | integer  | The authentication method. <br>Options:<br>`0`: Telnet/SSH Password<br>`2`: SSH public key |
 |keyName  | string  | The name of the SSH public key. This field is only available when the current cliMode is 2 in system. |
 |statusCode| integer | Code issued by NetBrain server indicating the execution result.  |
 |statusDescription| string | The explanation of the status code. |
@@ -121,22 +121,22 @@ except Exception as e:
 ```
 ```
     {
-    "telnetInfo": [
-        {
-        "deviceCount": 2,
-        "alias": "ABC",
-        "username": "netbrain",
-        "cliMode": 0
-        },
-        {
-        "deviceCount": 3,
-        "alias": "ROOT",
-        "username": "root",
-        "cliMode": 0
-        }
-    ],
-    "statusCode": 790200,
-    "statusDescription": "Success."
+        "telnetInfo": [
+            {
+            "deviceCount": 2,
+            "alias": "ABC",
+            "username": "netbrain",
+            "cliMode": 0
+            },
+            {
+            "deviceCount": 3,
+            "alias": "ROOT",
+            "username": "root",
+            "cliMode": 0
+            }
+        ],
+        "statusCode": 790200,
+        "statusDescription": "Success."
     }
 ```
 
