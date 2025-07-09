@@ -2,7 +2,8 @@
 # Device Group API Design
 
 ## ***GET*** /V1/CMDB/DeviceGroups/{deviceGroupID}/devices
-This API call returns devices in a device group.
+This API is used to get devices from a device group.<br>
+The `deviceGroupID` used to call this API can be retrieved from [Get Device Group API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Devices%20Management/Get%20Device%20Group%20API.md)
 
 ## Detail Information
 
@@ -75,7 +76,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Set the request inputs
 token = "ad3c616e-5f3d-45e9-9ba1-bb71f003a098"
-deviceGroupID = '9732dca7-9709-4c49-91e1-a2310b8364d9'
+deviceGroupID = '9732dca7-9709-4c49-91e1-a2310b8364d9' # get from Get Device Group API 
 nb_url = "http://192.168.28.143"
 full_url = nb_url + "/ServicesAPI/API/V1/CMDB/DeviceGroups/"+deviceGroupID+"/devices"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -87,7 +88,7 @@ try:
         result = response.json()
         print (result)
     else:
-        print ("Get devices from group failed! - " + str(response.text))
+        print ("Failed to get devices from the device group! - " + str(response.text))
     
 except Exception as e:
     print (str(e)) 

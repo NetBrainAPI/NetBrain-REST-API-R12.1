@@ -2,7 +2,8 @@
 # Device Group API Design
 
 ## ***DELETE*** /V1/CMDB/DeviceGroups/{deviceGroupID}
-This API call deletes device group
+This API is used to delete a device group.<br>
+The `deviceGroupID` used to call this API can be retrieved from [Get Device Group API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Devices%20Management/Get%20Device%20Group%20API.md)
 
 ## Detail Information
 
@@ -73,7 +74,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Set the request inputs
 token = "ad3c616e-5f3d-45e9-9ba1-bb71f003a098"
-deviceGroupID = 'ef1864f2-58a2-4f4f-8d48-015ce8068d93'
+deviceGroupID = 'ef1864f2-58a2-4f4f-8d48-015ce8068d93' # get from Get Device Group API 
 nb_url = "http://192.168.28.143"
 full_url = nb_url + "/ServicesAPI/API/V1/CMDB/DeviceGroups/"+deviceGroupID
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -85,7 +86,7 @@ try:
         result = response.json()
         print (result)
     else:
-        print ("Delete device group failed! - " + str(response.text))
+        print ("Failed to delete the device group! - " + str(response.text))
     
 except Exception as e:
     print (str(e)) 
