@@ -2,7 +2,7 @@
 # Device Group API Design
 
 ## ***DELETE*** /V1/CMDB/DeviceGroups/{deviceGroupID}/devices
-This API is used to delets devices from the device group. <br>
+This API is used to delete devices from the device group. <br>
 The `deviceGroupID` used to call this API can be retrieved from [Get Device Group API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Devices%20Management/Get%20Device%20Group%20API.md)
 
 ## Detail Information
