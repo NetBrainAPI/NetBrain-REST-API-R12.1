@@ -116,7 +116,7 @@ Input:
     User does not have the privilege to make changes to shared device groups.
     
 Response:
-    "You are not allowed to perform the operation. Failed! - 
+    "Failed to Get Devices from the Device Group! - 
     {
         "statusCode":799001,
         "statusDescription":"You are not allowed to perform the operation."
