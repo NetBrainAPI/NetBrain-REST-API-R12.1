@@ -113,7 +113,7 @@ except Exception as e:
 
 ```
 ```
-    {'statusCode': 790200, 'statusDescription': 'Success.'}
+{'statusCode': 790200, 'statusDescription': 'Success.'}
 ```
 
 # cURL Code from Postman
@@ -125,16 +125,15 @@ curl -X POST \
   -H 'token: ad3c616e-5f3d-45e9-9ba1-bb71f003a098' \
   -d '{
     "devices":["BJ_Acc_SW1","BJ_Acc_SW1"]
-}
-'
+}'
 ```
 
 # Error Examples
 ## Error Example 1: You are not allowed to perform this operation
 ```
 Input:
-    User does not have the privilege to make changes to <i>shared</i> device groups.
+    User does not have the privilege to make changes to shared device groups.
     
 Response:
-    Failed to Delete the Device Group! - {"statusCode":799001,"statusDescription":"You are not allowed to perform the operation."}
+    Failed to Add Devices to the Device Group! - {"statusCode":799001,"statusDescription":"You are not allowed to perform the operation."}
 ```

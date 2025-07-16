@@ -78,9 +78,7 @@ body = {
 
 # Full Example :
 
-
 ```python
-
 # import python modules 
 import requests
 import time
@@ -112,9 +110,9 @@ try:
 except Exception as e:
     print (str(e)) 
 ```
-
-    {'statusCode': 790200, 'statusDescription': 'Success.'}
-    
+```
+{'statusCode': 790200, 'statusDescription': 'Success.'}
+```
 
 # cURL Code from Postman
 ```python
@@ -131,12 +129,8 @@ curl -X DELETE \
 ## Error Example 1: You are not allowed to perform this operation
 ```
 Input:
-    User does not have the privilege to make changes to <i>shared</i> device groups.
+    User does not have the privilege to make changes to shared device groups.
     
 Response:
-    "You are not allowed to perform the operation. Failed! - 
-    {
-        "statusCode":799001,
-        "statusDescription":"You are not allowed to perform the operation."
-    }"
+    Failed to Delete Devices from the Device Group! - {"statusCode":799001,"statusDescription":"You are not allowed to perform the operation."}
 ```

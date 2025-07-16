@@ -47,18 +47,17 @@ The `deviceGroupID` used to call this API can be retrieved from [Get Device Grou
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
+|devices| string[] | Device name list |
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code. |
-|devices| string[] | Device name list |
+
 
 > ***Example***
 
 
 ```python
 {
-    "statusCode": 790200,
-    "statusDescription": "Success.",
-    "devices":["bjretrahc001234","bjretrahc003465","bjta007616","bjta000408"]
+    'devices': ['Bos-Core-6500', 'CA-YVR-R1', 'CA-YVR-R2', 'NBLAB-IOS-CE1', 'bjta002114-SW7', 'bjta002115-SW6', 'bjta002303-SW9', 'bjta002444-SW13'], 'statusCode': 790200, 'statusDescription': 'Success.'
 }
 ```
 
@@ -94,9 +93,9 @@ except Exception as e:
     print (str(e)) 
 
 ```
-
-    {'statusCode': 790200, 'statusDescription': 'Success.'}
-    
+```
+{'statusCode': 790200, 'statusDescription': 'Success.'}
+``` 
 
 # cURL Code from Postman
 
@@ -114,7 +113,7 @@ curl -X GET \
 ## Error Example 1: You are not allowed to perform this operation
 ```
 Input:
-    User does not have the privilege to make changes to <i>shared</i> device groups.
+    User does not have the privilege to make changes to shared device groups.
     
 Response:
     "You are not allowed to perform the operation. Failed! - 

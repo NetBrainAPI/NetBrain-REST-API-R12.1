@@ -2,7 +2,7 @@
 # Device Group API Design
 
 ## ***POST*** /V1/CMDB/DeviceGroups
-This API is used to add(create) a device group to the specified path.
+This API is used to add (create) a device group to the specified path.
 
 ## Detail Information
 
@@ -10,7 +10,7 @@ This API is used to add(create) a device group to the specified path.
 
 > **Version** : 03/08/2022
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server /ServicesAPI/API/V1/CMDB/DeviceGroups
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V1/CMDB/DeviceGroups
 
 > **Authentication** : 
 
@@ -56,9 +56,9 @@ This API is used to add(create) a device group to the specified path.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
+|deviceGroupID| string | The ID of device group |
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code. |
-|deviceGroupID| string | The ID of device group |
 
 
 # Full Example :
@@ -169,8 +169,8 @@ Response:
 ## Error Example 3: You are not allowed to perform this operation
 ```
 Input:
-    User does not have the privilege to make changes to <i>shared</i> device groups.
+    User does not have the privilege to make changes to shared device groups.
     
 Response:
-    Failed to Delete the Device Group! - {"statusCode":799001,"statusDescription":"You are not allowed to perform the operation."}
+    Failed to Create a Device Group! - {"statusCode":799001,"statusDescription":"You are not allowed to perform the operation."}
 ```
