@@ -2,7 +2,7 @@
 # Device API Design
 
 ## ***GET*** /V1/CMDB/Devices/GroupDevices
-Call this API to get all devices from a device group.
+This API is used to get all the devices from the specified device group.
 
 ## Detail Information
 
@@ -32,7 +32,7 @@ Call this API to get all devices from a device group.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-| path | string  | Full path of a specific device group |
+| path* | string  | Full path of a specific device group |
 
 ## Headers
 
@@ -57,48 +57,12 @@ Call this API to get all devices from a device group.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|statusCode| integer | Code issued by NetBrain server indicating the execution result.  |
-|statusDescription| string | The explanation of the status code. |
 |devices| string[] | A list of devices. |
 |devices.id | string | The device ID. |
 |devices.mgmtIP| string | The management IP address of the returned device. |
 |devices.hostname| string | The hostname of returned device. |
-
-
-> ***Example***
-
-
-
-```python
-# Successful response with groupPath = "Shared Device Groups/NICUseCaseTrain/training_case4_check_eigrp_interface_hello_timer_mismatch"
-
-{
-    "devices": [
-        {
-            "id": "10fcca98-610b-48c3-b380-335f7cc83a78",
-            "mgmtIP": "10.20.0.82",
-            "hostname": "EIGRP-R13-C3725"
-        },
-        {
-            "id": "1ac62c06-5046-480f-a824-c2627506b332",
-            "mgmtIP": "10.20.0.21",
-            "hostname": "EIGRP-R1"
-        },
-        {
-            "id": "623efdc7-fbc9-4dfa-9bf7-99e29464e8c8",
-            "mgmtIP": "10.20.0.14",
-            "hostname": "EIGRP-R3"
-        },
-        {
-            "id": "71892107-bc65-490c-b54f-f4d50c7314ce",
-            "mgmtIP": "10.20.0.17",
-            "hostname": "EIGRP-R2"
-        }
-    ],
-    "statusCode": 790200,
-    "statusDescription": "Success."
-}
-```
+|statusCode| integer | Code issued by NetBrain server indicating the execution result.  |
+|statusDescription| string | The explanation of the status code. |
 
 # Full Example
 ```python
@@ -126,12 +90,40 @@ try:
         result = response.json()
         print (result)
     else:
-        print ("Get devices from a device group failed- " + str(response.text))
+        print ("Failed to get Devices from the Device Group! - " + str(response.text))
 
 except Exception as e: print (str(e))
-
 ```
-	{'devices': [{'id': '10fcca98-610b-48c3-b380-335f7cc83a78', 'mgmtIP': '10.20.0.82', 'hostname': 'EIGRP-R13-C3725'}, {'id': '1ac62c06-5046-480f-a824-c2627506b332', 'mgmtIP': '10.20.0.21', 'hostname': 'EIGRP-R1'}, {'id': '623efdc7-fbc9-4dfa-9bf7-99e29464e8c8', 'mgmtIP': '10.20.0.14', 'hostname': 'EIGRP-R3'}, {'id': '71892107-bc65-490c-b54f-f4d50c7314ce', 'mgmtIP': '10.20.0.17', 'hostname': 'EIGRP-R2'}], 'statusCode': 790200, 'statusDescription': 'Success.'}
+
+# Example 1: Sucessful API call with `path = "Shared Device Groups/NICUseCaseTrain/training_case4_check_eigrp_interface_hello_timer_mismatch"`
+```python
+{
+    "devices": [
+        {
+            "id": "10fcca98-610b-48c3-b380-335f7cc83a78",
+            "mgmtIP": "10.20.0.82",
+            "hostname": "EIGRP-R13-C3725"
+        },
+        {
+            "id": "1ac62c06-5046-480f-a824-c2627506b332",
+            "mgmtIP": "10.20.0.21",
+            "hostname": "EIGRP-R1"
+        },
+        {
+            "id": "623efdc7-fbc9-4dfa-9bf7-99e29464e8c8",
+            "mgmtIP": "10.20.0.14",
+            "hostname": "EIGRP-R3"
+        },
+        {
+            "id": "71892107-bc65-490c-b54f-f4d50c7314ce",
+            "mgmtIP": "10.20.0.17",
+            "hostname": "EIGRP-R2"
+        }
+    ],
+    "statusCode": 790200,
+    "statusDescription": "Success."
+}
+```
 
 # cURL Code from Postman
 ```python

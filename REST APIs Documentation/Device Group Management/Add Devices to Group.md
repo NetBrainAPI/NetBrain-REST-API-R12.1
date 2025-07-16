@@ -106,19 +106,17 @@ try:
         result = response.json()
         print (result)
     else:
-        print ("Failed to add devices to the device group failed! - " + str(response.text))
+        print ("Failed to Add Devices to the Device Group! - " + str(response.text))
     
 except Exception as e:
     print (str(e)) 
 
 ```
-
+```
     {'statusCode': 790200, 'statusDescription': 'Success.'}
-    
+```
 
 # cURL Code from Postman
-
-
 ```python
 curl -X POST \
   http://192.168.28.143/ServicesAPI/API/V1/CMDB/DeviceGroups/9732dca7-9709-4c49-91e1-a2310b8364d9/devices \
@@ -132,57 +130,11 @@ curl -X POST \
 ```
 
 # Error Examples
-
-
-```python
-###################################################################################################################    
-
-
-"""Error 1: Null parameter: the parameter '{}' cannot be null."""
-
+## Error Example 1: You are not allowed to perform this operation
+```
 Input:
-    
-    "name": "",
-    "type": "policy"
+    User does not have the privilege to make changes to <i>shared</i> device groups.
     
 Response:
-    
-    "Parameter cannot be null - 
-        {
-            "statusCode":791000,
-            "statusDescription":"Null parameter: the parameter '{}' cannot be null."
-        }"
-
-###################################################################################################################    
-
-"""Error 2: device group: {}, type: {} already exists."""
-
-Input:
-    
-    "name": "Device Group 1",
-    "type": "policy"
-    
-Response:        
-    
-    "Device Group already exists! - 
-        {
-            "statusCode":791007,
-            "statusDescription":"device group: {}, type: {} already exists."
-        }"
-
-###################################################################################################################    
-
-"""Error 3: You are not allowed to perform the operation."""
-
-Input:
-    
-    "User has no privilege to make change to device groups"
-    
-Response:
-    
-    "You are not allowed to perform the operation. Failed! - 
-        {
-            "statusCode":791000,
-            "statusDescription":"You are not allowed to perform the operation."
-        }"
-        
+    Failed to Delete the Device Group! - {"statusCode":799001,"statusDescription":"You are not allowed to perform the operation."}
+```
