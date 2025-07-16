@@ -140,7 +140,7 @@ curl --location --request POST 'https://unicorn-new.netbraintech.com/ServicesAPI
 '
 ```
 # Error Examples
-## Error Example 1: Null parameter - parameter `{}` cannot be null
+## Error Example 1: Null parameter - parameter {} cannot be null
 ```
 Input:
     "name": "",
@@ -153,7 +153,7 @@ Response:
             "statusDescription":"Null parameter: the parameter '{}' cannot be null."
         }"
 ```
-## Error Example 2: Device Group: {}, Type: {} Already Exists."""
+## Error Example 2: Device Group: {}, Type: {} Already Exists.
 ```
 Input:
     "name":"Shared Device Groups/Test Device Group",
