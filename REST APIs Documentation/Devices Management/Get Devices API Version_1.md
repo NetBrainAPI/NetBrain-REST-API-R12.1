@@ -4,7 +4,7 @@
 ## GET /V1/CMDB/Devices
 
 This API is used to get devices and their attributes data in batch. The response of this API returns a list in JSON format.<br><br>**Note:<br>1. The API follows the privilege control of NB system. If there is restriction set by Access Control Policy for the target querying resources, the response will not return queried data.<br>2. This API doesn't support any GDR that is not set as displayed, except first discovery time and last discovery time.**<br><br>
-<b>Important</b>: It is recommended to pass parameter version=1 instead of version=0
+<b>Important</b>: It is recommended to pass parameter <i>version=1</i> instead of <i>version=0</i>
 
 ## Detail Information
 
@@ -28,12 +28,13 @@ This API is used to get devices and their attributes data in batch. The response
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
+|||`*` - indicates mandatory field <br> `^` - indicates optional field|
 |hostname|string OR list of string|A list of device hostnames|
 |ignoreCase|boolean|Recognizes as case-insensitive hostname|
 |ip|string OR list of string|A list of device management IPs|
-|||If provided with both of `hostname` and `ip`, `hostname` has higher priority. If any of the devices are not found from the provided query parameter, API returns the found devices as a list in response and add another json key "deviceNotFound", the value is a mixed list of hostnames and IPs that are not found.|
-|*fullattr|integer|<br>`0` (default) - return basic device attributes (device id, management IP, hostname, device type, first discover time, last discover time).<br>`1` - return all device attributes, including customized attributes|
-|*version|string| `0` (default) - returns basic device attributes (device id, mgmt ip, hostname, device type, first discover time, last discover time) <br> `1` - returns all device properties<br It is recommended to pass version=1.|
+|||If provided with both of `hostname` and `ip`, `hostname` has higher priority. If any of the devices are not found from the provided query parameter, API returns the found devices as a list in response and add another json key `deviceNotFound`, the value is a mixed list of hostnames and IPs that are not found.|
+|*fullattr|integer|`0` (default) - return basic device attributes (device id, management IP, hostname, device type, first discovery time, last discovery time).<br>`1` - return all device attributes, including customized attributes|
+|*version|string| `0` (default) - returns basic device attributes (device id, mgmt ip, hostname, device type, first discovery time, last discovery time) <br> `1` - returns all device properties<br It is recommended to pass version=1.|
 |skip|integer|The amount of records to be skipped. <br>The value cannot be negative.  <br>If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'skip' cannot be negative"}`. <br>No upper bound for this parameter.|
 |limit|integer|The up limit amount of device records to return per API call. <br>The value cannot be negative. <br>If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'limit' cannot be negative"}`. <br>No upper bound for this parameter. If the parameter is not specified in API call, it means there is not limitation setting on the call.|
 |||If only `skip` value is provided, returns the device list with 50 devices information start from the skip number. <br>If only `limit` value is provided, returns from the first device in DB. <br>If both `skip` and `limit` values are provided, returns as required. <br>Error exceptions follows each parameter's description.<br>`Skip` and `limit` parameters are based on the search result from DB. The `limit` value's valid range is 10 - 100; if the assigned value exceeds the range, the server will respond with an error message: `Parameter 'limit' must be greater than or equal to 10 and less than or equal to 100.`  |
