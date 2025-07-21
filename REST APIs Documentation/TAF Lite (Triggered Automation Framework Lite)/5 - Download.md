@@ -1,17 +1,17 @@
 
 # Download API Design
 
-## ***GET*** V3/download?dl_ticket=xx
-Call this API to retrieve the hyperlink to download big data result of NI.
-API API/V3/TAF/Lite/result/datas returns the ticketId, which is then used in this API API/V3/download?dl_ticket=xx
+## ***GET*** V3/download?dl_ticket={downloadTicketId}
+When the intent result data from API `API/V3/TAF/Lite/result/datas` is too large to return, a `downloadTicketId` will be returned instead.
+Use `downloadTicketId` in this API `API/V3/download?dl_ticket={downloadTicketId}` to download the result zip file.
 
 ## Detail Information
 
-> **Title** : Download<br>
+> **Title** : Download Intent Result Data in zip file<br>
 
 > **Version** : 17/07/2024
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/download?dl_ticket=xx
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/download?dl_ticket={downloadTicketId}
 
 > **Authentication** : 
 
@@ -21,7 +21,9 @@ API API/V3/TAF/Lite/result/datas returns the ticketId, which is then used in thi
 |Bearer Authentication| Headers | Authentication token | 
 
 ## Request body(****required***)
-downloadTicketId in request body refers to downloadTicketId returned by API/V3/TAF/Lite/result/datas
+|**Name**|**Type**|**Description**|
+|------|------|------|
+|downloadTicketId*|string|The ID returned by the system when the result data is too large. <br> generated from API `API/V3/TAF/Lite/result/datas`|
 
 ## Parameters(****required***)
 >No parameters required.
