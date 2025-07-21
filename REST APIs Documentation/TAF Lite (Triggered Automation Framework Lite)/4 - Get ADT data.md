@@ -29,7 +29,7 @@ This API is used for retrieving ADT data.
 |filterDevices^|array|A list of device names to filter out rows in the ADT view.<br>The value of this parameter (if present), will be used to match the ADT rows with the Device Column of the ADT.<br>This parameter is optional.|
 |columns^|array|To define the returned columns, user needs to fill in the display name list for the column. </br>If the value of this parameter is empty, all columns will be returned. |
 |option^|object|Advanced setting|
-|option.rowFilter|object| ColumnName: value <br /><br />Multiple values are combined using AND logic.|
+|option.rowFilter|object| ColumnName: value <br />Multiple values are combined using AND logic.|
 |option.pageSize|int|The count of returned entries. </br>Default: 100|
 |option.pageNumber|int|The count of returned pages. </br>Default: 1|
 

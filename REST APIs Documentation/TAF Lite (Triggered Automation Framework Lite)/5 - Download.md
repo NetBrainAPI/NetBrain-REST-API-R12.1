@@ -2,7 +2,7 @@
 # Download API Design
 
 ## ***GET*** V3/download?dl_ticket={downloadTicketId}
-When the intent result data from API `API/V3/TAF/Lite/result/datas` is too large to return, a `downloadTicketId` will be returned instead.
+When the intent result data from [API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/TAF%20Lite%20(Triggered%20Automation%20Framework%20Lite)/3%20-%20Get%20NI%20running%20results%20of%20Trigger%20Task.md) `API/V3/TAF/Lite/result/datas` is too large to return, a `downloadTicketId` will be returned instead.
 Use `downloadTicketId` in this API `API/V3/download?dl_ticket={downloadTicketId}` to download the result zip file.
 
 ## Detail Information
@@ -59,10 +59,6 @@ Use `downloadTicketId` in this API `API/V3/download?dl_ticket={downloadTicketId}
 
 
 ```python
-{
-    'statusCode': 790200, 
-    'statusDescription': 'Success.'
-}
 {
   "niId": "4be2334a-5608-4b2c-809b-a72da260ece7",
   "niName": "DrawMap30002",
