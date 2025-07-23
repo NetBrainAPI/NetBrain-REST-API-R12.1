@@ -2,7 +2,8 @@
 # Create New ADT API Design
 
 ## ***POST*** V3/CMDB/ADT/Manual/Tables
-This API is used to create a new <b>manual type</b> ADT.
+This API is used to create a new <b>manual type</b> ADT. <br>
+This API only supports static data types such as string columns, int columns, etc.; it does not support dynamic types such as intent columns.
 
 ## Detail Information
 
@@ -20,7 +21,7 @@ This API is used to create a new <b>manual type</b> ADT.
 |Bearer Authentication| Headers | Authentication token | 
 
 ## Request body(****required***)
-Only basic data types are supported; those that require the use of ID are not supported yet.
+Only static data types are supported, such as string, int columns, etc.; dynamic types such as intent columns are not supported.
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
