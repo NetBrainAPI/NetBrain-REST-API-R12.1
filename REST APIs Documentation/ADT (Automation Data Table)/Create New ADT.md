@@ -132,14 +132,14 @@ try:
         result = response.json()
         print (result)
     else:
-        print("Get Devices failed! - " + str(response.text))
+        print("Failed to Create New ADT! - " + str(response.text))
 except Exception as e:
     print (str(e)) 
 ```
 ```python
 {
   "tableInfo": {
-    "id": "79a9ac50-2afe-4332-8971-5ae8e4eeec05",
+    "id": "8c90c9c7-70be-4071-b1a0-6a5a14014294",
     "name": "New ADT Test",
     "location": "Shared Tables/New ADT Test",
     "description": "test",
