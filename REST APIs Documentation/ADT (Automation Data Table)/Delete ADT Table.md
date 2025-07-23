@@ -1,14 +1,14 @@
 
-# Get ADT Table API Design
+# Delete ADT Table API Design
 
-## ***GET*** V3/CMDB/ADT/Manual/Tables/{id}
-This API is used to get the ADT Table with the ID retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md).
+## ***DELETE*** V3/CMDB/ADT/Manual/Tables/{id}
+This API is used to delete the ADT Table with the ID retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md).
 
 ## Detail Information
 
 > **Title** : Get ADT Table<br>
 
-> **Version** : 22/07/2025
+> **Version** : 23/07/2025
 
 > **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id}
 
@@ -50,17 +50,6 @@ The response body of the successful API call matches the request body of this AP
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|id| string | ID of the ADT.  |
-|name| string | Name of the ADT.  |
-|location| string | Path of where the ADT is located.  |
-|description|string|Description of the ADT.|
-|columns|object|Corresponoding columns of the ADT |
-|columns.columnName|string|Column Name, unique key. |
-|columns.displayName*|string|Display Name of the column. |
-|columns.dataType|string| Data Type of the column.|
-|columns.description|string|Description of the column |
-|columns.candidateValue|list|Alternatives|
-|rows|list|Rows of ADT Table|
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code.  |
 
@@ -77,36 +66,17 @@ data = {
 }
 
 try:
-    response = requests.get(full_url, params = data, headers = headers, verify = False)
+    response = requests.delete(full_url, params = data, headers = headers, verify = False)
     if response.status_code == 200:
         result = response.json()
         print (result)
     else:
-        print("Failed to Get ADT Table! - " + str(response.text))
+        print("Failed to Delete ADT Table! - " + str(response.text))
 except Exception as e:
     print (str(e)) 
 ```
 ```python
 {
-  "tableInfo": {
-    "id": "8c90c9c7-70be-4071-b1a0-6a5a14014294",
-    "name": "ADT Test1",
-    "location": "Shared Tables/ADT Test1",
-    "description": "test",
-    "columns": [
-      {
-        "columnName": "column1",
-        "displayName": "Column1",
-        "dataType": "String",
-        "description": "test",
-        "candidateValue": [
-          "value1",
-          "value2"
-        ]
-      }
-    ],
-    "rows": []
-  },
   "statusCode": 790200,
   "statusDescription": "Success."
 }
@@ -114,7 +84,7 @@ except Exception as e:
 # cURL Code from Postman
 
 ```python
-curl -X GET \
+curl -X DELETE \
   http://192.168.36.19/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id='8c90c9c7-70be-4071-b1a0-6a5a14014294'} \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \ 

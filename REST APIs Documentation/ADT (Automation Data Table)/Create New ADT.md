@@ -1,7 +1,7 @@
 
 # Create New ADT API Design
 
-## ***POST*** V3/ADT/Manual/Tables
+## ***POST*** V3/CMDB/ADT/Manual/Tables
 This API is used to create a new <b>manual type</b> ADT.
 
 ## Detail Information
