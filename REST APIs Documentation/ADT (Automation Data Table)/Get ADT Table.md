@@ -5,7 +5,7 @@
 ## ***GET*** V3/CMDB/ADT/Manual/Tables?Path={Path}
 
 This API is used to get the ADT Table.
-The ADT Table can be retrieved with the ID retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md), or through Path of the ADT Table.
+The ADT Table can be retrieved with `id` retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md), or through `path` of the ADT Table.
 
 ## Detail Information
 
@@ -13,7 +13,8 @@ The ADT Table can be retrieved with the ID retrieved from [Create New ADT](https
 
 > **Version** : 22/07/2025
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id}
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id} <br>
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables?Path={Path}
 
 > **Authentication** : 
 
@@ -30,8 +31,8 @@ The ADT Table can be retrieved with the ID retrieved from [Create New ADT](https
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||Either `id` or `path` can be provided in calling this API. <br> Please refer to the examples below.|
-|id| string | ID of the ADT. <br>This can be retrieved from the Create New ADT API. |
-|path|stromg| Path of the ADT. |
+|id| string | ID of the ADT. <br>This can be retrieved from the Create New ADT API.<br>`id` is a path variable, to be passed as part of the URL. |
+|path|stromg| Path of the ADT. <br>`path` is a query parameter |
 
 ## Headers
 
