@@ -32,7 +32,7 @@ The ADT Table can be retrieved with `id` retrieved from [Create New ADT](https:/
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||Either `id` or `path` can be provided in calling this API. <br> Please refer to the examples below.|
 |id| string | ID of the ADT. <br>This can be retrieved from the Create New ADT API.<br>`id` is a path variable, to be passed as part of the URL. |
-|path|stromg| Path of the ADT. <br>`path` is a query parameter |
+|path|string| Path of the ADT. <br>`path` is a query parameter |
 
 ## Headers
 
