@@ -2,6 +2,7 @@
 # Delete ADT Table API Design
 
 ## ***DELETE*** V3/CMDB/ADT/Manual/Tables/{id}
+## ***DELETE*** V3/CMDB/ADT/Manual/Tables?Path={Path}
 This API is used to delete the ADT Table.
 The ADT Table can be deleted using `id` retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md), or through `path` of the ADT Table.
 
@@ -30,7 +31,7 @@ The ADT Table can be deleted using `id` retrieved from [Create New ADT](https://
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||Either `id` or `path` can be provided in calling this API. <br> Please refer to the examples below.|
 |id| string | ID of the ADT. <br>This can be retrieved from the Create New ADT API.<br>`id` is a path variable, to be passed as part of the URL. |
-|path|string| Path of the ADT. <br>`path` is a query parameter |
+|path|string| Path of the ADT. <br>`path` is a query parameter. |
 
 ## Headers
 
