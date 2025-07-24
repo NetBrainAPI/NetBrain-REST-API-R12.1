@@ -2,7 +2,10 @@
 # Get ADT Table API Design
 
 ## ***GET*** V3/CMDB/ADT/Manual/Tables/{id}
-This API is used to get the ADT Table with the ID retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md).
+## ***GET*** V3/CMDB/ADT/Manual/Tables?Path={Path}
+
+This API is used to get the ADT Table.
+The ADT Table can be retrieved with the ID retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md), or through Path of the ADT Table.
 
 ## Detail Information
 
@@ -26,7 +29,9 @@ This API is used to get the ADT Table with the ID retrieved from [Create New ADT
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
+|||Either `id` or `path` can be provided in calling this API. <br> Please refer to the examples below.|
 |id| string | ID of the ADT. <br>This can be retrieved from the Create New ADT API. |
+|path|stromg| Path of the ADT. |
 
 ## Headers
 
@@ -66,6 +71,7 @@ This API is used to get the ADT Table with the ID retrieved from [Create New ADT
 
 # Full Example:
 
+## Example 1: Get ADT Table with `id`
 ```python
 full_url = nb_url + "/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id}"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -110,12 +116,68 @@ except Exception as e:
   "statusDescription": "Success."
 }
 ```
-# cURL Code from Postman
 
+## Example 2: Get ADT Table with `path`
+```python
+full_url = nb_url + "/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables"
+headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+headers["Token"] = token
+
+params = {
+    'path': 'Shared Tables/xxx/New ADT Test12'
+}
+
+try:
+    response = requests.get(full_url, params=params, headers=headers, verify=False)
+    if response.status_code == 200:
+        result = response.json()
+        print(result)
+    else:
+        print("Failed to Get ADT Table! - " + str(response.text))
+except Exception as e:
+    print(str(e))
+```
+```python
+{
+  "tableInfo": {
+    "id": "9532ecdd-9426-4d14-990e-5a7e979cadf9",
+    "name": "New ADT Test12",
+    "location": "Shared Tables/xxx/New ADT Test12",
+    "description": "test",
+    "columns": [
+      {
+        "columnName": "column1",
+        "displayName": "Column1",
+        "dataType": "String",
+        "description": "test",
+        "candidateValue": [
+          "value1",
+          "value2"
+        ]
+      }
+    ],
+    "rows": []
+  },
+  "statusCode": 790200,
+  "statusDescription": "Success."
+}
+```
+
+# cURL Code from Postman
+## Example 1: Get ADT Table with `id`
 ```python
 curl -X GET \
   http://192.168.36.19/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id='8c90c9c7-70be-4071-b1a0-6a5a14014294'} \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \ 
   -H 'token: fac2efc7-107c-4e3f-b880-78e7e36d5930' \
+```
+
+## Example 2: Get ADT Table with `path`
+```python
+curl -X GET \
+  "http://192.168.36.19/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables?path=Shared%20Tables/xxx/New%20ADT%20Test12&domainId=833df35f-f550-4c9f-8fb0-c208834cf617" \
+  -H "Content-Type: application/json" \
+  -H "cache-control: no-cache" \
+  -H "token: e04267c7-f1b6-44f9-90fd-e06014d9a3f7"
 ```
