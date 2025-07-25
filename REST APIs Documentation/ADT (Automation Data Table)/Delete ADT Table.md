@@ -3,7 +3,7 @@
 
 ## ***DELETE*** V3/CMDB/ADT/Manual/Tables/{id}
 ## ***DELETE*** V3/CMDB/ADT/Manual/Tables?Path={Path}
-This API is used to delete the ADT Table.
+This API is used to delete the ADT Table. <br>
 The ADT Table can be deleted using `id` retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md), or through `path` of the ADT Table.
 
 ## Detail Information
