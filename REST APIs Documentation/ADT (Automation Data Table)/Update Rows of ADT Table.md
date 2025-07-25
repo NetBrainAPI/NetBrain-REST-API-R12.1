@@ -27,12 +27,11 @@ This API is used to update rows of the existing ADT Table. <br>
 |||* - required<br />^ - optional|
 |condition*|object| Corresponding row name and value of the ADT to be updated. |
 |condition.column1*|string| Existing values of the unique column name. |
-|condition.column2*|string| Existing values of the unique column name. |
 |...|||
-|updateData|object|Corresponding row name and value|
+|updateData*|object|Corresponding row name and value|
 |condition.column1*|string| To-be-updated values of the unique column name. |
-|condition.column2*|string| To-be-updated values of the unique column name. |
-|insertifnotMatch^|boolean| Controls whether to insert a new rows if there are no match. <br>Default: `False`|
+|...|||
+|insertifnotMatch^|boolean| Controls whether to insert a new row if there are no match. <br>Default: `False`|
 
 ## Parameters(****required***)
 >No parameters required.
@@ -46,7 +45,7 @@ This API is used to update rows of the existing ADT Table. <br>
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 | Content-Type | string  | support "application/json" |
-| Accept | string  | support "application/json" |
+| Accept | string | support "application/json" |
 
 > **Authorization Headers**
 
@@ -60,7 +59,7 @@ This API is used to update rows of the existing ADT Table. <br>
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |result| string | Status of API Call; `Update`, `NotMatched`, `Insert`  |
-|count| integer | Number of updated rows. <br> 0 - indicates failure.  |
+|count| integer | Number of updated rows. <br> `0` - indicates failure.  |
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code.  |
 
@@ -105,8 +104,8 @@ except Exception as e:
 }
 ```
 ## Example 2: Unsuccessful Update of Rows - Value of Column doesn't match
-After successfully calling API based on Example 1, the values of each columns are `test1`.
-Now, the API is called with same body from Example 1, the values of `column` does not match (ie. values of `condition.column1` and `condition.column2` have been updated to `test1`, but the second API call uses `test` as the values of `condition.column1` and `condition.column2`)
+After successfully calling API based on Example 1, the values of each columns are updated to `test1`.
+Now, if there is a second API call with the same body from Example 1, the values of the columns do not match (ie. values of `condition.column1` and `condition.column2` have been updated to `test1`, but the second API call uses `test` as the values of `condition.column1` and `condition.column2`).
 
 ```python
 table_id = "4a12cc7b-ba54-4c41-b37d-7c9d255343ee"

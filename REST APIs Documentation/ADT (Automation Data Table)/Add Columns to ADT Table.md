@@ -57,7 +57,7 @@ This API is used to add columns to the existing ADT Table. <br>
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|count| integer | Number of added columns. <br> 0 - indicates failure.  |
+|count| integer | Number of added columns. <br> `0` - indicates failure.  |
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code.  |
 
