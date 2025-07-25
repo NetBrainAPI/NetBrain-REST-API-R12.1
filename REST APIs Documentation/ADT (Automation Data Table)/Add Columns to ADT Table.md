@@ -1,5 +1,5 @@
 
-# Add ADT Columns API Design
+# Add ADT Columns to ADT Table API Design
 
 ## ***POST*** V3/CMDB/ADT/Manual/Tables/{id}/Columns
 This API is used to add columns to the existing API. <br>
@@ -7,7 +7,7 @@ This API is used to add columns to the existing API. <br>
 
 ## Detail Information
 
-> **Title** : Add ADT Columns ADT<br>
+> **Title** : Add ADT Columns to ADT Table<br>
 
 > **Version** : 23/07/2025
 
@@ -54,7 +54,6 @@ This API is used to add columns to the existing API. <br>
 | token | string  | Authentication token, get from login API. |
 
 ## Response
-The response body of the successful API call matches the request body of this API call.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
@@ -105,7 +104,7 @@ try:
         result = response.json()
         print (result)
     else:
-        print("Failed to Add Colunms to ADT! - " + str(response.text))
+        print("Failed to Add Colunms to ADT Table! - " + str(response.text))
 except Exception as e:
     print (str(e)) 
 ```
