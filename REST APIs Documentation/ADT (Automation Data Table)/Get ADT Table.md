@@ -5,7 +5,7 @@
 ## ***GET*** V3/CMDB/ADT/Manual/Tables?Path={Path}
 
 This API is used to get the ADT Table. <br>
-The ADT Table can be retrieved with `id` retrieved from [Create New ADT](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT.md), or through `path` of the ADT Table.
+The ADT Table can be retrieved with `id` retrieved from [Create New ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT%20Table.md) or [Get ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Get%20ADT%20Table.md), or through `path` of the ADT Table.
 
 ## Detail Information
 
