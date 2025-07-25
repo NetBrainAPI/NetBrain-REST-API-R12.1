@@ -1,5 +1,5 @@
 
-# Add ADT Columns to ADT Table API Design
+# Add Columns to ADT Table API Design
 
 ## ***POST*** V3/CMDB/ADT/Manual/Tables/{id}/Columns
 This API is used to add columns to the existing ADT Table. <br>
@@ -25,7 +25,7 @@ This API is used to add columns to the existing ADT Table. <br>
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||* - required<br />^ - optional|
-|columns*|object|Corresponoding columns of the ADT |
+|columns*|object|Corresponding columns of the ADT |
 |columns.columnName*|string|Column Name, unique key. |
 |columns.displayName*|string|Display Name of the column. |
 |columns.dataType*|string| Data Type of the column.|

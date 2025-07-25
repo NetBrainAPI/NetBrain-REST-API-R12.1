@@ -25,7 +25,7 @@ This API is used to add rows to the existing ADT Table. <br>
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||* - required<br />^ - optional|
-|rowDatas*|object|Corresponoding rows and value of the ADT. |
+|rowDatas*|object|Corresponding rows and value of the ADT. |
 |rowDatas.column1*|string| To-be-assigned values based on unique column name. |
 |rowDatas.column2*|string| To-be-assigned values based on unique column name. |
 |...|||
