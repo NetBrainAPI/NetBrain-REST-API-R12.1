@@ -1,17 +1,17 @@
 
-# Delete Columns of ADT Table API Design
+# Delete Rows of ADT Table API Design
 
-## ***DELETE*** V3/CMDB/ADT/Manual/Tables/{id}/Columns/{ColumnName}
-This API is used to delete columns of the ADT Table. <br>
+## ***DELETE*** V3/CMDB/ADT/Manual/Tables/{id}/Rows
+This API is used to delete rows of the ADT Table. <br>
 The ADT Table can be deleted using `id`, which can be retrieved from [Create New ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT%20Table.md), [Get ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Get%20ADT%20Table.md), etc.
 
 ## Detail Information
 
-> **Title** : Delete Columns of ADT Table<br>
+> **Title** : Delete Rows of ADT Table<br>
 
 > **Version** : 25/07/2025
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id}/Columns/{ColumnName}
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id}/Rows
 
 > **Authentication** : 
 
@@ -27,8 +27,9 @@ The ADT Table can be deleted using `id`, which can be retrieved from [Create New
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|id| string | ID of the ADT. <br>This can be retrieved from the Create New ADT Table API or Get ADT Table API. |
-|columnName|string| Column of the ADT. |
+|Condition*| string | Name and value of the corresponding row to be deleted. |
+|Column1*|string| Value of row to be deleted. |
+|...|||
 
 ## Headers
 
@@ -51,33 +52,38 @@ The ADT Table can be deleted using `id`, which can be retrieved from [Create New
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
+|count| integer | Number of deleted rows. <br> `0` - indicates failure.  |
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code.  |
 
 
 # Full Example:
 ```python
-full_url = nb_url + "/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{id}/Columns/{ColumnName}"
-headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-headers["Token"] = token
+table_id = "4a12cc7b-ba54-4c41-b37d-7c9d255343ee"
+full_url = nb_url + f"/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{table_id}/Rows"
 
-params = {
-    'id': '82595bb5-e964-4e23-b8f7-f1c0b13d96a0', # ID of ADT Table
-    'ColumnName':'ABC12'
+headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+headers["Token"]=token
+
+data = {
+    "Condition": {
+        "column1":"test1",
+    }  
 }
 
 try:
-    response = requests.delete(full_url, params=params, headers=headers, verify=False)
+    response = requests.delete(full_url, data = json.dumps(data), headers = headers, verify = False)
     if response.status_code == 200:
         result = response.json()
-        print(result)
+        print (result)
     else:
-        print("Failed to Delete Columns of ADT Table! - " + str(response.text))
+        print("Failed to Delete Rows of ADT Table! - " + str(response.text))
 except Exception as e:
-    print(str(e))
+    print (str(e)) 
 ```
 ```python
 {
+  "count": 2,
   "statusCode": 790200,
   "statusDescription": "Success."
 }
@@ -86,8 +92,13 @@ except Exception as e:
 # cURL Code from Postman
 ```python
 curl -X DELETE \
-  http://192.168.36.19/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/82595bb5-e964-4e23-b8f7-f1c0b13d96a0/Columns/ABC12 \
+  http://192.168.36.19/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/4a12cc7b-ba54-4c41-b37d-7c9d255343ee/Rows \
   -H "Content-Type: application/json" \
   -H "cache-control: no-cache" \
-  -H "token: f9560dff-449f-4b97-a372-23978c2951d4" \
+  -H "token: ee348c7e-a1cf-4296-8104-1d8e1123e733" \
+  -d '{
+    "Condition": {
+        "column1":"test1",
+    }  
+}'
 ```

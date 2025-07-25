@@ -104,7 +104,7 @@ except Exception as e:
 }
 ```
 ## Example 2: Unsuccessful Update of Rows - Value of Column doesn't match
-After successfully calling API based on Example 1, the values of each columns are updated to `test1`.
+After successfully calling API based on Example 1, the values of each columns are updated to `test1`. <br>
 Now, if there is a second API call with the same body from Example 1, the values of the columns do not match (ie. values of `condition.column1` and `condition.column2` have been updated to `test1`, but the second API call uses `test` as the values of `condition.column1` and `condition.column2`).
 
 ```python
