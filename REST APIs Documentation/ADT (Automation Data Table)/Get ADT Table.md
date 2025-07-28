@@ -61,7 +61,7 @@ The ADT Table can be retrieved with `id` retrieved from [Create New ADT Table](h
 |description|string|Description of the ADT.|
 |columns|object|Corresponoding columns of the ADT |
 |columns.columnName|string|Column Name, unique key. |
-|columns.displayName*|string|Display Name of the column. |
+|columns.displayName|string|Display Name of the column. |
 |columns.dataType|string| Data Type of the column.|
 |columns.description|string|Description of the column |
 |columns.candidateValue|list|Alternatives|

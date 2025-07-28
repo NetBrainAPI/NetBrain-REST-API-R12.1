@@ -91,7 +91,7 @@ The response body of the successful API call matches the request body of this AP
 |description|string|Description of the created ADT.|
 |columns|object|Corresponoding columns of the ADT |
 |columns.columnName|string|Column Name, unique key. |
-|columns.displayName*|string|Display Name of the column. |
+|columns.displayName|string|Display Name of the column. |
 |columns.dataType|string| Data Type of the column.|
 |columns.description|string|Description of the column |
 |columns.candidateValue|list|Alternatives|
