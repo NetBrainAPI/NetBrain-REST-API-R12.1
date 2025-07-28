@@ -96,7 +96,7 @@ except Exception as e:
 }
 ```
 
-## Example 2: Unsuccessful API Call to Modify Lock Setting When ADT Table is Already Locked
+## Example 2: Unsuccessful API Call to Modify Lock Setting when ADT Table is Already Locked
 ```python
 table_id = "1caebf98-ff67-43f2-84c6-5aae9b8c8405"
 full_url = nb_url + f"/ServicesAPI/API/V3/CMDB/ADT/Manual/Tables/{table_id}/LockSettings"
