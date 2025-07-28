@@ -30,7 +30,7 @@ This API is used to unlock the ADT Table. <br>
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||* - required<br />^ - optional|
-|password*|string| This parameter is only required when `lockMode = 1` from Lock ADT Table API, i.e. ADT Table is locked.<br> <b>Note</b>: The following situations do not require a password: <br> 1) The user owns the table, <br> 2) The user is a domain admin, or <br> 3) Table is Locked Without Password (`lockMode=0` in Lock ADT Table API)  |
+|password*|string| This parameter is only required when `lockMode=1` from Lock ADT Table API, i.e. ADT Table is locked.<br> <b>Note</b>: The following situations do not require a password: <br> 1) The user owns the table, <br> 2) The user is a domain admin, or <br> 3) Table is Locked Without Password (`lockMode=0` in Lock ADT Table API)  |
 
 ## Parameters(****required***)
 >No parameters required.
