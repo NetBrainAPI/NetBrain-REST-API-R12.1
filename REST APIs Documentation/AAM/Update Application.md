@@ -1,8 +1,8 @@
 
-# Update Rows of ADT Table API Design
+# Update Application API Design
 
 ## ***PUT*** V3/AAM/Application
-This API is used to update rows of the existing Application. <br>
+This API is used to update the existing Application. <br>
 If `name` field matches the `name` of a different application, the update will not occur and the error message will be returned.
 
 ## Detail Information
