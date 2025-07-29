@@ -2,8 +2,9 @@
 # Get Application Information API Design
 
 ## ***GET*** V3/CMDB/AAM/Applications?Application={ApplicationName}
+## ***GET*** V3/CMDB/AAM/Application/{Id}
 
-This API is used to get the Application information based on the provided Application Name
+This API is used to get the Application Information based on the provided Application Name.
 
 ## Detail Information
 
@@ -12,6 +13,7 @@ This API is used to get the Application information based on the provided Applic
 > **Version** : 29/07/2025
 
 > **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/AAM/Applications?Application={ApplicationName}
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/AAM/Application/{Id}
 
 > **Authentication** : 
 
@@ -27,7 +29,9 @@ This API is used to get the Application information based on the provided Applic
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|application| string | Name of the application. |
+|||Either `application` or `id` can be provided in calling this API. <br> Please refer to the examples below|
+|application| string | Name of the application. <br>`application` is a query parameter.|
+|id|string|ID of the Application. <br>`id` is a path variable, to be passed as part of the URL.|
 
 ## Headers
 
@@ -63,7 +67,7 @@ The depth of the response may vary per application.
 
 
 # Full Example:
-## Example 1: Application Information with Full Response
+## Example 1: Application Information with Full Response & Use of `application`
 ```python
 full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -111,6 +115,33 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 params = {"Application": "ADT"}
+
+try:
+    response = requests.get(full_url, params=params, headers=headers, verify=False)
+    if response.status_code == 200:
+        result = response.json()
+        print (result)
+    else:
+        print("Failed to Get Application Information! - " + str(response.text))
+except Exception as e:
+    print (str(e))
+```
+```python
+{
+  "id": "7e301334-038a-494f-8813-49f2a597008f",
+  "name": "ADT",
+  "statusCode": 790200,
+  "statusDescription": "Success."
+}
+```
+
+## Example 3: Get Application Information with `id`
+```python
+full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application/{Id}"
+headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+headers["Token"]=token
+
+params = {"id": "7e301334-038a-494f-8813-49f2a597008f"}
 
 try:
     response = requests.get(full_url, params=params, headers=headers, verify=False)
