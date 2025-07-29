@@ -1,15 +1,13 @@
 
-# Create New Application API Design
+# Update Rows of ADT Table API Design
 
-## ***POST*** V3/AAM/Application
-This API is used to create a new application. <br>
-If the Application already exists, the subsequent actions are as follows: <br>
-> 1. If `overwrite` = False, the queried Application and its associated Device data are returned.
-> 2. If `overwrite` = True, the Application data are updated using the queried information; Application ID remains unchanged.
+## ***PUT*** V3/AAM/Application
+This API is used to update rows of the existing Application. <br>
+If `name` field matches the `name` of a different application, the update will not occur and the error message will be returned.
 
 ## Detail Information
 
-> **Title** : Create New Application<br>
+> **Title** : Update Application<br>
 
 > **Version** : 29/07/2025
 
@@ -23,17 +21,16 @@ If the Application already exists, the subsequent actions are as follows: <br>
 |Bearer Authentication| Headers | Authentication token | 
 
 ## Request body(****required***)
-
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||* - required<br />^ - optional|
-|name*|string| Name of Application; must be unique. |
+|id*|object| Application ID. |
+|name*|string| Name of the Application; must be unique. |
 |description^|string|Description of the Application.|
-|relatedDevices^|array|Device information and weight associated with the application. |
-|relatedDevices.deviceName^|string| Associated device name. <br>The device name must exist in the device table of the system domain; if it doesn't exist, it will be ignored. |
-|relatedDevices.weight^|int| The corresponding weight of the device. <br> Default: `10` |
-|overwrite^|bool| Controls the subsequential action if the newly created application name already exists; <br> `True` - overwrite <br> `False` - Do not overwrite <br> Default: `false`|
+|relatedDevices|array| Device information and weights associated with the Application. |
+|relatedDevices.deviceName|string| Associated device name. <br>The device name must exist in the device table of the system domain; if it doesn't exist, it will be ignored. |
+|relatedDevices.weight^|int| The corresponding weight of the device. <br> Default: `10`|
 
 ## Parameters(****required***)
 >No parameters required.
@@ -47,7 +44,7 @@ If the Application already exists, the subsequent actions are as follows: <br>
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 | Content-Type | string  | support "application/json" |
-| Accept | string  | support "application/json" |
+| Accept | string | support "application/json" |
 
 > **Authorization Headers**
 
@@ -57,7 +54,6 @@ If the Application already exists, the subsequent actions are as follows: <br>
 | token | string  | Authentication token, get from login API. |
 
 ## Response
-The response body of the successful API call matches the request body of this API call.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
@@ -73,42 +69,42 @@ The response body of the successful API call matches the request body of this AP
 
 
 # Full Example:
-
+## Example 1: Successful Application Update
 ```python
 full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    'name': 'Hello',
-    'description': "worker server application",
-    'relatedDevices': [
+    "id": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
+    "name": "Hello",
+    "description": "worker server application",
+    "relatedDevices": [
         {
             "deviceName": "BJ*POP",
             "weight": 10
         },
         {
             "deviceName": "BJ-R1",
-            "weight": 20
+            "weight": 40
         }
-    ],
-    'overwrite': False
+    ]
 }
 
 try:
-    response = requests.post(full_url, data = json.dumps(data), headers = headers, verify = False)
+    response = requests.put(full_url, data = json.dumps(data), headers = headers, verify = False)
     if response.status_code == 200:
         result = response.json()
         print (result)
     else:
-        print("Failed to Create New Application! - " + str(response.text))
+        print("Failed to Update Application! - " + str(response.text))
 except Exception as e:
-    print (str(e))  
+    print (str(e)) 
 ```
 ```python
 {
   "id": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
-  "name": "App01",
+  "name": "ABC",
   "description": "worker server application",
   "relatedDevices": [
     {
@@ -119,35 +115,75 @@ except Exception as e:
     {
       "deviceId": "df3ac9f8-4292-45ed-8fb1-d52e38ad2504",
       "deviceName": "BJ-R1",
-      "weight": 20
+      "weight": 40
     }
   ],
   "statusCode": 790200,
   "statusDescription": "Success."
 }
 ```
-# cURL Code from Postman
+## Example 2: Unsuccessful Application Update - Another Application with `name` already exists
+Existing Application #1 - `name=ABC` <br>
+Existing Application #2 - `name=xxx`
 
 ```python
-curl -X POST \
-  "http://192.168.36.19/ServicesAPI/API/V3/AAM/Application" \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -H "cache-control: no-cache" \
-  -H "token: b8088539-c000-440a-b7c7-b9b2d52f046f"
-  -d '{
-    'name': '111',
-    'description': "worker server application",
-    'relatedDevices': [
+full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application"
+headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+headers["Token"]=token
+
+data = {
+    "id": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
+    "name": "xxx",
+    "description": "worker server application",
+    "relatedDevices": [
         {
             "deviceName": "BJ*POP",
             "weight": 10
         },
         {
             "deviceName": "BJ-R1",
-            "weight": 20
+            "weight": 40
         }
-    ],
-    'overwrite': true
+    ]
+}
+
+try:
+    response = requests.put(full_url, data = json.dumps(data), headers = headers, verify = False)
+    if response.status_code == 200:
+        result = response.json()
+        print (result)
+    else:
+        print("Failed to Update Application! - " + str(response.text))
+except Exception as e:
+    print (str(e))  
+```
+```python
+Failed to Update Application! - {"statusCode":791007,"statusDescription":"The application with name xxx already exists."}
+
+```
+
+# cURL Code from Postman
+The cURL command is based on Example 1.
+```python
+curl -X PUT \
+  "http://192.168.36.19/ServicesAPI/API/V3/AAM/Application" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "cache-control: no-cache" \
+  -H "token: b8088539-c000-440a-b7c7-b9b2d52f046f"
+  -d '{
+    "id": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
+    "name": "ABC",
+    "description": "worker server application",
+    "relatedDevices": [
+        {
+            "deviceName": "BJ*POP",
+            "weight": 10
+        },
+        {
+            "deviceName": "BJ-R1",
+            "weight": 40
+        }
+    ]
 }'
 ```
