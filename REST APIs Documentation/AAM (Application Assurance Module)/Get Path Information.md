@@ -1,8 +1,8 @@
 
 # Get Path Information API Design
 
-## ***GET*** V3/CMDB/AAM/Application/Path?Application={ApplicationName}&path={pathName}
-## ***GET*** V3/CMDB/AAM/Application/Path/{ID}
+## ***GET*** V3/AAM/Application/Path?Application={ApplicationName}&path={pathName}
+## ***GET*** V3/AAM/Application/Path/{ID}
 
 This API is used to get the complete information of Path by specifying the Application and Path name, or Path ID.
 
@@ -12,8 +12,8 @@ This API is used to get the complete information of Path by specifying the Appli
 
 > **Version** : 29/07/2025
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/AAM/Application/Path?Application={ApplicationName}&path={pathName} <br>
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/AAM/Application/Path/{ID}
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/AAM/Application/Path?Application={ApplicationName}&path={pathName} <br>
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/AAM/Application/Path/{ID}
 
 > **Authentication** : 
 

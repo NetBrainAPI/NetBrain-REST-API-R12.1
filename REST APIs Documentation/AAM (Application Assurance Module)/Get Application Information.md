@@ -1,8 +1,8 @@
 
 # Get Application Information API Design
 
-## ***GET*** V3/CMDB/AAM/Applications?Application={ApplicationName}
-## ***GET*** V3/CMDB/AAM/Application/{Id}
+## ***GET*** V3/AAM/Applications?Application={ApplicationName}
+## ***GET*** V3/AAM/Application/{Id}
 
 This API is used to get the Application Information based on the provided Application Name.
 
@@ -12,8 +12,8 @@ This API is used to get the Application Information based on the provided Applic
 
 > **Version** : 29/07/2025
 
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/AAM/Applications?Application={ApplicationName} <br>
-> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/CMDB/AAM/Application/{Id}
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/AAM/Applications?Application={ApplicationName} <br>
+> **API Server URL** : http(s):// IP address of your NetBrain Web API Server/ServicesAPI/API/V3/AAM/Application/{Id}
 
 > **Authentication** : 
 
