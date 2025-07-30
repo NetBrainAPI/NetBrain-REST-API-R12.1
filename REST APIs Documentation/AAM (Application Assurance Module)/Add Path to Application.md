@@ -38,7 +38,7 @@ If the Application does exist and
 |paths[].destPort^|string| Path Destination Information.|
 |paths[].routingScheme^|int| Routing scheme of Path. <br> `0` - Unicast <br>`1` - Multicast|
 |paths[].group^|string| Multicast Group. Only required when `routingScheme=Multicast`|
-|paths[].protocolKeyWord*|string| Path protocol.<br> Default: `IP`|
+|paths[].protocolKeyWord^|string| Path protocol.<br> Default: `IP`|
 |paths[].advancedOption^ |object| Advanced Option of Path.|
 |paths[].advancedOption.useSettingType^|int| |
 |paths[].advancedOption.debugMode^|bool| Default: `False`|
@@ -75,7 +75,7 @@ If the Application does exist and
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|path| array | Path of the Application. |
+|path| object | Path of the Application. |
 |id| string | ID of the Path. |
 |name| string | Name of the Path.  |
 |source|string| Source Information.|
@@ -84,7 +84,7 @@ If the Application does exist and
 |destIp|string| Destination IP address.|
 |protocolKeyWord|string| Protocol keyword.|
 |advancedOption|object| Advanced Option of the Path Details.|
-|routinScheme| int | Routing Scheme. |
+|routingScheme| int | Routing Scheme. |
 |group| string | Group. |
 |applicationId| string | ID of the Application. |
 |applicationName| string | Name of the Application. |
