@@ -1,5 +1,5 @@
 
-# Add Multiple Paths of Applications in Batches API Design
+# Add Multiple Application Paths in Batches API Design
 
 ## ***POST*** V3/AAM/Batch/Add
 This API is used to add Multiple Paths of Applications in Batches. <br>
@@ -7,7 +7,7 @@ If there are duplicates, only the first one will be retained.
 
 ## Detail Information
 
-> **Title** : Add Multiple Paths of Applications in Batches<br>
+> **Title** : Add Multiple Application Paths in Batches<br>
 
 > **Version** : 30/07/2025
 
