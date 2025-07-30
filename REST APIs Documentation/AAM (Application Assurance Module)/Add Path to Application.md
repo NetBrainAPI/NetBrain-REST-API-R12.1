@@ -40,15 +40,15 @@ If the Application does exist and
 |paths[].group^|string| Multicast Group. Only required when `routingScheme=Multicast`|
 |paths[].protocolKeyWord*|string| Path protocol.<br> Default: `IP`|
 |paths[].advancedOption^ |object| Advanced Option of Path.|
-|paths[].advancedOption.useSettingType|int| |
-|paths[].advancedOption.debugMode|bool| Default: `False`|
-|paths[].advancedOption.calcWhenDeniedByACL|bool| Default: `False`|
-|paths[].advancedOption.calcWhenDeniedByPolicy|bool| Default: `True` |
-|paths[].advancedOption.calcL3ActivePath|bool| Default: `False` |
-|paths[].advancedOption.useCommandWithArguments|bool| Default: `False`|
-|paths[].advancedOption.enablePathFixup|bool| Default: `True`|
-|paths[].advancedOption.expertSettings|string | Defines Parameter in JSON string format.|
-|overwrite|bool|Controls whether to overwrite an existing path if it already exists. <br> Default: `False`|
+|paths[].advancedOption.useSettingType^|int| |
+|paths[].advancedOption.debugMode^|bool| Default: `False`|
+|paths[].advancedOption.calcWhenDeniedByACL^|bool| Default: `False`|
+|paths[].advancedOption.calcWhenDeniedByPolicy^|bool| Default: `True` |
+|paths[].advancedOption.calcL3ActivePath^|bool| Default: `False` |
+|paths[].advancedOption.useCommandWithArguments^|bool| Default: `False`|
+|paths[].advancedOption.enablePathFixup^|bool| Default: `True`|
+|paths[].advancedOption.expertSettings^|string | Defines Parameter in JSON string format.|
+|overwrite^|bool|Controls whether to overwrite an existing path if it already exists. <br> Default: `False`|
 
 ## Parameters(****required***)
 >No parameters required.
