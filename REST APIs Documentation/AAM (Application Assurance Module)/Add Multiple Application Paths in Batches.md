@@ -89,6 +89,8 @@ If there are duplicates, only the first one will be retained.
 |goldenPathType| int |  |
 |autoSetGolden| object |  |
 |latestPathApplication| object |  |
+|taskType| int |  |
+|taskTypeDisplay| object |  |
 |statusCode| int | The returned status code of executing the API. |
 |statusDescription| string | The explanation of the status code. |
 
