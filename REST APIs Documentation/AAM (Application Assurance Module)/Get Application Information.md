@@ -4,7 +4,7 @@
 ## ***GET*** V3/AAM/Applications?Application={ApplicationName}
 ## ***GET*** V3/AAM/Application/{Id}
 
-This API is used to get the Application Information based on the provided Application Name.
+This API is used to get the Application Information based on the provided Application Name or ID.
 
 ## Detail Information
 
@@ -67,13 +67,13 @@ The depth of the response may vary per application.
 
 
 # Full Example:
-## Example 1: Application Information with Full Response & Use of `application`
+## Example 1: Get Full Application Information with `application`
 ```python
 full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
-params = {"Application": "aaa"}
+params = {"Application": "App01"}
 
 try:
     response = requests.get(full_url, params=params, headers=headers, verify=False)
@@ -88,7 +88,7 @@ except Exception as e:
 ```python
 {
   "id": "629ffd12-f72f-4d6f-955a-e5f15d856151",
-  "name": "aaa",
+  "name": "App01",
   "description": "",
   "relatedDevices": [
     {
@@ -107,7 +107,7 @@ except Exception as e:
 }
 ```
 
-## Example 2: Application Information with Partial Response
+## Example 2: Get Partial Application Information
 This example has less information in its response as this application does not have any associated device.
 ```python
 full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application"

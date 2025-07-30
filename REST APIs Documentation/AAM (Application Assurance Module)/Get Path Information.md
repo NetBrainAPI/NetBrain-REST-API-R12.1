@@ -82,7 +82,7 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 params = {
-    'application': 'Hello11',
+    'application': 'App01',
     'path':'test'
 }
 try:
@@ -119,7 +119,7 @@ except Exception as e:
     "routingScheme": 0,
     "group": "",
     "applicationId": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
-    "applicationName": "Hello11"
+    "applicationName": "App01"
   },
   "statusCode": 790200,
   "statusDescription": "Success."
@@ -169,7 +169,7 @@ except Exception as e:
     "routingScheme": 0,
     "group": "",
     "applicationId": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
-    "applicationName": "Hello11"
+    "applicationName": "App01"
   },
   "statusCode": 790200,
   "statusDescription": "Success."

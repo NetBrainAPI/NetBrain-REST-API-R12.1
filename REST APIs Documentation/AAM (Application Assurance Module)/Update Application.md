@@ -3,7 +3,7 @@
 
 ## ***PUT*** V3/AAM/Application
 This API is used to update the existing Application. <br>
-If `name` field matches the `name` of a different application, the update will not occur and the error message will be returned.
+If `name` field matches the name of a different application, the update will not occur and the error message will be returned.
 
 ## Detail Information
 
@@ -69,7 +69,7 @@ If `name` field matches the `name` of a different application, the update will n
 
 
 # Full Example:
-## Example 1: Successful Application Update
+## Example 1: Update Application
 ```python
 full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -77,7 +77,7 @@ headers["Token"]=token
 
 data = {
     "id": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
-    "name": "Hello",
+    "name": "App01",
     "description": "worker server application",
     "relatedDevices": [
         {
@@ -104,7 +104,7 @@ except Exception as e:
 ```python
 {
   "id": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
-  "name": "ABC",
+  "name": "App01",
   "description": "worker server application",
   "relatedDevices": [
     {
@@ -122,8 +122,8 @@ except Exception as e:
   "statusDescription": "Success."
 }
 ```
-## Example 2: Unsuccessful Application Update - Another Application with `name` already exists
-Existing Application #1 - `name=ABC` <br>
+## Example 2: Failed to Update Application - Another Application with `name` already exists
+Existing Application #1 - `name=App01` <br>
 Existing Application #2 - `name=xxx`
 
 ```python
@@ -173,7 +173,7 @@ curl -X PUT \
   -H "token: b8088539-c000-440a-b7c7-b9b2d52f046f"
   -d '{
     "id": "ddc769ef-3c8b-4f96-a68c-0a4b6d9f81d3",
-    "name": "ABC",
+    "name": "App01",
     "description": "worker server application",
     "relatedDevices": [
         {
