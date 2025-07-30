@@ -55,8 +55,8 @@ If the Application ID does not exist, the process is terminated.<br>
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |data|array|Deleted Application Paths. |
-|data.application|string|Name of Application Paths.|
-|data.paths| array | Path Name|
+|application|string|Name of Application Paths.|
+|paths| array | Path Name|
 |statusCode| integer | The returned status code of executing the API.  |
 |statusDescription| string | The explanation of the status code.  |
 

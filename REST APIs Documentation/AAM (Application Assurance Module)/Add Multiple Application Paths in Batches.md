@@ -90,7 +90,7 @@ If there are duplicates, only the first one will be retained.
 |autoSetGolden| object |  |
 |latestPathApplication| object |  |
 |taskType| int |  |
-|taskTypeDisplay| object |  |
+|taskTypeDisplay| string |  |
 |statusCode| int | The returned status code of executing the API. |
 |statusDescription| string | The explanation of the status code. |
 

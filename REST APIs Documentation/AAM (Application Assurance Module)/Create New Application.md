@@ -33,7 +33,7 @@ If the Application already exists, the subsequent actions are as follows: <br>
 |relatedDevices^|array|Device information and weight associated with the application. |
 |relatedDevices.deviceName^|string| Associated device name. <br>The device name must exist in the device table of the system domain; if it doesn't exist, it will be ignored. |
 |relatedDevices.weight^|int| The corresponding weight of the device. <br> Default: `10` |
-|overwrite^|bool| Controls the subsequential action if the newly created application name already exists; <br> `True` - overwrite <br> `False` - Do not overwrite and return existing application. <br> Default: `false`|
+|overwrite^|bool| Controls the subsequential action if the newly created application name already exists; <br> `True` - Overwrite <br> `False` - Do not overwrite and return existing application. <br> Default: `false`|
 
 ## Parameters(****required***)
 >No parameters required.
@@ -80,7 +80,7 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    'name': 'Hello',
+    'name': 'App01',
     'description': "worker server application",
     'relatedDevices': [
         {
@@ -136,7 +136,7 @@ curl -X POST \
   -H "cache-control: no-cache" \
   -H "token: b8088539-c000-440a-b7c7-b9b2d52f046f"
   -d '{
-    'name': '111',
+    'name': 'App01',
     'description': "worker server application",
     'relatedDevices': [
         {

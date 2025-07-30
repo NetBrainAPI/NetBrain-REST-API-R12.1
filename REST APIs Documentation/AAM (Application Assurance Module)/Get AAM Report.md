@@ -59,29 +59,28 @@ This is consistent with the Export Report logic on the UI page.<br>
 | token | string  | Authentication token, get from login API. |
 
 ## Response
-The depth of the response may vary per application.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |data|array| AAM Reports. |
-|data.lastVerifiedResult|int||
-|data.previousCompareResult|bool||
-|data.lastVerifiedTime| Date | Last Verified Time. |
-|data.taskName| string | Task Name. |
-|data.taskTypeDisplay| string |  |
-|data.pathNIStatusDetail| string | |
-|data.applicationName| string | Application Name. |
-|data.pathName| string | Path Name. |
-|data.sourceIp| string | Source Information |
-|data.sourcePort| int | Source Port. |
-|data.sourceDevice| string | Source Device. |
-|data.desIp| string | Destination Information. |
-|data.desPort| int | Destination Port. |
-|data.desDevice| string | Destination Device. |
-|data.routingScheme| int | Routing Scheme. |
-|data.group| string | Group. |
-|data.protocolKeyWord| string | Protocol keyword. |
-|data.protocol| string | Protocol number. |
+|lastVerifiedResult|int||
+|previousCompareResult|bool||
+|lastVerifiedTime| Date | Last Verified Time. |
+|taskName| string | Task Name. |
+|taskTypeDisplay| string |  |
+|pathNIStatusDetail| string | |
+|applicationName| string | Application Name. |
+|pathName| string | Path Name. |
+|sourceIp| string | Source Information |
+|sourcePort| int | Source Port. |
+|sourceDevice| string | Source Device. |
+|desIp| string | Destination Information. |
+|desPort| int | Destination Port. |
+|desDevice| string | Destination Device. |
+|routingScheme| int | Routing Scheme. |
+|group| string | Group. |
+|protocolKeyWord| string | Protocol keyword. |
+|protocol| string | Protocol number. |
 |statusCode| integer | The returned status code of executing the API. |
 |statusDescription| string | The explanation of the status code. |
 
