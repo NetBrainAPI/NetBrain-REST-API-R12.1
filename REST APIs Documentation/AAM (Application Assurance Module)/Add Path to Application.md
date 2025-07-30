@@ -244,7 +244,7 @@ except Exception as e:
 ```
 
 
-## Example 3: Unsuccessful Addition of Path to Application - Application Does Not Exist
+## Example 3: Failed to Add Path to Application - Application Does Not Exist
 The ID of the Application does not exist <br>
 
 ```python
