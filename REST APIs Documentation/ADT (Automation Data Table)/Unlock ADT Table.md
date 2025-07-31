@@ -70,7 +70,7 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    "Password":"test"
+    "password":"test"
 }
 
 try:
@@ -98,6 +98,6 @@ curl -X PUT \
   -H "cache-control: no-cache" \
   -H "token: f725d607-60d6-4ecd-99c9-197d8ccc103e" \
   -d '{
-    "Password":"test"
+    "password":"test"
 }'
 ```

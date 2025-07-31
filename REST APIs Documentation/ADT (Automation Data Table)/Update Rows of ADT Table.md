@@ -74,15 +74,15 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    "Condition": {
+    "condition": {
         "column1":"test",
         "column2":"test"
     },   
-    "UpdateData": {
+    "updateData": {
         "column1":"test1",
         "column2":"test1"
     },
-    "InsertifnotMatch": False
+    "insertifnotMatch": False
 }
 
 try:
@@ -115,15 +115,15 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    "Condition": {
+    "condition": {
         "column1":"test",
         "column2":"test"
     },   
-    "UpdateData": {
+    "updateData": {
         "column1":"test1",
         "column2":"test1"
     },
-    "InsertifnotMatch": False
+    "insertifnotMatch": False
 }
 
 try:
@@ -155,15 +155,15 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    "Condition": {
+    "condition": {
         "column1":"test",
         "column2":"test"
     },   
-    "UpdateData": {
+    "updateData": {
         "column1":"test1",
         "column2":"test1"
     },
-    "InsertifnotMatch": True
+    "insertifnotMatch": True
 }
 
 try:
@@ -176,7 +176,7 @@ try:
 except Exception as e:
     print (str(e)) 
 ```
-```
+```python
 {
   "result": "Insert",
   "count": 1,
@@ -194,14 +194,14 @@ curl -X PUT \
   -H "cache-control: no-cache" \
   -H "token: ee348c7e-a1cf-4296-8104-1d8e1123e733" \
   -d '{
-    "Condition": {
+    "condition": {
         "column1":"test",
         "column2":"test"
     },   
-    "UpdateData": {
+    "updateData": {
         "column1":"test1",
         "column2":"test1"
     },
-    "InsertifnotMatch": false
+    "insertifnotMatch": false
 }'
 ```

@@ -73,7 +73,7 @@ full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
-params = {"Application": "App01"}
+params = {"application": "App01"}
 
 try:
     response = requests.get(full_url, params=params, headers=headers, verify=False)
@@ -114,7 +114,7 @@ full_url = nb_url + "/ServicesAPI/API/V3/AAM/Application"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
-params = {"Application": "ADT"}
+params = {"application": "ADT"}
 
 try:
     response = requests.get(full_url, params=params, headers=headers, verify=False)

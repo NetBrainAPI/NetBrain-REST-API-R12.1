@@ -72,24 +72,24 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    'Columns':[
+    'columns':[
         {
-            'ColumnName':"ABC1",
-            'DisplayName':"ABC1",
-            'DataType':"String",
-            'Description':"test",
-            'CandidateValue':
+            'columnName':"ABC1",
+            'displayName':"ABC1",
+            'dataType':"String",
+            'description':"test",
+            'candidateValue':
             [
                 'value1',
                 'value2'
             ]
         },
         {
-            'ColumnName':"column2",
-            'DisplayName':"Column2",
-            'DataType':"String",
-            'Description':"test",
-            'CandidateValue':
+            'columnName':"column2",
+            'displayName':"Column2",
+            'dataType':"String",
+            'description':"test",
+            'candidateValue':
             [
                 'value1',
                 'value2'
@@ -123,23 +123,23 @@ curl -X POST \
   -H "cache-control: no-cache" \
   -H "token: f9560dff-449f-4b97-a372-23978c2951d4" \
   -d '{
-    "Columns": [
+    "columns": [
         {
-            "ColumnName": "ABC1",
-            "DisplayName": "ABC1",
-            "DataType": "String",
-            "Description": "test",
-            "CandidateValue": [
+            "columnName": "ABC1",
+            "displayName": "ABC1",
+            "dataType": "String",
+            "description": "test",
+            "candidateValue": [
                 "value1",
                 "value2"
             ]
         },
         {
-            "ColumnName": "column2",
-            "DisplayName": "Column2",
-            "DataType": "String",
-            "Description": "test",
-            "CandidateValue": [
+            "columnName": "column2",
+            "displayName": "Column2",
+            "dataType": "String",
+            "description": "test",
+            "candidateValue": [
                 "value1",
                 "value2"
             ]

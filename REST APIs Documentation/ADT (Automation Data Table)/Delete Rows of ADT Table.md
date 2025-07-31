@@ -67,7 +67,7 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    "Condition": {
+    "condition": {
         "column1":"test1",
     }  
 }
@@ -98,7 +98,7 @@ curl -X DELETE \
   -H "cache-control: no-cache" \
   -H "token: ee348c7e-a1cf-4296-8104-1d8e1123e733" \
   -d '{
-    "Condition": {
+    "condition": {
         "column1":"test1",
     }  
 }'

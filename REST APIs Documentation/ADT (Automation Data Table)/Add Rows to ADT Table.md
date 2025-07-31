@@ -70,7 +70,7 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    'RowDatas': 
+    'rowDatas': 
     [
         {
             'column1':"test",
@@ -108,7 +108,7 @@ curl -X POST \
   -H "cache-control: no-cache" \
   -H "token: f9560dff-449f-4b97-a372-23978c2951d4" \
   -d '{
-    "RowDatas": 
+    "rowDatas": 
     [
         {
             "column1":"test",

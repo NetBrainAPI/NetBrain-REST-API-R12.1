@@ -70,11 +70,11 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    "Enable":True,
-    "Lock":{
-        "LockMode":1,
-        "Password":"test",
-        "LockAnnotation":"test"
+    "enable":True,
+    "lock":{
+        "lockMode":1,
+        "password":"test",
+        "lockAnnotation":"test"
     }    
      
 }
@@ -105,11 +105,11 @@ headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 headers["Token"]=token
 
 data = {
-    "Enable":True,
-    "Lock":{
-        "LockMode":0,
-        "Password":"test",
-        "LockAnnotation":"test"
+    "enable":True,
+    "lock":{
+        "lockMode":0,
+        "password":"test",
+        "lockAnnotation":"test"
     }
 }
 
@@ -136,11 +136,11 @@ curl -X PUT \
   -H "cache-control: no-cache" \
   -H "token: f725d607-60d6-4ecd-99c9-197d8ccc103e" \
   -d '{
-    "Enable":true,
-    "Lock":{
-        "LockMode":0,
-        "Password":"test",
-        "LockAnnotation":"test"
+    "enable":true,
+    "lock":{
+        "lockMode":0,
+        "password":"test",
+        "lockAnnotation":"test"
     }
 }'
 ```

@@ -109,15 +109,15 @@ headers["Token"]=token
 
 data = {
     'name': 'New ADT Test',
-    'Location': '/Shared Tables',
-    'Description': 'test',
-    'Columns':[
+    'location': '/Shared Tables',
+    'description': 'test',
+    'columns':[
         {
-            'ColumnName':"column1",
-            'DisplayName':"Column1",
-            'DataType':"String",
-            'Description':"test",
-            'CandidateValue':
+            'columnName':"column1",
+            'displayName':"Column1",
+            'dataType':"String",
+            'description':"test",
+            'candidateValue':
             [
                 'value1',
                 'value2'
@@ -172,15 +172,15 @@ curl -X POST \
   -H 'token: bf2e7f60-fd23-4eb3-a9a3-7fe10ca0a363' \
 -d '{
     "name": "New ADT Test",
-    "Location": "/Shared Tables",
-    "Description": "test",
-    "Columns": [
+    "location": "/Shared Tables",
+    "description": "test",
+    "columns": [
       {
-        "ColumnName": "column1",
-        "DisplayName": "Column1",
-        "DataType": "String",
-        "Description": "test",
-        "CandidateValue": [
+        "columnName": "column1",
+        "displayName": "Column1",
+        "dataType": "String",
+        "description": "test",
+        "candidateValue": [
           "value1",
           "value2"
         ]

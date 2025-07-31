@@ -63,7 +63,7 @@ headers["Token"] = token
 
 params = {
     'id': '82595bb5-e964-4e23-b8f7-f1c0b13d96a0', # ID of ADT Table
-    'ColumnName':'ABC12'
+    'columnName':'ABC12'
 }
 
 try:
