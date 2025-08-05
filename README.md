@@ -3,10 +3,10 @@
 # Netbrain REST API Documentation
 
 Version 12.1<br>
-To view details about Integration Workflows with other platforms, please refer to `Platform Integration Documentation`. 
+To view details about Integration Workflows with other platforms, please refer to [Platform Integration Documentation](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/tree/main/Platform%20Integration%20Documentation). 
 Integration Workflow includes workflows such as `Trigger Diagnosis`, where NetBrain is triggered from ticketing and monitoring tools to generate map URLs, and `Single Panel of Glass`, where data from ticketing and monitoring tools is overalyed on NetBrain Map.<br>
-To view details about use cases which can be implemented with NetBrain REST APIs, please refer to `Golden Use Case Templates`.<br>
-To view the full list of all REST APIs, please refer to `REST APIs Documentation`.<br>
+To view details about use cases which can be implemented with NetBrain REST APIs, please refer to [Golden Use Case Templates](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/tree/main/Golden%20Use%20Case%20Templates).<br>
+To view the full list of all REST APIs, please refer to [REST APIs Documentation](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/tree/main/REST%20APIs%20Documentation).<br>
 
 ## New APIs in this version
 1) [Login API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md) (Updated methods) <br>
