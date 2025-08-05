@@ -1,5 +1,5 @@
 
-# Update Path in Application API Design
+# Update Application Path API Design
 
 ## ***PUT*** V3/AAM/Application/Path
 This API is used to update Path in an Application. <br>
@@ -8,7 +8,7 @@ If the Path doesn't exist, error message indicating that the Path was not found 
 
 ## Detail Information
 
-> **Title** : Update Path in Application<br>
+> **Title** : Update Application Path<br>
 
 > **Version** : 30/07/2025
 
