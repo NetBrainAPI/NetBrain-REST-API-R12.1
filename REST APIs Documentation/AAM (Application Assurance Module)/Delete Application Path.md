@@ -1,12 +1,12 @@
 
-# Delete Path from Application API Design
+# Delete Application Path API Design
 
 ## ***DELETE*** V3/AAM/Application/Path/{id}
 This API is used to delete Path from the Application by its path `id`. <br>
 
 ## Detail Information
 
-> **Title** : Delete Path from Application<br>
+> **Title** : Delete Application Path<br>
 
 > **Version** : 30/07/2025
 
