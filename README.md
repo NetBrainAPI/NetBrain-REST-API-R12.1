@@ -12,6 +12,8 @@ To view the full list of all REST APIs, please refer to `REST APIs Documentation
 1) [Login API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20API.md) (Updated methods) <br>
 2) [Get Device's Current Baseline Data Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Devices%20Management/Get%20Device's%20Current%20Baseline%20Data%20Table.md)
 3) [Update CLI Login Credential API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/Network%20Setting/Update%20CLI%20Login%20Credential%20API.md)
+4) [ADT (Automation Data Table) APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/tree/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table))
+5) [AAM (Application Assurance Module) APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/tree/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module))
 
 ## Section 1) Golden Use Case Templates
 1) [Get Path By Calling APIs](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/Golden%20Use%20Case%20Templates/Get%20Path%20By%20Calling%20APIs.md)<br>
@@ -22,6 +24,31 @@ To view the full list of all REST APIs, please refer to `REST APIs Documentation
 6) [Logic of API Calling for Embeded Map](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/Golden%20Use%20Case%20Templates/Logic%20of%20API%20Calling%20for%20Embed%20Map.md)
 
 ## Section 2) REST APIs Documentation
+### [AAM (Application Assurance Module)](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/tree/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module))
+1) [Add Multiple Application Paths in Batches](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Add%20Multiple%20Application%20Paths%20in%20Batches.md)
+2) [Add Path to Application](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Add%20Path%20to%20Application.md)
+3) [Create New Application](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Create%20New%20Application.md)
+4) [Delete Application Path](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Delete%20Application%20Path.md)
+5) [Delete Application](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Delete%20Application.md)
+6) [Delete Batches of Application Paths](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Delete%20Batches%20of%20Application%20Paths.md)
+7) [Get AAM Report](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Get%20AAM%20Report.md)
+8) [Get Application Information](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Get%20Application%20Information.md)
+9) [Get Path Information](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Get%20Path%20Information.md)
+10) [Update Application Path](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Update%20Application%20Path.md)
+11) [Update Application](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/AAM%20(Application%20Assurance%20Module)/Update%20Application.md)
+
+### [ADT (Automation Data Table)](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/tree/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table))
+1) [Add Columns to ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Add%20Columns%20to%20ADT%20Table.md)
+2) [Add Rows to ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Add%20Rows%20to%20ADT%20Table.md)
+3) [Create New ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT%20Table.md)
+4) [Delete ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Delete%20ADT%20Table.md)
+5) [Delete Columns of ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Delete%20Columns%20of%20ADT%20Table.md)
+6) [Delete Rows of ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Delete%20Rows%20of%20ADT%20Table.md)
+7) [Get ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Get%20ADT%20Table.md)
+8) [Lock ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Lock%20ADT%20Table.md)
+9) [Unlock ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Unlock%20ADT%20Table.md)
+10) [Update Rows of ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Update%20Rows%20of%20ADT%20Table.md)
+
 ### [API Server Management](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/tree/main/REST%20APIs%20Documentation/API%20Server%20Management)
 1) [Delete Tech Instance API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/API%20Server%20Management/Delete%20Tech%20Instance%20API.md)<br>
 2) [Get All API Servers Configured in Domain API](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/API%20Server%20Management/Get%20All%20API%20Servers%20Configured%20in%20Domain.md)<br>
