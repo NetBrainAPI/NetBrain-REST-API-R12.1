@@ -97,7 +97,7 @@ Call this API to get network settings Telnet/SSH information.
 ```
 
 # Full Example:
-
+## Example 1
 ```python
 full_url = nb_url + "/ServicesAPI/API/V1/CMDB/NetworkSettings"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -113,13 +113,13 @@ try:
         result = response.json()
         print (result)
     else:
-        print ("Failed to get Telnet Info! - " + str(response.text))
+        print ("Failed to Get Network Settings! - " + str(response.text))
     
 except Exception as e:
     print (str(e))  
 
 ```
-```
+```python
     {
         "telnetInfo": [
             {
@@ -139,7 +139,42 @@ except Exception as e:
         "statusDescription": "Success."
     }
 ```
+## Example 2
+```python
+token = "9308f7b2-8d0b-40be-92ba-5e0cde30b9a5"
+full_url = nb_url + "/ServicesAPI/API/V1/CMDB/NetworkSettings/"
 
+headers["token"] = token
+
+body = {
+    "alias": "Viptela",
+}
+
+try:
+    response = requests.get(full_url, params=body, headers=headers, verify=False)
+    if response.status_code == 200:
+        result = response.json()
+        print (result)
+    else:
+        print ("Failed to Get Network Settings! - " + str(response.text))
+    
+except Exception as e:
+    print (str(e)) 
+```
+```python
+{
+  "telnetInfo": [
+    {
+      "deviceCount": 0,
+      "alias": "Viptela",
+      "username": "admin",
+      "cliMode": 0
+    }
+  ],
+  "statusCode": 790200,
+  "statusDescription": "Success."
+}
+```
 # cURL Code from Postman
 
 ```
