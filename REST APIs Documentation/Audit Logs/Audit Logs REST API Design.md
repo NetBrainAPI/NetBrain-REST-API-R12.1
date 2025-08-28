@@ -117,13 +117,15 @@ Response
 
 >   **Response Code**
 
-| Code   | Message             | Description                                                                                                                                                                                                                                                                         |
-|--------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 790200 | OK                  |                                                                                                                                                                                                                                                                                     |
+| Code   | Message             | Description |
+|--------|---------------------|-------------|
+| 790200 | OK                  |             |
 | 791001 | InvalidParameter    | The parameter \\"From\\" and \\"To\\" is required.<br>The parameter \\"From\\" is required. The parameter \\"To\\" is required.<br>The parameter \\"To\\" must be greater than parameter \\"From\\".<br>Parameter 'limit' must be greater than or equal to 10 and less than or equal to 100. |
-| 793001 | InternalServerError | System framework level error                                                                                                                                                                                                                                                        |
+| 793001 | InternalServerError | System framework level |
 
->   **Full Example**
+Full Example
+--------
+
 ```python
 token = "17db4815-fdd5-4ffe-94d2-ba1b98315142"
 full_url = nb_url + "/ServicesAPI/API/V1/CMDB/AuditLogs"
@@ -179,7 +181,9 @@ except Exception as e:
 }
 ```
 
->   **cURL Command**
+cURL Command
+--------
+
 ```python
 curl -X GET \
   "https://nextgen-training.netbrain.com/ServicesAPI/API/V1/CMDB/AuditLogs?From=2025-08-28T14:20:22.785Z&To=2025-08-28T15:37:22.785Z" \
