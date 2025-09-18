@@ -2,7 +2,7 @@
 # Discovery API Design
 
 ## ***POST*** /V1/CMDB/Discovery/Tasks
-This API call is used to create a scheduled Discovery task to a domain.
+This API call is used to create a Scheduled Discovery Task on a domain.
 
 Note that, as the key, task name should be unique system wide.
 
@@ -31,8 +31,8 @@ Note that, as the key, task name should be unique system wide.
 |newTaskName^ | string  | The new name of the task.  |
 |description^ | string  | The description of the task. |
 |startDate* | string  | The date when the task starts to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'. <br>Current date will be used by default.  |
-|endDate* | string  | The date when the task end to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'. <br>`endDate` must be later than the `startDate`  |
-|schedule* | object  | The schedule to run the task. <br>The following sub parameters are included in this object: <br> ▪ `frequency`* (string) - the frequency to run the task. This field is required and includes `once`, `hourly`, `daily`, `weekly` and `monthly` options.<br>▪ `interval`(string) - the interval to run the task (optional). This field is only valid for `hourly`, `daily`, and `weekly` options and the default value is `1`, such as every 1 hour, 1 week.<br>▪ `startTime`* (string) - the time to run the task. This field is required and startTime should be in format: ["HH:mm:ss"], if you put date time format such as "2018/04/04 19:20:20 ", "19:20:20" will be used and the date part "2018/04/04" will be ignored.<br> **Note:** Set the time according to your IIS server time zone since the time zone of your ISS server rather than your physical time zone is adopted by the benchmark task.<br><br>▪ `weekday`(integer) - the day of the week to run the task. This field is optional and only valid when the frequency is weekly.  0 stands for Sunday, 6 for Saturday and 1-5 for Monday to Friday respectively.<br>▪ dayOfMonth(integer) - which day of a month to run the task. This field is optional and only valid when the frequency is monthly. The default is `1`.<br>▪ `Months`(integer) - which month to run the task. This field is optional and only valid when the frequency is monthly. The default is all `12 months`.|
+|endDate* | string  | The date when the task end to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'. <br>`endDate` must be later than the `startDate`. |
+|schedule* | object  | The schedule to run the task. <br>The following sub parameters are included in this object: <br> ▪ `frequency`* (string) - the frequency to run the task. This field is required and includes `once`, `hourly`, `daily`, `weekly` and `monthly` options.<br>▪ `interval`(string) - the interval to run the task (optional). <br> This field is only valid for `hourly`, `daily`, and `weekly` options and the default value is `1`, such as every 1 hour, 1 week.<br><br>▪ `startTime`* (string) - the time to run the task.  <br>This field is required and `startTime` should be in format `["HH:mm:ss"]`; if you put date time format such as "2018/04/04 19:20:20 ", "19:20:20" will be used and the date part "2018/04/04" will be ignored.<br> **Note:** Set the time according to your IIS server time zone since the time zone of your ISS server rather than your physical time zone is adopted by the benchmark task.<br><br>▪ `weekday`(integer) - the day of the week to run the task. <br>This field is optional and only valid when the frequency is `weekly`. <br>0 stands for Sunday, 6 for Saturday and 1-5 for Monday to Friday, respectively.<br><br>▪ `dayOfMonth`(integer) - which day of a month to run the task. This field is optional and only valid when the frequency is `monthly`. The default is `1`.<br>▪ `Months`(integer) - which month to run the task. This field is optional and only valid when the frequency is monthly. The default is all `12 months`.|
 |isEnable^ | bool  | Determine whether to enable the task <br>Default: `True` |
 
 > ### ***Example***
@@ -152,7 +152,7 @@ def addDiscoveryTask(addDiscoveryTask_URL, body, headers):
         return (str(e))
     
 result = addDiscoveryTask(addDiscoveryTask_URL, body, headers)
-print(result) # print out 
+print(result)
 ```
 
     {'taskId': 'c8facc3b-fa43-45b3-a3e0-5efa958802a6', 'statusCode': 790200, 'statusDescription': 'Success.'}
