@@ -26,13 +26,14 @@ Note that, as the key, task name should be unique system wide.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
+|||* - required <br>^ - optional|
 |taskName* | string  | The name of the task.  |
-|newTaskName | string  | The new name of the task.  |
-|description | string  | The description of the task. This field is optional.  |
-|startDate* | string  | The date when the task starts to run. The standard time format is required, for example, '2017-07-13', '2017/07/13'. Current date will be used by default.  |
-|endDate | string  | The date when the task end to run. The standard time format is required, for example, '2017-07-13', '2017/07/13'.  |
-|schedule* | object  | The schedule to run the task. The following sub parameters are included in this object: <br>▪ frequency* (string) - the frequency to run the task. This field is required and includes ”once”, “hourly”,” daily”, “weekly” and “monthly” options.<br>▪ interval(string) - the interval to run the task (optional). This field is only valid for “hourly”,” daily”, and “weekly” options and the default value is 1, such as every 1 hour, 1 week.<br>▪ startTime* (string) - the time to run the task. This field is required and startTime should be in format: ["HH:mm:ss"], if you put date time format such as "2018/04/04 19:20:20 ", "19:20:20" will be used and the date part "2018/04/04" will be ignored.<br> **Note:** Set the time according to your IIS server time zone since the time zone of your ISS server rather than your physical time zone is adopted by the benchmark task.<br>▪ weekday(integer) - the day of the week to run the task. This field is optional and only valid when the frequency is weekly.  0 stands for Sunday, 6 for Saturday and 1-5 for Monday to Friday respectively.<br>▪ dayOfMonth(integer) - which day of a month to run the task. This field is optional and only valid when the frequency is monthly. The default is 1.<br>▪ Months(integer) - which month to run the task. This field is optional and only valid when the frequency is monthly. The default is all 12 months.|
-|isEnable | bool  | Determine whether to enable the task. This field is optional and the default value is true. |
+|newTaskName^ | string  | The new name of the task.  |
+|description^ | string  | The description of the task. |
+|startDate* | string  | The date when the task starts to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'. <br>Current date will be used by default.  |
+|endDate* | string  | The date when the task end to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'. <br>`endDate` must be later than the `startDate`  |
+|schedule* | object  | The schedule to run the task. <br>The following sub parameters are included in this object: <br> ▪ `frequency`* (string) - the frequency to run the task. This field is required and includes `once`, `hourly`, `daily`, `weekly` and `monthly` options.<br>▪ `interval`(string) - the interval to run the task (optional). This field is only valid for `hourly`, `daily`, and `weekly` options and the default value is `1`, such as every 1 hour, 1 week.<br>▪ `startTime`* (string) - the time to run the task. This field is required and startTime should be in format: ["HH:mm:ss"], if you put date time format such as "2018/04/04 19:20:20 ", "19:20:20" will be used and the date part "2018/04/04" will be ignored.<br> **Note:** Set the time according to your IIS server time zone since the time zone of your ISS server rather than your physical time zone is adopted by the benchmark task.<br><br>▪ `weekday`(integer) - the day of the week to run the task. This field is optional and only valid when the frequency is weekly.  0 stands for Sunday, 6 for Saturday and 1-5 for Monday to Friday respectively.<br>▪ dayOfMonth(integer) - which day of a month to run the task. This field is optional and only valid when the frequency is monthly. The default is `1`.<br>▪ `Months`(integer) - which month to run the task. This field is optional and only valid when the frequency is monthly. The default is all `12 months`.|
+|isEnable^ | bool  | Determine whether to enable the task <br>Default: `True` |
 
 > ### ***Example***
 
@@ -43,7 +44,7 @@ body = {
     "newTaskName": "",  
     "description": "",  
     "startDate": "2019/06/25", 
-    "endDate": "2019/06/25",  
+    "endDate": "2019/06/26",  
     "schedule": {  
         "frequency": "once",  
         "interval": "",  
@@ -146,7 +147,7 @@ def addDiscoveryTask(addDiscoveryTask_URL, body, headers):
             js = response.json()
             return (js)
         else:
-            return ("Delete discovery task failed! - " + str(response.text))
+            return ("Failed to Create Discovery Task! - " + str(response.text))
     except Exception as e:
         return (str(e))
     
