@@ -180,7 +180,7 @@ curl -X POST \
     "newTaskName": "",  
     "description": "",  
     "startDate": "2019/06/25", 
-    "endDate": "2019/06/25",  
+    "endDate": "2019/06/26",  
     "schedule": {  
         "frequency": "once",  
         "interval": "",  
