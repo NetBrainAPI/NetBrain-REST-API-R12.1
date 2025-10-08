@@ -2,7 +2,8 @@
 # Unlock ADT Table API Design
 
 ## ***PUT*** V3/CMDB/ADT/Manual/Tables/{id}/unLock
-This API is used to unlock the ADT Table. <br> Note that the ADT type must be manual. <br>
+This API is used to unlock the ADT Table. <br>
+Note that the ADT type must be <b>manual</b>. To check on NetBrain UI, <i>`Fill Each Row with:`</i> must be <b>Manual Input</b> (found under <i>Define Base Table</i>) <br>
 `id` of the ADT Table is used to call this API, which can be retrieved from [Create New ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT%20Table.md), [Get ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Get%20ADT%20Table.md), etc. <br>
 
 <b>Note</b>: The following situations do not require a password: 

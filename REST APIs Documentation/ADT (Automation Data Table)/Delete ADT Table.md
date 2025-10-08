@@ -3,7 +3,9 @@
 
 ## ***DELETE*** V3/CMDB/ADT/Manual/Tables/{id}
 ## ***DELETE*** V3/CMDB/ADT/Manual/Tables?Path={Path}
-This API is used to delete the ADT Table. <br> Note that the ADT type must be manual. <br>
+This API is used to delete the ADT Table. <br>
+Note that the ADT type must be <b>manual</b>. To check on NetBrain UI, <i>`Fill Each Row with:`</i> must be <b>Manual Input</b> (found under <i>Define Base Table</i>) <br>
+
 The ADT Table can be deleted using `id` retrieved from [Create New ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT%20Table.md), [Get ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Get%20ADT%20Table.md), etc., or through `path` of the ADT Table.
 
 ## Detail Information
