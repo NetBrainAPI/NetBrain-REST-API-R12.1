@@ -2,7 +2,7 @@
 # Update Rows of ADT Table API Design
 
 ## ***PUT*** V3/CMDB/ADT/Manual/Tables/{id}/Rows
-This API is used to update rows of the existing <b>manually built</b> ADT Table. <br>
+This API is used to update rows of the existing ADT Table. <br> Note that the ADT type must be manual. <br>
 `id` of the ADT Table is used to call this API, which can be retrieved from [Create New ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT%20Table.md), [Get ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Get%20ADT%20Table.md), etc.
 
 ## Detail Information

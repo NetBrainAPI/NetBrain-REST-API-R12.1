@@ -4,7 +4,7 @@
 ## ***GET*** V3/CMDB/ADT/Manual/Tables/{id}
 ## ***GET*** V3/CMDB/ADT/Manual/Tables?Path={Path}
 
-This API is used to get <b>manually built</b> ADT Table. <br>
+This API is used to get ADT Table. <br> Note that the ADT type must be manual. <br>
 The ADT Table can be retrieved with `id` retrieved from [Create New ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Create%20New%20ADT%20Table.md), [Get ADT Table](https://github.com/NetBrainAPI/NetBrain-REST-API-R12.1/blob/main/REST%20APIs%20Documentation/ADT%20(Automation%20Data%20Table)/Get%20ADT%20Table.md), etc., or through `path` of the ADT Table.
 
 ## Detail Information
