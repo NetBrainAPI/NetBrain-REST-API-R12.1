@@ -46,8 +46,8 @@ Please refer to the examples below for more information.
 |dns|string|The resolved DNS name of the end system, or the combination of the device name and interface name. If the DNS name is not resolved, it is null.|
 | count | int | Count number of returned data; API will return OneIP Table items with the total number of `count`. <br> Maximum: 100,000. <br>API will only return 100,000 items even if the input value of `count` is greater than 100,000. If the total number of items which start from `beginIndex` to the end of table is less than `count` value, API will return the rest of items. |
 | beginIndex | int | Beginning index of data; API will return OneIP Table items starting from `beginIndex`. <br>Default: `0` <br>If `beginIndex` > 20,000, please use the below two parameters instead: `afterIpInt` and `afterId`. |
-|paging.afterIpInt | string | The integer retrieved from the preceeding `Get One-IP Table API` call, to be used in the succeeding call. Please refer to the examples below. <br> This parameter is not necessary if `beginIndex` < 20,000. |
-|paging.afterIpId | string | The ID retrieved from the preceeding `Get One-IP Table API` call, to be used in the succeeding call. Please refer to the examples below. <br> This parameter is not necessary if `beginIndex` < 20,000. |
+|afterIpInt | string | The integer retrieved from the preceeding `Get One-IP Table API` call, to be used in the succeeding call. Please refer to the examples below. <br> This parameter is not necessary if `beginIndex` < 20,000. |
+|afterIpId | string | The ID retrieved from the preceeding `Get One-IP Table API` call, to be used in the succeeding call. Please refer to the examples below. <br> This parameter is not necessary if `beginIndex` < 20,000. |
 
 ## Headers
 
