@@ -2,7 +2,7 @@
 # Device API Design
 
 ## ***GET*** /V1/CMDB/Devices/DeviceRawData
-Call this API to get the raw data for specified devices by device hostname or mgmIp. Currently we only support the data from current baseline.
+Call this API to get the raw data for specified devices by device hostname or mgmtIp. Currently we only support the data from current baseline.
 
 ## Detail Information
 

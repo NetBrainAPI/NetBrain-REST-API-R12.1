@@ -10,7 +10,7 @@ This API call is used to create a Scheduled Discovery Task on a domain.
 
 > **Title** : Create Scheduled Discovery Task API<br>
 
-> **Version** : 04/22/2019.
+> **Version** :22/10/2025.
 
 > **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Discovery/Tasks	
 
@@ -27,13 +27,13 @@ This API call is used to create a Scheduled Discovery Task on a domain.
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||* - required <br>^ - optional|
-|taskName* | string  | The name of the task.  |
-|newTaskName^ | string  | The new name of the task.  |
-|description^ | string  | The description of the task. |
-|startDate* | string  | The date when the task starts to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'.|
-|endDate* | string  | The date when the task end to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'. <br>`endDate` must be later than the `startDate`. |
-|schedule* | object  | The schedule to run the task. <br><br>The following sub parameters are included in this object: <br> ▪ `frequency`* (string) - the frequency to run the task. <br> Available options: `once`, `hourly`, `daily`, `weekly` and `monthly`.<br>▪ `interval`^(string) - the interval to run the task. <br> This field is only valid for `hourly`, `daily`, and `weekly` options and the default value is `1`, such as every 1 hour, 1 week.<br><br>▪ `startTime`* (string) - the time to run the task.  <br>`startTime` should be in format `["HH:mm:ss"]`; if you put date time format such as "2018/04/04 19:20:20 ", "19:20:20" will be used and the date part "2018/04/04" will be ignored.<br> **Note:** Set the time according to your IIS server time zone since the time zone of your ISS server rather than your physical time zone is adopted by the benchmark task.<br><br>▪ `weekday`^(integer) - the day of the week to run the task. <br>This field is only valid when the frequency is `weekly`. <br>0 stands for Sunday, 6 for Saturday and 1-5 for Monday to Friday, respectively.<br><br>▪ `dayOfMonth`^(integer) - which day of a month to run the task. This field is only valid when the frequency is `monthly`. The default is `1`.<br>▪ `months`^(integer) - which month to run the task. This field is only valid when the frequency is `monthly`. The default is all `12 months`.|
+|taskName* | string | The name of the task. |
+|description^ | string | The description of the task. |
+|startDate* | string | The date when the task starts to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'.|
+|endDate* | string | The date when the task end to run. <br>The standard time format is required. e.g. '2017-07-13', '2017/07/13'. <br>`endDate` must be later than the `startDate`. |
+|schedule* | objects | The schedule to run the task. <br><br>The following sub parameters are included in this object: <br> ▪ `frequency`* (string) - the frequency to run the task. <br> Available options: `once`, `hourly`, `daily`, `weekly` and `monthly`.<br>▪ `interval`^(string) - the interval to run the task. <br> This field is only valid for `hourly`, `daily`, and `weekly` options and the default value is `1`, such as every 1 hour, 1 week.<br><br>▪ `startTime`* (string) - the time to run the task.  <br>`startTime` should be in format `["HH:mm:ss"]`; if you put date time format such as "2018/04/04 19:20:20 ", "19:20:20" will be used and the date part "2018/04/04" will be ignored.<br> **Note:** Set the time according to your IIS server time zone since the time zone of your ISS server rather than your physical time zone is adopted by the benchmark task.<br><br>▪ `weekday`^(integer) - the day of the week to run the task. <br>This field is only valid when the frequency is `weekly`. <br>0 stands for Sunday, 6 for Saturday and 1-5 for Monday to Friday, respectively.<br><br>▪ `dayOfMonth`^(integer) - which day of a month to run the task. This field is only valid when the frequency is `monthly`. The default is `1`.<br>▪ `months`^(integer) - which month to run the task. This field is only valid when the frequency is `monthly`. The default is all `12 months`.|
 |isEnable^ | bool | Determines whether to enable the task or not. <br>Default: `True` |
+|fsOrFSGNames^ | string array | The front servers that the user wants to use. <br>The item in this array could be a front server ID or FSG name. A front server ID that belongs to an FSG is not supported. |
 
 > ### ***Example***
 
@@ -41,7 +41,6 @@ This API call is used to create a Scheduled Discovery Task on a domain.
 ```python
 body = {
     "taskName": "APITest", 
-    "newTaskName": "",  
     "description": "",  
     "startDate": "2019/06/25", 
     "endDate": "2019/06/26",  
@@ -53,7 +52,8 @@ body = {
         "dayOfMonth": "", 
         "months": []   
     },
-    "isEnable": True  
+    "isEnable": True,
+    "fsOrFSGNames" : ["FS2"]
 }
 
 ```
@@ -120,7 +120,6 @@ headers["Token"] = token
 
 body = {
     "taskName": "APITest", 
-    "newTaskName": "",  
     "description": "",  
     "startDate": "2019/06/25", 
     "endDate": "2019/06/26",  
@@ -132,7 +131,8 @@ body = {
         "dayOfMonth": "", 
         "months": []   
     },
-    "isEnable": True  
+    "isEnable": True,
+    "fsOrFSGNames" : ["FS2"]
 }
 
 addDiscoveryTask_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Discovery/Tasks"
@@ -154,9 +154,9 @@ def addDiscoveryTask(addDiscoveryTask_URL, body, headers):
 result = addDiscoveryTask(addDiscoveryTask_URL, body, headers)
 print(result)
 ```
-
+```python
     {'taskId': 'c8facc3b-fa43-45b3-a3e0-5efa958802a6', 'statusCode': 790200, 'statusDescription': 'Success.'}
-    
+```
 
 # cURL Code from Postman
 
@@ -177,7 +177,6 @@ curl -X POST \
   -H 'token: 1b6d0451-c598-497d-91b2-1a28db1ac089' \
   -d '{
     "taskName": "APITest", 
-    "newTaskName": "",  
     "description": "",  
     "startDate": "2019/06/25", 
     "endDate": "2019/06/26",  
@@ -189,7 +188,8 @@ curl -X POST \
         "dayOfMonth": "", 
         "months": []   
     },
-    "isEnable": True  
+    "isEnable": true,
+    "fsOrFSGNames" : ["FS2"]
 }
 '
 ```
