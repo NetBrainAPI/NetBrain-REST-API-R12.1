@@ -103,7 +103,6 @@ body = {
 
 # Full Example
 
-
 ```python
 # import python modules 
 import requests
@@ -119,10 +118,10 @@ token = "bf414c1e-a3b8-4ef1-9812-b2ba8529e6e7"
 headers["Token"] = token
 
 body = {
-    "taskName": "APITest", 
-    "description": "",  
-    "startDate": "2019/06/25", 
-    "endDate": "2019/06/26",  
+    "taskName": "APITest2", 
+    "description": "APITest2",  
+    "startDate": "2025/11/24", 
+#     "endDate": "2025/11/24",  
     "schedule": {  
         "frequency": "once",  
         "interval": "",  
@@ -132,7 +131,8 @@ body = {
         "months": []   
     },
     "isEnable": True,
-    "fsOrFSGNames" : ["FS2"]
+#     "fsOrFSGNames" : ["FSG1"] # FSG
+    "fsOrFSGNames" : ["testFS"] # FS
 }
 
 addDiscoveryTask_URL = nb_url + "/ServicesAPI/API/V1/CMDB/Discovery/Tasks"
@@ -155,12 +155,10 @@ result = addDiscoveryTask(addDiscoveryTask_URL, body, headers)
 print(result)
 ```
 ```python
-    {'taskId': 'c8facc3b-fa43-45b3-a3e0-5efa958802a6', 'statusCode': 790200, 'statusDescription': 'Success.'}
+    {'taskId': 'c18765be-d499-448d-9c97-2dffa198e84c', 'statusCode': 790200, 'statusDescription': 'Success.'}
 ```
 
 # cURL Code from Postman
-
-
 ```python
 curl -X POST \
   https://ie80.netbraintech.com/ServicesAPI/API/V1/CMDB/Discovery/Tasks \
@@ -176,10 +174,10 @@ curl -X POST \
   -H 'content-length: 380' \
   -H 'token: 1b6d0451-c598-497d-91b2-1a28db1ac089' \
   -d '{
-    "taskName": "APITest", 
+    "taskName": "APITest2", 
     "description": "",  
-    "startDate": "2019/06/25", 
-    "endDate": "2019/06/26",  
+    "startDate": "2025/11/24", 
+    "endDate": "2025/11/24",  
     "schedule": {  
         "frequency": "once",  
         "interval": "",  
@@ -189,7 +187,7 @@ curl -X POST \
         "months": []   
     },
     "isEnable": true,
-    "fsOrFSGNames" : ["FS2"]
+    "fsOrFSGNames" : ["testFS"]
 }
 '
 ```
