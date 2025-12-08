@@ -127,7 +127,7 @@ def calculate_path(Calculate_Path_url, body, headers, token):
             result = response.json()
             return (result)
         else:
-            return ("Create module attribute failed! - " + str(response.text))
+            return ("Failed to Calculate Path! - " + str(response.text))
 
     except Exception as e:
         return (str(e)) 
