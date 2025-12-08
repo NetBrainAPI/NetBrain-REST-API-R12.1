@@ -2,19 +2,19 @@
 # Return the devices path results
 
 
-During current use case, the final goal is to present the path result between two specified devices in current domain. There are a total of 8 REST APIs used in this use case, as shown in following:
+The purpose of the current case is to present the path result between two specified devices in the current domain. There are a total of 8 REST APIs used in this use case, as shown in following:
 
-1. Import python modules and global variables for sample code.
-2. Call login API to get authentication token.
-3. Call get_all_accessible_tenants API to get all accessible tenant IDs.
-4. Call get_all_accessible_domains API to get all accessible domain IDs in specified tenant.
-5. Call specify_a_working_domain API to specified which domain to work with.
-6. Call resolve_device_gateway API to get devices gateway information. 
-7. Call calculate_path API to get the task ID.
-8. Call get_path_result API to get the result of calculation path.
-9. Call logout API to log out from current account.
+1. Import python modules and global variables into the sample code.
+2. Call `login` API to get authentication token.
+3. Call `get_all_accessible_tenants` API to get all accessible tenant IDs.
+4. Call `get_all_accessible_domains` API to get all accessible domain IDs in specified tenant.
+5. Call `specify_a_working_domain` API to specify which domain to work with.
+6. Call `resolve_device_gateway` API to get devices gateway information. 
+7. Call `calculate_path` API to get the task ID.
+8. Call `get_path_result` API to get the result of calculation path.
+9. Call `logout` API to log out from the current account.
 
-The sequencial of provided APIs is also the sequence of our workflow steps.
+The above list of provided APIs also match the sequence of our workflow steps.
 
 ***Note***: if users want to find the path results of devices, then the step sequence must be followed. If users call these APIs with a different sequential then there would be no results or some errors would be occured.
 
