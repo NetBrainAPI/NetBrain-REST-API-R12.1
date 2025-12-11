@@ -44,15 +44,16 @@ Please refer to the examples below for more information.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-| ip | string | The IP address of the current device. If the user provides an input value of `ip` attribute, then this API will return all items with the same IP address in One-IP Table. |
-|lan|string|The LAN Segment of the IP address. If the user provides an input value of `lan` attribute, then this API will returns all items with the same LAN segement in One-IP Table.|
-|mac|string|The MAC address related to the IP address. If the user provides an input value of `mac` attribute, then this API will return all items with the same MAC address in One-IP Table.|
-|switch_name|string|The switch name connected to the end system. If the user provides an input value of `switch_name` attribute, then this API will return all items with the same switch name in One-IP Table.|
-|dns|string|The resolved DNS name of the end system, or the combination of the device name and interface name. If the DNS name is not resolved, it is null.|
-|source|string| The source field of the One-IP record.|
-| count | int | Count number of returned data; API will return OneIP Table items with the total number of `count`. <br> Default: `100,000` <br>API will only return 100,000 items even if the input value of `count` is greater than 100,000. If the total number of items which start from `beginIndex` to the end of table is less than `count` value, API will return the rest of items. |
-| beginIndex | int | Beginning index of data; If present, the API will return OneIP Table items starting from `beginIndex` (offset paging). <br>Recommended to only use small offsets, large value could cause performance issues. |
-| afterId | string | Cursor for paging based on `_id`. <br>If beginIndex is not provided, the API uses cursor paging and returns records with `_id > afterId`, sorted by `_id` ascending. <br>For the initial cursor paging, `afterId` can be omitted, or sent as empty string. |
+|||`*` - required <br>`^` - optional|
+| ip^ | string | The IP address of the current device. If the user provides an input value of `ip` attribute, then this API will return all items with the same IP address in One-IP Table. |
+|lan^|string|The LAN Segment of the IP address. If the user provides an input value of `lan` attribute, then this API will returns all items with the same LAN segement in One-IP Table.|
+|mac^|string|The MAC address related to the IP address. If the user provides an input value of `mac` attribute, then this API will return all items with the same MAC address in One-IP Table.|
+|switch_name^|string|The switch name connected to the end system. If the user provides an input value of `switch_name` attribute, then this API will return all items with the same switch name in One-IP Table.|
+|dns^|string|The resolved DNS name of the end system, or the combination of the device name and interface name. If the DNS name is not resolved, it is null.|
+|source^|string| The source field of the One-IP record.|
+| count^ | int | Count number of returned data; API will return OneIP Table items with the total number of `count`. <br> Default: `100,000` <br>API will only return 100,000 items even if the input value of `count` is greater than 100,000. If the total number of items which start from `beginIndex` to the end of table is less than `count` value, API will return the rest of items. |
+| beginIndex^ | int | Beginning index of data. <br> If present, the API will return OneIP Table items starting from `beginIndex` (offset paging). <br>Recommended to only use small offsets, large value could cause performance issues. |
+| afterId^ | string | Cursor for paging based on `_id`. <br>If beginIndex is not provided, the API uses cursor paging and returns records with `_id > afterId`, sorted by `_id` ascending. <br>For the initial cursor paging, `afterId` can be omitted, or sent as an empty string. |
 
 ## Headers
 
@@ -340,6 +341,7 @@ except Exception as e:
 }
 ```
 ### 2 - Next Paging
+Use value of `nextAfterId` returned from the previous call to retrieve the next result.
 ```python
 full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Topology/OneIPTable"
 headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
