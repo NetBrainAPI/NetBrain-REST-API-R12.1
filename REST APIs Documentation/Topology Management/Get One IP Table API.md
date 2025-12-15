@@ -46,7 +46,7 @@ Please refer to the examples below for more information.
 |<img width=100/>|<img width=100/>|<img width=500/>|
 |||`*` - required <br>`^` - optional|
 | ip^ | string | The IP address of the current device. If the user provides an input value of `ip` attribute, then this API will return all items with the same IP address in One-IP Table. |
-|lan^|string|The LAN Segment of the IP address. If the user provides an input value of `lan` attribute, then this API will returns all items with the same LAN segement in One-IP Table.|
+|lan^|string|The LAN Segment of the IP address. If the user provides an input value of `lan` attribute, then this API will returns all items with the same LAN segment in One-IP Table.|
 |mac^|string|The MAC address related to the IP address. If the user provides an input value of `mac` attribute, then this API will return all items with the same MAC address in One-IP Table.|
 |switch_name^|string|The switch name connected to the end system. If the user provides an input value of `switch_name` attribute, then this API will return all items with the same switch name in One-IP Table.|
 |dns^|string|The resolved DNS name of the end system, or the combination of the device name and interface name. If the DNS name is not resolved, it is null.|
