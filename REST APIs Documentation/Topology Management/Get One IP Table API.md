@@ -16,7 +16,7 @@ But note that the default maximum value of `count` is 100,000. So if the input v
 >> Request includes `beginIndex` >= 0, and doesn't rely on `afterId`. 
 
 >2. <b>Cursor Mode</b> (New, recommended for large data)
->> Request does not include `beginIndex`, or `afterId` is utilized. <br>Results are sorted by `_id` ascending and filtered with `_id` > `afterId` when `afterId` is provided. <br>Use this to iterate through One-IP Table with large data efficiently.
+>> Request does not include `beginIndex`, or `afterId`. <br>Results are sorted by `_id` ascending and filtered with `_id` > `afterId` when `afterId` is provided. <br>Use this to iterate through One-IP Table with large data efficiently.
 <br>
 Please refer to the examples below for more information.
 
@@ -51,7 +51,7 @@ Please refer to the examples below for more information.
 |switch_name^|string|The switch name connected to the end system. If the user provides an input value of `switch_name` attribute, then this API will return all items with the same switch name in One-IP Table.|
 |dns^|string|The resolved DNS name of the end system, or the combination of the device name and interface name. If the DNS name is not resolved, it is null.|
 |source^|string| The source field of the One-IP record.|
-| count^ | int | Count number of returned data; API will return OneIP Table items with the total number of `count`. <br> Default: `100,000` <br>API will only return 100,000 items even if the input value of `count` is greater than 100,000. If the total number of items which start from `beginIndex` to the end of table is less than `count` value, API will return the rest of items. |
+| count^ | int | Count number of returned data. API will return OneIP Table items with the total number of `count`. <br> Default: `100,000` <br>API will only return 100,000 items even if the input value of `count` is greater than 100,000. If the total number of items which start from `beginIndex` to the end of table is less than `count` value, API will return the rest of items. |
 | beginIndex^ | int | Beginning index of data. <br> If present, the API will return OneIP Table items starting from `beginIndex` (offset paging). <br>Recommended to only use small offsets, large value could cause performance issues. |
 | afterId^ | string | Cursor for paging based on `_id`. <br>If beginIndex is not provided, the API uses cursor paging and returns records with `_id > afterId`, sorted by `_id` ascending. <br>For the initial cursor paging, `afterId` can be omitted, or sent as an empty string. |
 
@@ -77,7 +77,7 @@ Please refer to the examples below for more information.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
-|OneIPList| list of object | list of OneIP item  |
+|OneIPList| list of object | List of OneIP item  |
 |OneIPList.lanSegment| string | IP subnet |
 |OneIPList.ip| string | IP address |
 |OneIPList.mac| string | MAC address of which the IP is on  |
@@ -99,7 +99,7 @@ Please refer to the examples below for more information.
 |OneIPList.vendor| string | Device vendor |
 |OneIPList.descr| string | Description of the switch port  |
 |extSwitchPorts| list | Ext Switch Ports. |
-|paging| object | Paging information used to call respetive API calls.  |
+|paging| object | Paging information used to call respective API calls.  |
 |paging.limit| int | Limit of API call. |
 |paging.hasMore| boolean | If `False`, there is no more data. |
 |paging.nextAfterId | string | `_id` of the last record from current paging, to be used in the succeeding paging call. <br> In offset mode (where `beginIndex` is used), the paging block may be omitted. <br> Please refer to the examples below. |
