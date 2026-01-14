@@ -301,22 +301,32 @@ Please also refer to [Open API](https://www.netbraintech.com/docs/12ac1ue0to/hel
 ![OAuth Get Token](https://github.com/NetBrainAPI/NetBrain-REST-API-R12/raw/main/REST%20APIs%20Documentation/Authentication%20and%20Authorization/Login%20Images/3_OAuth_get_token.png)
 * via script
     ```python
+    import requests
+    import json
+    import time
+    import urllib3
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    import pprint
+
+    nb_url = 'https://netbrain.com/'
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'} 
+
     def getOauth():
-    full_url = nb_url + "ServicesAPI/auth/oauth2/token"
-    body = {
-        "grant_type":"client_credentials",
-        "client_id":"abcdefg",
-        "client_secret":"xxxxxx"
-    }
-    try:
-        response = requests.post(full_url, headers=headers, data=body, verify=False)
-        if response.status_code == 200:
-            r0 = response.json()
-            print(r0)
-        else:
-            print(f"Get Oauth failed: ", str(response.text))
-    except Exception as e:
-        print(str(e))
+        full_url = nb_url + "ServicesAPI/auth/oauth2/token"
+        body = {
+            "grant_type":"client_credentials",
+            "client_id":"uqj3vbos-tp6ma9me",
+            "client_secret":"cXxOIQxvfDOyJcbMcouAoMMNVI7gZJHQ"
+        }
+        try:
+            response = requests.post(full_url, headers=headers, data=body, verify=False)
+            if response.status_code == 200:
+                r0 = response.json()
+                print(r0)
+            else:
+                print(f"Get Oauth failed: ", str(response.text))
+        except Exception as e:
+            print(str(e))
     getOauth()
     ```
     ```python
