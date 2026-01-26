@@ -3,7 +3,7 @@
 
 ## POST /V1/CMDB/TuneDevices
 
-This API call is used to start a tune devies task.
+This API call is used to start a tune devices task.
 
 ## Detail Information
 
