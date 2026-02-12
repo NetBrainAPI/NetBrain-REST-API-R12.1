@@ -1,587 +1,152 @@
 
-# Devices API Design
+# Device API Design
 
-## GET /V1/CMDB/Devices
-
-This API is used to get devices and their attributes data in batch. The response of this API returns a list in JSON format.<br><br>**Note:<br>1. The API follows the privilege control of NB system. If there is restriction set by Access Control Policy for the target querying resources, the response will not return queried data.<br>2. This API doesn't support any GDR that is not set as displayed, except first discovery time and last discovery time.**<br><br>
-<b>Important</b>: It is recommended to pass parameter <i>version=1</i> instead of <i>version=0</i>
-<br><br>
-
-### Version interaction between URL and request body
-Starting from R12, the multi-version API support was introduced; the <i>URL query parameter version `V`</i> specified in the URL (e.g. API/<b>V1</b>/CMDB/Devices) represents the NetBrain API version, and also controls the <b>shape of the response payload</b>.
-<br>
-If <i>the request body parameter `version`</i> is <b>not</b> provided, the API version in the URL (e.g. V1, V2, V3) takes precedence and determines the fields of the response by using the latest version logic. <br>
-If <i>the request body parameter `version`</i> <b>is</b> provided, <i>the request body parameter `version`</i> takes precedence when selecting the response format. <br>
-&nbsp; When version=0 is used, it uses the old version logic. <br><br>
-As a result, calling this API with the request parameter <i>`version`</i> specified or not can produce different response fields.
+## ***GET*** /V1/CMDB/Devices/DeviceRawData
+Call this API to get the raw data for specified devices by device hostname or mgmtIp. Currently we only support the data from current baseline.
 
 ## Detail Information
 
->**Title:** Get Devices API
+> **Title** : Get Device Raw Data API<br>
 
->**Version:** 02/12/2026
+> **Version** : 06/25/2019.
 
->**API Server URL:** http(s)://IP Address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Devices
+> **API Server URL** : http(s)://IP address of NetBrain Web API Server/ServicesAPI/API/V1/CMDB/Devices/DeviceRawData
 
->**Authentication:**
+> **Authentication** : 
 
 |**Type**|**In**|**Name**|
 |------|------|------|
-|Bearer Authentication|Headers|Authentication token|
+|<img width=100/>|<img width=100/>|<img width=500/>|
+|Bearer Authentication| Headers | Authentication token | 
 
-## Request body (*required)
-
->No request body.
-
-## Query Parameters (*required)
+## Query parameter(****required***)
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
-|||`*` - indicates mandatory field <br> `^` - indicates optional field|
-|hostname|string OR list of string|A list of device hostnames|
-|ignoreCase|boolean|Recognizes as case-insensitive hostname|
-|ip|string OR list of string|A list of device management IPs|
-|||If provided with both of `hostname` and `ip`, `hostname` has higher priority. If any of the devices are not found from the provided query parameter, API returns the found devices as a list in response and add another json key `deviceNotFound`, the value is a mixed list of hostnames and IPs that are not found.|
-|*fullattr|integer|`0` (default) - return basic device attributes (device id, management IP, hostname, device type, first discovery time, last discovery time).<br>`1` - return all device attributes, including customized attributes|
-|version|string| `0` - uses old version logic to return basic device attributes.<br> `1`(default) - uses newest version logic to return all device properties.<br> It is recommended to pass version=1.|
-|||Starting from R12, the multi-version API support was introduced; the <i>URL query parameter version `V`</i> specified in the URL (e.g. API/<b>V1</b>/CMDB/Devices) represents the NetBrain API version, and also controls the <b>shape of the response payload</b>.<br>If <i>the request body parameter `version`</i> is <b>not</b> provided, the API version in the URL (e.g. V1, V2, V3) takes precedence and determines the fields of the response by using the latest version logic. <br>If <i>the request body parameter `version`</i> <b>is</b> provided, <i>the request body parameter `version`</i> takes precedence when selecting the response format. <br>&nbsp; When version=0 is used, it uses the old version logic. <br><br>As a result, calling this API with the request parameter <i>`version`</i> specified or not can produce different response fields.|
-|skip|integer|The amount of records to be skipped. <br>The value cannot be negative.  <br>If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'skip' cannot be negative"}`. <br>No upper bound for this parameter.|
-|limit|integer|The up limit amount of device records to return per API call. <br>The value cannot be negative. <br>If the value is negative, API throws exception `{"statusCode":791001,"statusDescription":"Parameter 'limit' cannot be negative"}`. <br>No upper bound for this parameter. If the parameter is not specified in API call, it means there is not limitation setting on the call.|
-|||If only `skip` value is provided, returns the device list with 50 devices information start from the skip number. <br>If only `limit` value is provided, returns from the first device in DB. <br>If both `skip` and `limit` values are provided, returns as required. <br>Error exceptions follows each parameter's description.<br>`Skip` and `limit` parameters are based on the search result from DB. The `limit` value's valid range is 10 - 100; if the assigned value exceeds the range, the server will respond with an error message: `Parameter 'limit' must be greater than or equal to 10 and less than or equal to 100.`  |
-|filter|json|If specified, returns the matched device list with device attributes. <br>All single GDR Property including customized ones can be used (except geolocation) <br><br>Note:<br>• `site`: please use the complete site path; e.g. `"My Network\\\Burlington"`<br>• `alias`: refers to the alias name of device Telnet/SSH settings|
-|||Only supports AND operator, when multiple filter attributes are specified in JSON.<br>If provided with invalid data format, returns error `invalid filter input`.|
+|<img width=100/>|<img width=100/>|<img width=500/>|
+|hostname* | string  | The hostname of the device.  |
+|IP* | string  | The management IP of  the device.  |
+|dataType*| integer | candidates:<br> 0: configFile<br> 1: dataTable<br> 2: cli_cmd_result
+|tableName | string  | 0, if user set dataType==1, then "tableName" field cannot be empty<br> 1, for system table, we have some constant value<br> 2, for nct table, just use the real table name<br> 3, Candidates:<br> routeTable<br> arpTable<br> macTable<br> cdpTable<br> stpTable<br> bgpNbrTable<br> for nct table, just use the real table name |
+|vrf | string| 1, optional -- only needed for some table<br> 2, candidates can ref to what we see from IE UI|
+|cmd | string  |  0, if user set dataType==2, then "cmd" field cannot be empty<br> 1, optional -- only needed for cli command<br>2, only support exact match, e.g. "sh ver" is different with "show version"  |
 
 ## Headers
 
->**Data Format Headers**
+> **Data Format Headers**
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
-|Content-Type|string|support "application/json"|
-|Accept|string|support "application/json"|
+|<img width=100/>|<img width=100/>|<img width=500/>|
+| Content-Type | string  | support "application/json" |
+| Accept | string  | support "application/json" |
 
->**Authorization Headers**
+> **Authorization Headers**
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
-|token|string|Authentication token, get from login API.|
+|<img width=100/>|<img width=100/>|<img width=500/>|
+| token | string  | Authentication token, get from login API. |
 
 ## Response
-** Note that the response will differ based on the parameter. Please refer to the below examples to see the different formats of responses.
 
 |**Name**|**Type**|**Description**|
 |------|------|------|
-|devices|string[]|A list of devices.|
-|devices.id|string|The device ID.|
-|devices.mgmtIP|string|The management IP address of the returned device.|
-|devices.name|string|The hostname of returned device.|
-|devices.subTypeName|string|The type of the returned device; e.g. Cisco Router|
-|devices.fDiscoveryTime|time|First discovery time of device.|
-|devices.DiscoveryTime|time|Last discovery time of device.|
-|devices.customAttribute1|Refer to GDR data type|Customized Attribute 1.|
-|devices.customAttribute2|Refer to GDR data type|Customized Attribute 2.|
-|...|...|...|
-|statusCode|integer|Code issued by NetBrain server indicating the execution result.|
-|statusDescription|string|The explanation of the status code.|
+|<img width=100/>|<img width=100/>|<img width=500/>|
+|content| string | Data content. |
+|retrievalTime| string | The time of users retrieved data. |
+|statusCode| integer | Code issued by NetBrain server indicating the execution result.  |
+|statusDescription| string | The explanation of the status code. |
 
+> ***Example***
+
+
+```python
+{
+    "content" : "",
+    "retrievalTime" : "", #formal DateTime Format in UTC, e.g. 2019-04-16T14:53:29Z
+    "statusCode" : xx, # ref to https://www.netbraintech.com/docs/ie71/help/error-code-list.htm
+    "statusDescription" : "" # note: only applicable
+}
+```
 
 # Full Example:
 
-# Example 1
+
 ```python
 # import python modules 
 import requests
 import time
 import urllib3
 import pprint
+#urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import json
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Set the request inputs
-token = "13c7ed6e-781d-4b22-83e7-b1722de4e31d"
-nb_url = "http://192.168.28.79"
+nb_url = "https://ie80.netbraintech.com"
+headers = {'Content-Type': 'application/json', 'Accept': 'application/json'} 
+token = "6cb4a2bf-178d-4b63-bc21-26f6b4a8bf68"
+headers["Token"] = token
+# call login API
 
-full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
-headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-headers["Token"]=token
+get_device_raw_data_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices/DeviceRawData"
 
-data = {
-    "version": 1,
-    "hostname":'IPv6Lab-MPLS',
-    "ip": '2020:1111:abcd:ef23:4567:8912:3333:4444',
-}
-
-
-try:
-    response = requests.get(full_url, params = data, headers = headers, verify = False)
-    if response.status_code == 200:
-        result = response.json()
-        print (result)
-    else:
-        print("Get Devices failed! - " + str(response.text))
-except Exception as e:
-    print (str(e)) 
-```
-```python
-{
-  "devices": [
-    {
-      "id": "39090c12-981d-4e42-9e9d-ea84ef0837e1",
-      "mgmtIP": "2020:1111:abcd:ef23:4567:8912:3333:4444",
-      "name": "IPv6Lab-MPLS",
-      "subTypeName": "Cisco Router",
-      "fDiscoveryTime": "2023-08-21T17:10:52Z",
-      "lDiscoveryTime": "2023-08-24T10:42:42Z"
+def get_device_raw_data(get_device_raw_data_url, token, hostname, headers):
+    
+    headers["Token"] = token
+    
+    data = {
+        "hostname" : hostname,
+        "dataType" : 2,
+        "tableName" : "",
+        "vrf" : "",
+        "cmd" : "show log"
     }
-  ],
-  "statusCode": 790200,
-  "statusDescription": "Success."
-}
-```
-
-# Example 2: Using `version=0`; it is not recommended to use version=0
-```python
-# import python modules 
-import requests
-import time
-import urllib3
-import pprint
-import json
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-# Set the request inputs
-token = "13c7ed6e-781d-4b22-83e7-b1722de4e31d"
-nb_url = "http://192.168.28.79"
-
-full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
-headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-headers["Token"]=token
-
-data = {
-    "fullattr":1,
-    "version": 0
-}
-
-
-try:
-    response = requests.get(full_url, params = data, headers = headers, verify = False)
-    if response.status_code == 200:
-        result = response.json()
-        print (result)
-    else:
-        print("Get Devices failed! - " + str(response.text))
-except Exception as e:
-    print (str(e)) 
-```
-```python
-{
-  "devices": [
-    {
-      "id": "ec7cf947-4d66-44f6-bdfc-33454c44cd70",
-      "mgmtIP": "10.61.164.6",
-      "hostname": "MRFN-CAMCC-F5-AIS-PROD2",
-      "deviceTypeName": "F5 Load Balancer",
-      "firstDiscoverTime": "2023-01-21T16:56:24Z",
-      "lastDiscoverTime": "2024-03-19T16:26:48Z"
-    },
-    {
-      "id": "26ee70e7-9c8d-4d24-86dd-06d3570eb330",
-      "mgmtIP": "10.240.246.61",
-      "hostname": "mrfn-cascc-f5-ag02-prd",
-      "deviceTypeName": "F5 Load Balancer",
-      "firstDiscoverTime": "2023-02-27T16:28:55Z",
-      "lastDiscoverTime": "2024-04-24T16:00:20Z"
-    },
-    {
-      "id": "43704ff9-2c37-4f3e-9e5a-a51983677976",
-      "mgmtIP": "10.65.116.25",
-      "hostname": "ALCSWAVG310P01",
-      "deviceTypeName": "Cisco Voice Gateway",
-      "firstDiscoverTime": "2022-10-21T13:27:16Z",
-      "lastDiscoverTime": "2024-08-18T21:00:51Z"
-    },
-    {
-      "id": "0c4e38fd-6c2d-4f15-a4e3-77274e106b41",
-      "mgmtIP": "192.168.32.100",
-      "hostname": "ST55CN234C",
-      "deviceTypeName": "Arista Switch",
-      "firstDiscoverTime": "2024-12-11T10:32:20Z",
-      "lastDiscoverTime": "2024-12-11T10:32:20Z"
-    },
-    {
-      "id": "d0d8a3a2-0dfe-4ace-a140-7ef940f9fbce",
-      "mgmtIP": "172.24.101.61",
-      "hostname": "BJ-3750-1",
-      "deviceTypeName": "Cisco IOS Switch",
-      "firstDiscoverTime": "2025-01-03T20:29:36Z",
-      "lastDiscoverTime": "2025-01-03T20:38:02Z"
-    }
-  ],
-  "statusCode": 790200,
-  "statusDescription": "Success."
-}
-```
-
-# Example 3: Get All Devices
-
-```python
-full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
-headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-headers["Token"]=token
-skip = 0
-count = 50
-try:
-    while count == 50:
-        data = {
-            "version": 1,
-            "skip":skip,
-            "fullattr":1
-        }
-        response = requests.get(full_url, params = data, headers = headers, verify = False)
+    
+    try:
+        response = requests.get(get_device_raw_data_url, params = data, headers = headers, verify = False)
         if response.status_code == 200:
             result = response.json()
-            count = len(result["devices"])
-            skip = skip + count
-            print (result)
+            return (result)
         else:
-            print("Get Devices failed! - " + str(response.text))
-except Exception as e:
-    print (str(e)) 
-```
-```python
-{
-  "devices": [
-    {
-      "name": "ALCSWAVG310P01",
-      "mgmtIP": "10.65.116.25",
-      "mgmtIntf": "GigabitEthernet0/0",
-      "subTypeName": "Cisco Voice Gateway",
-      "vendor": "Cisco",
-      "model": "VG310",
-      "ver": "15.9(3)M6",
-      "sn": "FJC2134A07N",
-      "site": "My Network\\Unassigned",
-      "loc": "",
-      "contact": "",
-      "mem": "864503964",
-      "os": "",
-      "assetTag": "",
-      "layer": "",
-      "descr": "",
-      "oid": "1.3.6.1.4.1.9.1.1769",
-      "driverName": "Cisco Voice Gateway",
-      "fDiscoveryTime": "2022-10-21T13:27:16Z",
-      "lDiscoveryTime": "2024-08-18T21:00:51Z",
-      "assignTags": "",
-      "policyGroup": "",
-      "hasEIGRPConfig": false,
-      "hasBGPConfig": false,
-      "hasOSPFConfig": false,
-      "hasISISConfig": false,
-      "hasMulticastConfig": false,
-      "BPE": "",
-      "OTV": "",
-      "l3vniVrf": "",
-      "cluster": "",
-      "VXLAN": "",
-      "VPLS": "",
-      "vADCs": "",
-      "_nb_features": "",
-      "bgpNeighbor": "",
-      "ap_mode": "",
-      "APMeshRole": "",
-      "snmpName": "ALCSWAVG310P01.pmusa.net",
-      "vADId": "",
-      "vADCid": "",
-      "ciscoContractId": "",
-      "ciscoBasePid": "",
-      "module_serial": "",
-      "id": "43704ff9-2c37-4f3e-9e5a-a51983677976"
-    },
-    {
-      "name": "BJ-3750-1",
-      "mgmtIP": "172.24.101.61",
-      "mgmtIntf": "Vlan10",
-      "subTypeName": "Cisco IOS Switch",
-      "vendor": "Cisco",
-      "model": "catalyst37xxStack",
-      "ver": "",
-      "sn": "",
-      "site": "My Network\\Unassigned",
-      "loc": "",
-      "contact": "",
-      "mem": "",
-      "os": "",
-      "assetTag": "",
-      "layer": "",
-      "descr": "",
-      "oid": "1.3.6.1.4.1.9.1.516",
-      "driverName": "Cisco IOS Switch",
-      "fDiscoveryTime": "2025-01-03T20:29:36Z",
-      "lDiscoveryTime": "2025-01-03T20:38:02Z",
-      "assignTags": "",
-      "policyGroup": "",
-      "hasEIGRPConfig": false,
-      "hasBGPConfig": false,
-      "hasOSPFConfig": true,
-      "hasISISConfig": false,
-      "hasMulticastConfig": false,
-      "BPE": "",
-      "OTV": "",
-      "l3vniVrf": "",
-      "cluster": "",
-      "VXLAN": "",
-      "VPLS": "",
-      "vADCs": "",
-      "hasLISPConfig": false,
-      "_nb_features": "",
-      "bgpNeighbor": "",
-      "ap_mode": "",
-      "APMeshRole": "",
-      "snmpName": "BJ-3750-1",
-      "vADId": "",
-      "vADCid": "",
-      "ciscoContractId": "",
-      "ciscoBasePid": "",
-      "module_serial": "",
-      "id": "d0d8a3a2-0dfe-4ace-a140-7ef940f9fbce"
-    },
-    {
-      "name": "EX2200-2",
-      "mgmtIP": "192.168.32.100",
-      "mgmtIntf": "",
-      "subTypeName": "Juniper EX Switch",
-      "vendor": "",
-      "model": "",
-      "ver": "",
-      "sn": "CW0213350716",
-      "site": "My Network\\Unassigned",
-      "loc": "",
-      "contact": "",
-      "mem": "",
-      "os": "",
-      "assetTag": "",
-      "layer": "",
-      "descr": "",
-      "oid": "",
-      "driverName": "Juniper EX Switch",
-      "fDiscoveryTime": "2024-09-09T18:02:29Z",
-      "lDiscoveryTime": "2024-09-09T18:02:29Z",
-      "assignTags": "",
-      "policyGroup": "",
-      "hasIPv6Config": true,
-      "hasEIGRPConfig": false,
-      "hasBGPConfig": false,
-      "hasOSPFConfig": false,
-      "hasISISConfig": false,
-      "hasMulticastConfig": false,
-      "BPE": "",
-      "OTV": "",
-      "l3vniVrf": "",
-      "cluster": "",
-      "VXLAN": "",
-      "VPLS": "",
-      "vADCs": "",
-      "virtualTechnology": "",
-      "childDevices": "",
-      "_nb_features": "",
-      "bgpNeighbor": "",
-      "ap_mode": "",
-      "APMeshRole": "",
-      "snmpName": "",
-      "vADId": "",
-      "vADCid": "",
-      "module_serial": "",
-      "id": "858c319c-ace5-4468-9031-c10a536922ec"
-    }
-  ],
-  "statusCode": 790200,
-  "statusDescription": "Success."
-}
-```
+            return ("Create module attribute failed! - " + str(response.text))
 
-
-# Example 4: Using `limit`
-```python
-token = "c3d73da6-aa56-4cc7-bc20-f72788a4badc"
-
-def getdevicev1():
-    full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
-    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-    headers["Token"]=token
-    skip = 0
-    count = 100
-    try:
-        while count == 100:
-            data = {
-                "version": 1,
-                "skip":skip,
-                "fullattr":1,
-                'limit' : count
-            }
-            response = requests.get(full_url, params = data, headers = headers, verify = False)
-            if response.status_code == 200:
-                result = response.json()
-                count = len(result["devices"])
-                skip = skip + count
-                ss = "" 
-                for device in result["devices"]:
-                    #break
-                    ss += '{},'.format(device['name'])
-                print(ss)
-            else:
-                print("Get Devices failed! - " + str(response.text))
-            #break
     except Exception as e:
-        print (str(e))
-        
-result = getdevicev1()
-result
-```
+        return (str(e))
+    
+# for i in range(10):
+res = get_device_raw_data(get_device_raw_data_url, token, "GW2Lab", headers)
+print(res)
 
 ```
-ALCSWAVG310P01,BJ-3750-1,EX2200-2,JMCKOPVG310P01,MRFN-CAMCC-F5-AIS-PROD2,ST55CN234C,mgd-pcm-wdc-fw01/vsys2,mrfn-cascc-f5-ag02-prd,
-```
 
+    {'content': 'GW2Lab#show log\r\nSyslog logging: enabled (0 messages dropped, 32 messages rate-limited, 0 flushes, 0 overruns, xml disabled, filtering disabled)\r\n\r\nNo Active Message Discriminator.\r\n\r\n\r\n\r\nNo Inactive Message Discriminator.\r\n\r\n\r\n    Console logging: level debugging, 48 messages logged, xml disabled,\r\n                     filtering disabled\r\n    Monitor logging: level debugging, 0 messages logged, xml disabled,\r\n                     filtering disabled\r\n    Buffer logging:  level debugging, 48 messages logged, xml disabled,\r\n                    filtering disabled\r\n    Exception Logging: size (8192 bytes)\r\n    Count and timestamp logging messages: disabled\r\n    Persistent logging: disabled\r\n\r\nNo active filter modules.\r\n\r\n    Trap logging: level informational, 52 message lines logged\r\n        Logging Source-Interface:       VRF Name:\r\n\r\nLog Buffer (8192 bytes):\r\n\r\n*Jan  2 00:00:01.395: %IOS_LICENSE_IMAGE_APPLICATION-6-LICENSE_LEVEL: Module name = c3900e Next reboot level = ipbasek9 and License = ipbasek9\r\n*May 26 05:49:11.123: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to down\r\n*May 26 05:49:11.123: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down\r\n*May 26 05:49:11.123: %LINK-3-UPDOWN: Interface GigabitEthernet0/2, changed state to down\r\n*May 26 05:49:11.123: %LINK-3-UPDOWN: Interface GigabitEthernet0/3, changed state to down\r\n*May 26 05:49:13.497: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down\r\n*May 26 05:49:13.497: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down\r\n*May 26 05:49:13.497: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down\r\n*May 26 05:49:13.497: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to down\r\n*May 26 05:49:17.365: %SYS-5-CONFIG_I: Configured from memory by console\r\n*May 26 05:49:17.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback0, changed state to up\r\n*May 26 05:49:17.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback3, changed state to up\r\n*May 26 05:49:17.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback4, changed state to up\r\n*May 26 05:49:17.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback5, changed state to up\r\n*May 26 05:49:17.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback6, changed state to up\r\n*May 26 05:49:17.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback7, changed state to up\r\n*May 26 05:49:17.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback8, changed state to up\r\n*May 26 05:49:17.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback9, changed state to up\r\n*May 26 05:49:17.945: %LINEPROTO-5-UPDOWN: Line protocol on Interface NVI0, changed state to up\r\n*May 26 05:49:18.699: %LINK-5-CHANGED: Interface Loopback1, changed state to administratively down\r\n*May 26 05:49:18.699: %LINK-5-CHANGED: Interface Loopback2, changed state to administratively down\r\n*May 26 05:49:18.699: %LINK-5-CHANGED: Interface Loopback10, changed state to administratively down\r\n*May 26 05:49:18.911: %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down\r\n*May 26 05:49:18.911: %LINK-5-CHANGED: Interface GigabitEthernet0/3, changed state to administratively down\r\n*May 26 05:49:25.189: %SYS-5-RESTART: System restarted --\r\nCisco IOS Software, C3900e Software (C3900e-UNIVERSALK9-M), Version 15.2(4)M6a, RELEASE SOFTWARE (fc1)\r\nTechnical Support: http://www.cisco.com/techsupport\r\nCopyright (c) 1986-2014 by Cisco Systems, Inc.\r\nCompiled Tue 15-Apr-14 06:10 by prod_rel_team\r\n*May 26 05:49:25.387: %SSH-5-ENABLED: SSH 2.0 has been enabled\r\n*May 26 05:49:25.471: %SNMP-5-COLDSTART: SNMP agent on host GW2Lab is undergoing a cold start\r\n*May 26 05:50:12.387: %PIM-5-DRCHG: DR change from neighbor 0.0.0.0 to 172.24.30.1 on interface GigabitEthernet0/1\r\n*May 26 05:50:13.943: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up\r\n*May 26 05:50:14.943: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up\r\n*May 26 05:50:57.307: %OSPF-5-ADJCHG: Process 10, Nbr 172.24.255.20 on GigabitEthernet0/1 from LOADING to FULL, Loading Done\r\n*May 26 06:08:49.071: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up\r\n*May 26 06:08:50.071: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up\r\n*May 26 06:09:32.269: %OSPF-5-ADJCHG: Process 200, Nbr 172.24.255.51 on GigabitEthernet0/0.5 from LOADING to FULL, Loading Done\r\n*Jun 15 03:57:49.693: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 192.168.32.44\r\n*Jun 18 06:16:13.958: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.0.237\r\n*Jun 18 07:17:44.668: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.0.237\r\n*Jun 18 10:07:49.627: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.0.237\r\n*Jun 19 17:43:54.236: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.32.133\r\n*Jun 19 21:44:54.925: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.32.133\r\n*Jun 20 00:44:50.590: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.32.133\r\n*Jun 20 02:44:46.263: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.32.133\r\n*Jun 20 05:43:47.115: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.32.133\r\n*Jun 20 05:44:52.361: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.32.133\r\n*Jun 20 06:44:42.558: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.32.133\r\n*Jun 20 08:44:38.574: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.32.133\r\n*Jun 25 06:15:44.869: %SSH-4-SSH2_UNEXPECTED_MSG: Unexpected message type has arrived. Terminating the connection from 10.10.0.237\r\n*Jul  2 02:15:40.300: %SYS-5-CONFIG_I: Configured from console by admin on vty3 (10.10.4.5)\r\n', 'retrievalTime': '0001-01-01T00:00:00', 'statusCode': 790200, 'statusDescription': 'Success.'}
 
-# Example 5: Using `filter`
 
 ```python
-full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
-headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-headers["Token"]=token
-filter1 = {
-    "name":"EX2200-2"
-}
-
-data = {
-    "version": 1,
-    "limit" : 15,
-    "fullattr" : 1,
-    "filter" : json.dumps(filter1)
-}
-
-
-try:
-    response = requests.get(full_url, params = data, headers = headers, verify = False)
-    if response.status_code == 200:
-        result = response.json()
-        print (result)
-    else:
-        print("Get Devices failed! - " + str(response.text))
-except Exception as e:
-    print (str(e)) 
-
-```
-```python
-{
-  "devices": [
-    {
-      "name": "EX2200-2",
-      "mgmtIP": "192.168.32.100",
-      "mgmtIntf": "",
-      "subTypeName": "Juniper EX Switch",
-      "vendor": "",
-      "model": "",
-      "ver": "",
-      "sn": "CW0213350716",
-      "site": "My Network\\Unassigned",
-      "loc": "",
-      "contact": "",
-      "mem": "",
-      "os": "",
-      "assetTag": "",
-      "layer": "",
-      "descr": "",
-      "oid": "",
-      "driverName": "Juniper EX Switch",
-      "fDiscoveryTime": "2024-09-09T18:02:29Z",
-      "lDiscoveryTime": "2024-09-09T18:02:29Z",
-      "assignTags": "",
-      "policyGroup": "",
-      "hasIPv6Config": true,
-      "hasEIGRPConfig": false,
-      "hasBGPConfig": false,
-      "hasOSPFConfig": false,
-      "hasISISConfig": false,
-      "hasMulticastConfig": false,
-      "BPE": "",
-      "OTV": "",
-      "l3vniVrf": "",
-      "cluster": "",
-      "VXLAN": "",
-      "VPLS": "",
-      "vADCs": "",
-      "virtualTechnology": "",
-      "childDevices": "",
-      "_nb_features": "",
-      "bgpNeighbor": "",
-      "ap_mode": "",
-      "APMeshRole": "",
-      "snmpName": "",
-      "vADId": "",
-      "vADCid": "",
-      "module_serial": "",
-      "id": "858c319c-ace5-4468-9031-c10a536922ec"
-    }
-  ],
-  "statusCode": 790200,
-  "statusDescription": "Success."
-}
+# If customer face the response "{"statusCode":791006,"statusDescription":"Device Data Not Found"}", 
+# that means customer didn't run a benchmark to collect the corresponding device data table or CLI information.
 ```
 
-# Example 6: Using `filter` with customized GDR
-Via <b> Tenant Management > GDR Data Configuration</b>, create the customized GDR: `mgmtHostname`
+# cURL Code From Postman
 
-```python
-full_url = nb_url + "/ServicesAPI/API/V1/CMDB/Devices"
-headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-headers["Token"]=token
-
-filter1 = {
-    "mgmtHostname":"mgmt123", #customized GDR property
-    "name":"AWS-CSR10v"
-}
-
-query = {
-    'filter': json.dumps(filter1),
-    'version':1
-}
-try:
-    response = requests.get(full_url, headers=headers, params = query, verify=False)
-    if response.status_code == 200:
-        result = response.json()
-        print (result)
-    else:
-        print("Get Devices failed! - " + str(response.text))
-except Exception as e:
-    print (str(e)) 
-```
-```python
-{
-  "devices": [
-    {
-      "id": "020e0271-e336-4e41-891d-e6a3a029e2d0",
-      "mgmtIP": "18.223.162.2",
-      "name": "AWS-CSR10v",
-      "subTypeName": "Cisco Router",
-      "fDiscoveryTime": "2026-02-09T20:15:26Z",
-      "lDiscoveryTime": "2026-02-10T18:57:21Z"
-    }
-  ],
-  "statusCode": 790200,
-  "statusDescription": "Success."
-}
-```
-
-# cURL Code from Postman:
-This cURL command is based on Example 1
 
 ```python
 curl -X GET \
-  'http://192.168.32.17/ServicesAPI/API/V1/CMDB/Devices?ip=&fullattr=1&version=1' \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
+  'https://ie80.netbraintech.com/ServicesAPI/API/V1/CMDB/Devices/DeviceRawData?hostname=US-BOS-SW3&dataType=1&tableName=routeTable' \
+  -H 'Accept: */*' \
   -H 'Cache-Control: no-cache' \
-  -H 'token: 4056241d-948b-478e-93e6-d0edc5774120'
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: ie80.netbraintech.com' \
+  -H 'Postman-Token: 81733a42-965c-40b2-8c31-dbf5d6d7cd46,28e92296-2b9d-4f26-82d3-8dccddf44787' \
+  -H 'User-Agent: PostmanRuntime/7.13.0' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'cache-control: no-cache' \
+  -H 'content-length: 80' \
+  -H 'token: 1b6d0451-c598-497d-91b2-1a28db1ac089' \
+  -d '{
+	"hostname" : "BJ_L2_Core_5",
+    "dataType" : 2,
+    "cmd" : "show version"
+}'
 ```
