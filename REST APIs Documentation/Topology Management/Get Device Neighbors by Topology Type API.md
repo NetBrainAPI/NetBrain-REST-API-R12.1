@@ -80,7 +80,7 @@ As a result, the shape of the API response can differ based on the passed versio
 | token | string  | Authentication token, get from login API. |
 
 ## Response
-** Null values of the response properties will be ignored; hence in some cases, some properties will note be contained.
+** Null values of the response properties will be ignored; hence in some cases, some properties will not be contained.
 |**Name**|**Type**|**Description**|
 |------|------|------|
 |<img width=100/>|<img width=100/>|<img width=500/>|
