@@ -66,7 +66,7 @@ The depth of the response may vary per application.
 |protocol|int| Protocol number.|
 |protocolKeyWord|string| Protocol keyword.|
 |advancedOption|object| Advanced Option of the Path Details.|
-|routinScheme| int | Routing Scheme. |
+|routingScheme| int | Routing Scheme. |
 |group| string | Group. |
 |applicationId| string | ID of the Application. |
 |applicationName| string | Name of the Application. |
